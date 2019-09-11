@@ -33,6 +33,25 @@ INSERT INTO diancan_carousel VALUES
 (null,"vip","/vip/lb4.png"),
 (null,"vip","/vip/lb5.png");
 
+/****大图****/
+CREATE TABLE  diancan_pic(
+  C_ID INT PRIMARY KEY AUTO_INCREMENT,
+  C_Place VARCHAR(64),
+  C_Href VARCHAR(128)
+);
+/**轮播图插入数据 **/
+INSERT INTO diancan_pic VALUES
+(null,"vip","/vip/equity_1.png"),
+(null,"vip","/vip/equity_2.png");
+(null,"vip","/vip/equity_3.png");
+(null,"vip","/vip/equity_4.png");
+(null,"vip","/vip/equity_5.png");
+(null,"vip","/vip/equity_6.png");
+
+
+
+
+
 
 /****商品表****/
 CREATE TABLE  diancan_shop(
