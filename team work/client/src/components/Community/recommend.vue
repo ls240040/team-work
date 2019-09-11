@@ -90,8 +90,5 @@ export default {
     .centerinfo{
         padding: .3rem;
         text-align: left;
-        .pictures{
-            
-        }
     }
 </style>
