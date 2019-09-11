@@ -68,8 +68,11 @@ export default {
 .buttom > div.footer p{
  margin-top:3rem ;
   font-size:0.21rem;
+}
+.buttom > div.footer p span{
 
-
+  font-size:0.21rem;
+  color:#ef4f4f;
 }
 </style>
 

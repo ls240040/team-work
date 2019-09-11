@@ -14,7 +14,6 @@ export default {
     return {};
   },
   methods: {},
-
   components: {
     logintop: Logintop,
     loginbottom: Loginbottom
