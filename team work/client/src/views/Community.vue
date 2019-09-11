@@ -49,22 +49,14 @@ export default {
         "communitydoyen":communityDoyen,
     },
     methods: {
-        loadMore(){
-            var url='community/recommend';
-            this.axios.get(url).then(res=>{
-                if(res.data.code==1){
-                    this.carousel=res.data.data;
-                    console.log(this.carousel)
-                }
-            })
-        }
+        
     },
-    created () {
-        this.loadMore();
-    }
+    
 }
 </script>
 <style lang="scss">
+@import url('../assets/scss/reset.scss');
+@import "../assets/scss/global.scss";
     .community{
         .mint-navbar .mint-tab-item.is-selected{
             border-bottom:.1rem  solid #ff2626!important;
@@ -72,18 +64,20 @@ export default {
             margin-bottom:0;
         }
         .mint-tab-item-label{
-            font-size: 1rem!important;
+            font-size: px2rem(38)!important;
         }
         .mint-navbar .mint-tab-item{
-            padding: .3rem 0;
+            padding: .5rem 0;
         }
         .head{
             display: flex;
             justify-content: space-between;
             width: 100%;
+            padding: 1rem;
+            box-sizing: border-box;
             h2{
-                margin: 0;
                 line-height: 2rem;
+                font-size: 1.3rem;
             }
             img{
                 height: 2rem;
@@ -91,6 +85,9 @@ export default {
         }
         h1{
             text-align: left;
+            padding: 1rem;
+            padding-top: 0;
+            font-size: 2rem;
         }
     }
 </style>
