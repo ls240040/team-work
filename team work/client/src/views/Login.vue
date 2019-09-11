@@ -3,12 +3,14 @@
   <div>
     <div class="content">
       <logintop></logintop>
+      <logininput></logininput>
     </div>
   </div>
 </template>
 <script>
 //负责引入Logintop 子组件
 import Logintop from "../components/Login/logintop";
+import Logininput from "../components/Login/loginInput";
 export default {
   data() {
     return {};
@@ -16,7 +18,8 @@ export default {
   methods: {},
 
   components: {
-    logintop: Logintop
+    logintop: Logintop,
+    logininput: Logininput,
   }
 };
 </script>
