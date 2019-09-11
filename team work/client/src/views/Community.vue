@@ -73,14 +73,14 @@ export default {
             display: flex;
             justify-content: space-between;
             width: 100%;
-            padding: 1rem;
+            padding: px2rem(40);
             box-sizing: border-box;
             h2{
-                line-height: 2rem;
-                font-size: 1.3rem;
+                line-height: px2rem(80);
+                font-size: px2rem(50);
             }
             img{
-                height: 2rem;
+                height: px2rem(80);
             }
         }
         h1{
