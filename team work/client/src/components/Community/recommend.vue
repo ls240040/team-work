@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="centerinfo">
-            <p class="p1">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+            <p class="p1">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
             <div class="pictures">
                 <img src="http://127.0.0.1:5050/icon/food.png">
                 <img src="http://127.0.0.1:5050/icon/food.png">
