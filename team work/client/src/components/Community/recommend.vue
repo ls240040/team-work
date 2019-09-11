@@ -20,8 +20,22 @@
         <div class="centerinfo">
             <p class="p1">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
             <div class="pictures">
-                <img src="http://127.0.0.1:5050/icon/food.png">
-                <img src="http://127.0.0.1:5050/icon/food.png">
+                <div class="im">
+                    <img src="http://127.0.0.1:5050/icon/food.png">
+                </div>
+                <div class="im">
+                    <img src="http://127.0.0.1:5050/icon/food.png">
+                </div>
+            </div>
+        </div>
+        <div class="bottominfo">
+            <div class="left">
+                <p>发布于星期一</p>
+                <p>来自<i>最新活动</i></p>
+            </div>
+            <div class="right">
+                <div><img src="http://127.0.0.1:5050/icon/message.png"><span>18</span></div>
+                <div><img src="http://127.0.0.1:5050/icon/collect.png"><span>16</span></div>
             </div>
         </div>
     </div>
@@ -66,6 +80,10 @@ export default {
                     height: .3rem;
                     margin-bottom:-.05rem;
                 }
+                P{
+                    font-size: .2rem;
+                    color:#999;
+                }
             }
         }
         .logo{
@@ -88,7 +106,52 @@ export default {
         }
     }
     .centerinfo{
-        padding: .3rem;
+        padding: .3rem .3rem .1rem;
         text-align: left;
+        font-size: .25rem;
+        box-sizing:border-box;
+        .pictures{
+            display: flex;
+            margin:.2rem 0;
+            .im{
+                width:33%;
+                overflow: hidden;
+                margin-right:.2rem;
+                background: #999;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .bottominfo{
+        padding:0 .3rem;
+        display: flex;
+        justify-content: space-between;
+        font-size: .25rem;
+        color: #999;
+        .left{
+            display: flex;
+            p{
+                margin-right:.2rem;
+            }
+            i{
+                font-style: normal;
+                color:#ff8315;
+                margin-left:.1rem;
+            }
+        }
+        .right{
+            display: flex;
+            div{
+                display: flex;
+                margin-right:.1rem;
+                 img{
+                    height: .3rem;
+                    display: block;
+                    margin:0 .06rem;
+                }
+            }
+        }
     }
 </style>

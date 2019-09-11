@@ -41,11 +41,11 @@ CREATE TABLE  diancan_pic(
 );
 /**轮播图插入数据 **/
 INSERT INTO diancan_pic VALUES
+(null,"vip","/vip/equity_2.png"),
+(null,"vip","/vip/equity_3.png"),
+(null,"vip","/vip/equity_4.png"),
 (null,"vip","/vip/equity_1.png"),
-(null,"vip","/vip/equity_2.png");
-(null,"vip","/vip/equity_3.png");
-(null,"vip","/vip/equity_4.png");
-(null,"vip","/vip/equity_5.png");
+(null,"vip","/vip/equity_5.png"),
 (null,"vip","/vip/equity_6.png");
 
 
