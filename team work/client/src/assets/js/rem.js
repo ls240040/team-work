@@ -9,7 +9,5 @@
             n > 720 && (n = 720);    
             t.style.fontSize = n / d + "px"    
         };            
-    e.addEventListener && (n.addEventListener(o, a, !1), e.addEventListener("DOMContentLoaded", a, !1))
-
-                
+    e.addEventListener && (n.addEventListener(o, a, !1), e.addEventListener("DOMContentLoaded", a, !1))        
 }(window);
