@@ -23,7 +23,6 @@ export default {
   }
 };
 </script>
-<script src="./rem.js"></script>
 <style lang="scss" scope>
 .clearfix::after {
   display: block;
@@ -42,9 +41,11 @@ div.top > img.logo {
   display: block;
   width: 15%;
 }
-
+p{
+  font-size:0.3rem;
+}
 div.top > div.words > p.title {
-  margin: 1.5rem 0 0 0;
+  margin: 0.1rem 0 0 0;
   font-weight: 600;
 }
 </style>
