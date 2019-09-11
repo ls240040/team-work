@@ -8,49 +8,54 @@
         <div class="logo-list">
             <div class="list-box">
                 <div>
-                    <img src="../../assets/img/camera.png"> 
+                    <img src="http://127.0.0.1:5050/icon/food.png"> 
                 </div>
                 <p>海捞天地</p>
             </div>
             <div class="list-box">
                 <div>
-                    <img src="../../assets/img/camera.png"> 
+                    <img src="http://127.0.0.1:5050/icon/comment.png"> 
                 </div>
                 <p>讨论专区</p>
             </div>
             <div class="list-box">
                 <div>
-                    <img src="../../assets/img/camera.png"> 
+                    <img src="http://127.0.0.1:5050/icon/complain.png"> 
                 </div>
                 <p>投诉表扬</p>
             </div>
             <div class="list-box">
                 <div>
-                    <img src="../../assets/img/camera.png"> 
+                    <img src="http://127.0.0.1:5050/icon/activity.png"> 
                 </div>
                 <p>最新活动</p>
             </div>
             <div class="list-box">
                 <div>
-                    <img src="../../assets/img/camera.png"> 
+                    <img src="http://127.0.0.1:5050/icon/video.png"> 
                 </div>
                 <p>短视频</p>
             </div>
             <div class="list-box">
                 <div>
-                    <img src="../../assets/img/camera.png"> 
+                    <img src="http://127.0.0.1:5050/icon/camera.png"> 
                 </div>
                 <p>互助专区</p>
             </div>
         </div>
+        <recommend></recommend>
     </div>
 </template>
 <script>
+import recommend from './recommend' 
 export default {
     data(){
         return{
             carousel:[]
         }
+    },
+    components:{
+        "recommend":recommend,
     },
     methods:{
         loadMore(){
@@ -71,11 +76,12 @@ export default {
 </script>
 <style lang="scss">
     .recommend{
+        padding-bottom: 3rem;
          .mint-swipe{
-             height: 10rem;
-             margin:.5rem 0 1rem;
+             height: 3rem;
+             margin:.2rem 0 .2rem;
             img{
-                height: 100%;
+                width: 100%;
             }
         }
         .mint-swipe-indicator.is-active{
@@ -84,23 +90,29 @@ export default {
         }
         .mint-swipe-indicator{
             background-color: #fff!important;
-            margin-right: .3rem!important;
+            margin-right: .1rem!important;
             opacity: 1!important;
         }
         .logo-list{
             display: flex;
             justify-content: space-between;
             overflow-x: scroll;
+            padding-bottom: .4rem;
+            box-shadow: 0 0.1rem 0.3rem #ddd;
             .list-box{
-                margin:0 1rem;
+                margin:0 .2rem;
+                p{
+                    font-size: .25rem;
+                    margin-top: .2rem;
+                }
                 div{
-                    background-color: #eae4e4;
+                    background-color: #eaeaea;
                     border-radius: 50%;
-                    p{
-                        font-size: .6rem;
-                    }
+                    width: 1.2rem;
+                    height: 1.2rem;
                     img{
-                        width: 2.5rem;
+                        width: .6rem;
+                        vertical-align: middle;
                     }
                 }
                 

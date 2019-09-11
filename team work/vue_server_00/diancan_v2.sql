@@ -418,3 +418,5 @@ INSERT INTO  diancan_Evaluate VALUES
 (null,1,2,5,5,4.5,"很好吃",null),
 (null,1,3,4.5,4,4.5,"服务很好",null),
 (null,1,4,4.5,4,4.5,"还行",null);
+
+

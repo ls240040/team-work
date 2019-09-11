@@ -9,7 +9,8 @@ import Login from './views/Login.vue'
 Vue.use(Router)
 
 export default new Router({
-    routes: [{
+    routes: [
+        {
             path: '/',
             name: 'index',
             component: Index
