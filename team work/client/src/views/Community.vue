@@ -56,7 +56,6 @@ export default {
 </script>
 <style lang="scss">
 @import url('../assets/scss/reset.scss');
-@import "../assets/scss/global.scss";
     .community{
         .mint-navbar .mint-tab-item.is-selected{
             border-bottom:.1rem  solid #ff2626!important;
@@ -64,7 +63,7 @@ export default {
             margin-bottom:0;
         }
         .mint-tab-item-label{
-            font-size: px2rem(38)!important;
+            font-size: 1rem!important;
         }
         .mint-navbar .mint-tab-item{
             padding: .5rem 0;
@@ -73,14 +72,14 @@ export default {
             display: flex;
             justify-content: space-between;
             width: 100%;
-            padding: px2rem(40);
+            padding: 1rem;
             box-sizing: border-box;
             h2{
-                line-height: px2rem(80);
-                font-size: px2rem(50);
+                line-height: 2rem;
+                font-size: 1.3rem;
             }
             img{
-                height: px2rem(80);
+                height: 2rem;
             }
         }
         h1{

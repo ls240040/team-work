@@ -70,14 +70,12 @@ export default {
 }
 </script>
 <style lang="scss">
-@import '../../assets/scss/global.scss';
     .recommend{
          .mint-swipe{
-             width:100%;
-             height: px2rem(320);
-             margin:px2rem(15) 0 px2rem(40);
+             height: 10rem;
+             margin:.5rem 0 1rem;
             img{
-                width: 100%;
+                height: 100%;
             }
         }
         .mint-swipe-indicator.is-active{
@@ -86,25 +84,23 @@ export default {
         }
         .mint-swipe-indicator{
             background-color: #fff!important;
-            margin-right: px2rem(10)!important;
+            margin-right: .3rem!important;
             opacity: 1!important;
-            width: px2rem(20);
-            height: px2rem(20);
         }
         .logo-list{
             display: flex;
             justify-content: space-between;
             overflow-x: scroll;
             .list-box{
-                margin:0 px2rem(40);
+                margin:0 1rem;
                 div{
                     background-color: #eae4e4;
                     border-radius: 50%;
                     p{
-                        font-size: px2rem(10)!important;
+                        font-size: .6rem;
                     }
                     img{
-                        width:px2rem(100);
+                        width: 2.5rem;
                     }
                 }
                 
