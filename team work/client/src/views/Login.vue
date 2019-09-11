@@ -1,16 +1,14 @@
 <!--Login.vue 用户登录组件-->
 <template>
   <div>
-    <div class="content">
-      <logintop></logintop>
-      <logininput></logininput>
-    </div>
+    <logintop></logintop>
+    <loginbottom></loginbottom>
   </div>
 </template>
 <script>
 //负责引入Logintop 子组件
 import Logintop from "../components/Login/logintop";
-import Logininput from "../components/Login/loginInput";
+import Loginbottom from "../components/Login/loginbottom";
 export default {
   data() {
     return {};
@@ -19,15 +17,14 @@ export default {
 
   components: {
     logintop: Logintop,
-    logininput: Logininput,
+    loginbottom: Loginbottom
   }
 };
 </script>
 <style lang="scss">
-
+@import url("../assets/scss/reset.scss");
 body {
   background-color: rgba($color: #fe6539, $alpha: 0.1);
-  padding: 0;
 }
 </style>
 
