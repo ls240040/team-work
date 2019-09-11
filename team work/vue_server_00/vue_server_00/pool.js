@@ -5,7 +5,7 @@ var pool = mysql.createPool({
   user: 'root',
   password: '',
   port:3306,
-  database: 'vivo',
+  database: 'diancan',
   connectionLimit: 20 
 });
 //把创建好的连接池导出

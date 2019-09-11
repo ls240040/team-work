@@ -1,6 +1,6 @@
 <template>
     <div class="community">
-        <div class="chead">
+        <div class="head">
             <img src="../assets/img/search.png">
             <h2>社区</h2>
             <img src="../assets/img/camera.png">
@@ -39,6 +39,7 @@ export default {
     data () {
         return {
             active:"recommend",
+            carousel:[],
         }
     },
     components:{
@@ -46,6 +47,20 @@ export default {
         "communityrecommend":communityRecommend,
         "communityhotchpotch":communityHotchpotch,
         "communitydoyen":communityDoyen,
+    },
+    methods: {
+        loadMore(){
+            var url='community/recommend';
+            this.axios.get(url).then(res=>{
+                if(res.data.code==1){
+                    this.carousel=res.data.data;
+                    console.log(this.carousel)
+                }
+            })
+        }
+    },
+    created () {
+        this.loadMore();
     }
 }
 </script>
@@ -62,7 +77,7 @@ export default {
         .mint-navbar .mint-tab-item{
             padding: .3rem 0;
         }
-        .chead{
+        .head{
             display: flex;
             justify-content: space-between;
             width: 100%;
@@ -71,20 +86,11 @@ export default {
                 line-height: 2rem;
             }
             img{
-                width:2rem;
                 height: 2rem;
             }
         }
         h1{
             text-align: left;
-        }
-        .mint-swipe-indicator.is-active{
-            background-color: #ff2626!important;
-            opacity: 1!important;
-        }
-        .mint-swipe-indicator{
-            background-color: #999!important;
-            margin-right: .6rem!important;
         }
     }
 </style>

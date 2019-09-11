@@ -39,7 +39,8 @@ app.use(express.static('public'));
 
 //路由器导入
     //index
-    
+    const recommend=require('./routes/community');
 /*使用路由器来管理路由*/
     // app.use("/index",index);
+    app.use("/community",recommend);
    
