@@ -25,6 +25,7 @@ Vue.prototype.axios = axios;
 import Vuex from "vuex";
 //10:注册Vuex
 Vue.use(Vuex);
+Vue.config.productionTip=false;
 
 new Vue({
     router,
