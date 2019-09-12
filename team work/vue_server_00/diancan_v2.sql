@@ -41,11 +41,11 @@ CREATE TABLE  diancan_pic(
 );
 /**轮播图插入数据 **/
 INSERT INTO diancan_pic VALUES
+(null,"vip","/vip/equity_2.png"),
+(null,"vip","/vip/equity_3.png"),
+(null,"vip","/vip/equity_4.png"),
 (null,"vip","/vip/equity_1.png"),
-(null,"vip","/vip/equity_2.png");
-(null,"vip","/vip/equity_3.png");
-(null,"vip","/vip/equity_4.png");
-(null,"vip","/vip/equity_5.png");
+(null,"vip","/vip/equity_5.png"),
 (null,"vip","/vip/equity_6.png");
 
 
@@ -122,14 +122,15 @@ CREATE TABLE diancan_Mer(
   M_AllRating Float,             /**总评 1-5**/
   M_SRating Float,               /**服务评价 1-5**/
   M_ERating Float,               /**环境 1-5**/
-  M_CommentNum Int               /**评论数**/
+  M_CommentNum Int,               /**评论数**/
+  M_Distance Float               /**距离**/
 );
 /**餐馆描述表插入数据**/
 INSERT INTO diancan_Mer VALUES
-(null,"铂澜大象城店","杭州市西湖区文一路294号铂澜大象城5楼",15888888888,null,4.5,4.5,4.5,1234),
-(null,"水晶城店","杭州市西湖区文一路294号铂澜大象城5楼",15888888888,null,4.5,4.5,4.5,1234),
-(null,"城西银泰店","杭州市西湖区文一路294号铂澜大象城5楼",15888888888,null,4.5,4.5,4.5,1234),
-(null,"绍兴路店","杭州市西湖区文一路294号铂澜大象城5楼",15888888888,null,4.5,4.5,4.5,1234);
+(null,"铂澜大象城店","杭州市西湖区文一路294号铂澜大象城5楼",15888888888,null,4.5,4.5,4.5,1234,1.681),
+(null,"水晶城店","杭州市西湖区文一路294号铂澜大象城5楼",15888888888,null,4.5,4.5,4.5,1234,3.504),
+(null,"城西银泰店","杭州市西湖区文一路294号铂澜大象城5楼",15888888888,null,4.5,4.5,4.5,1234,3.644),
+(null,"绍兴路店","杭州市西湖区文一路294号铂澜大象城5楼",15888888888,null,4.5,4.5,4.5,1234,3.969);
 
 /****菜品分类****/
 CREATE TABLE diancan_FoodType(
@@ -418,3 +419,5 @@ INSERT INTO  diancan_Evaluate VALUES
 (null,1,2,5,5,4.5,"很好吃",null),
 (null,1,3,4.5,4,4.5,"服务很好",null),
 (null,1,4,4.5,4,4.5,"还行",null);
+
+
