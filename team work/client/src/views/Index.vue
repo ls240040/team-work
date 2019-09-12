@@ -1,12 +1,12 @@
-<!--Login.vue 用户登录组件-->
+<!--index.vue -->
 <template>
   <div>
-
+    <indextop></indextop>
   </div>
 </template>
 <script>
-//负责引入Logintop 子组件
-import Logintop from "../components/Login/logintop";
+//负责引入indexTop子组件
+import indexTop from "../components/Index/indexTop";
 
 export default {
   data() {
@@ -14,7 +14,7 @@ export default {
   },
   methods: {},
   components: {
-    logintop: Logintop,
+    "indextop": indexTop,
 
   }
 };
