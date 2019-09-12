@@ -1,42 +1,44 @@
 <template>
-    <div class="crecommend">
-        <!--  -->
-        <div class="info">
-            <div class="left">
-                <div class="avatar">
-                    <img src="http://127.0.0.1:5050/icon/camera.png">
+    <div>
+        <div class="crecommend">
+            <div class="info">
+                <div class="left">
+                    <div class="avatar">
+                        <img src="http://127.0.0.1:5050/icon/camera.png">
+                    </div>
+                    <div class="name">
+                        <span>大H8</span>
+                        <img src="http://127.0.0.1:5050/icon/warmth_v_4.png">
+                        <p>吃不胖</p>
+                    </div>
                 </div>
-                <div class="name">
-                    <span>大H8</span>
-                    <img src="http://127.0.0.1:5050/icon/warmth_v_4.png">
-                    <p>吃不胖</p>
-                </div>
-            </div>
-            <div class="logo">
-                <span class="attention">+关注</span>
-                <img src="http://127.0.0.1:5050/icon/elipsis.png">
-            </div>
-        </div>
-        <div class="centerinfo">
-            <p class="p1">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
-            <div class="pictures">
-                <div class="im">
-                    <img src="http://127.0.0.1:5050/icon/food.png">
-                </div>
-                <div class="im">
-                    <img src="http://127.0.0.1:5050/icon/food.png">
+                <div class="logo">
+                    <span class="attention">+关注</span>
+                    <img src="http://127.0.0.1:5050/icon/elipsis.png">
                 </div>
             </div>
-        </div>
-        <div class="bottominfo">
-            <div class="left">
-                <p>发布于星期一</p>
-                <p>来自<i>最新活动</i></p>
+            <div class="centerinfo">
+                <p class="p1">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+                <div class="pictures">
+                    <div class="im">
+                        <img src="http://127.0.0.1:5050/icon/food.png">
+                    </div>
+                    <div class="im">
+                        <img src="http://127.0.0.1:5050/icon/food.png">
+                    </div>
+                </div>
             </div>
-            <div class="right">
-                <div><img src="http://127.0.0.1:5050/icon/message.png"><span>18</span></div>
-                <div><img src="http://127.0.0.1:5050/icon/collect.png"><span>16</span></div>
+            <div class="bottominfo">
+                <div class="left">
+                    <p>发布于星期一</p>
+                    <p>来自<i>最新活动</i></p>
+                </div>
+                <div class="right">
+                    <div><img src="http://127.0.0.1:5050/icon/message.png"><span>18</span></div>
+                    <div><img src="http://127.0.0.1:5050/icon/collect.png"><span>16</span></div>
+                </div>
             </div>
+            <hr>
         </div>
     </div>
 </template>
@@ -47,8 +49,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import url('../../assets/scss/reset.scss');
+    .crecommend{
+        padding:0 .2rem .5rem;
+    }
+    hr{
+        opacity: .5;
+    }
     .info{
-        padding: 0 .2rem;
         display: flex;
         justify-content: space-between;
         margin-top:.6rem;
@@ -106,7 +113,6 @@ export default {
         }
     }
     .centerinfo{
-        padding: .3rem .3rem .1rem;
         text-align: left;
         font-size: .25rem;
         box-sizing:border-box;
@@ -123,9 +129,11 @@ export default {
                 }
             }
         }
+        p{
+            margin-top:.3rem;
+        }
     }
     .bottominfo{
-        padding:0 .3rem;
         display: flex;
         justify-content: space-between;
         font-size: .25rem;

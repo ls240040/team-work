@@ -6,6 +6,8 @@ import Community from './views/Community.vue'
 import Mine from './views/Mine.vue'
 import Vip from './views/Vip.vue'
 import Login from './views/Login.vue'
+import reserve from './components/Index/index02/reserve.vue'
+import shopList from './components/Index/index02/shopList.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -39,6 +41,16 @@ export default new Router({
             path: '/Login',
             name: 'login',
             component: Login
+        },
+        {
+            path: '/shopList',
+            name: 'shopList',
+            component: shopList
+        },
+        {
+            path: '/reserve',
+            name: 'reserve',
+            component: reserve
         },
         // {
         //   path: '/about',

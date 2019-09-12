@@ -40,7 +40,9 @@ app.use(express.static('public'));
 //路由器导入
     //index
     const recommend=require('./routes/community');
+    const shoplist=require('./routes/index');
 /*使用路由器来管理路由*/
     // app.use("/index",index);
     app.use("/community",recommend);
+    app.use("/index",shoplist);
    
