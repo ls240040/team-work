@@ -75,8 +75,9 @@ export default {
 }
 </script>
 <style lang="scss">
+// $num:3rem;
     .recommend{
-        padding-bottom: 3rem;
+        padding-bottom: .3rem;
          .mint-swipe{
              height: 3rem;
              margin:.2rem 0 .2rem;

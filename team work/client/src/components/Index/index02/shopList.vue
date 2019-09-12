@@ -59,7 +59,6 @@ export default {
 <style lang="scss" scoped>
 // @import url('../../../assets/scss/reset.scss');
     .shoplist{
-        background: #fff;
         .top{
             padding: .2rem .3rem;
             font-size: .4rem;
