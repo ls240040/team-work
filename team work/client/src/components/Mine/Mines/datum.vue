@@ -47,9 +47,6 @@ export default {
       }
       
     }
-
-
-  
     .mint-cell-wrapper{
           font-size:0.3rem;
       }
