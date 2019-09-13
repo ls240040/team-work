@@ -8,6 +8,7 @@ import Vip from './views/Vip.vue'
 import Login from './views/Login.vue'
 import reserve from './components/Index/index02/reserve.vue'
 import shopList from './components/Index/index02/shopList.vue'
+import datum from './components/Mine/Mines/datum.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -51,6 +52,11 @@ export default new Router({
             path: '/reserve',
             name: 'reserve',
             component: reserve
+        },
+        {
+            path: '/datum',
+            name: 'datum',
+            component: datum
         },
         // {
         //   path: '/about',

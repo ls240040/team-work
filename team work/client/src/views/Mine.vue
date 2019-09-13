@@ -1,6 +1,7 @@
 <!--Mine.vue 我的 页面组件-->
 <template>
   <div class="mine">
+    
     <minedatum></minedatum>
     <mineorder></mineorder>
     <minestatus></minestatus>
@@ -40,6 +41,8 @@ export default {
 <style lang="scss">
 @import url("../assets/scss/reset.scss");
   .mine{
+    // 页头留空，以便显示 中国移动等信息
+    padding-top:0.1rem;
     background:#eee;
   }
 </style>

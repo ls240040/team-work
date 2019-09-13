@@ -8,7 +8,7 @@ import rem from './assets/js/rem'
 import MintUI from 'mint-ui'
 // 第2步 ： 单独引入mint-ui组件库中的样式
 import 'mint-ui/lib/style.css'
-// 第3步 ： 将mint-ui祖册到vue实例中
+// 第3步 ： 将mint-ui注册到vue实例中
 Vue.use(MintUI);
 Vue.use(rem);
 Vue.configproductionTip = false
