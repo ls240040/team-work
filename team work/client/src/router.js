@@ -11,8 +11,7 @@ import shopList from './components/Index/index02/shopList.vue'
 Vue.use(Router)
 
 export default new Router({
-    routes: [
-        {
+    routes: [{
             path: '/',
             name: 'index',
             component: Index
