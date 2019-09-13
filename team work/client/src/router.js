@@ -12,8 +12,7 @@ import datum from './components/Mine/Mines/datum.vue'
 Vue.use(Router)
 
 export default new Router({
-    routes: [
-        {
+    routes: [{
             path: '/',
             name: 'index',
             component: Index

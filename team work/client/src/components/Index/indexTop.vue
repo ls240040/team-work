@@ -19,8 +19,8 @@
         </p>
       </div>
       <div>
-        <p class="change">
-          去兑换<img src="http://127.0.0.1:5050/icon/arrow.png" alt="">
+        <p class="change">去兑换
+          <img src="http://127.0.0.1:5050/icon/arrow.png" alt>
         </p>
       </div>
     </div>
@@ -53,16 +53,15 @@ export default {
         font-size: 0.8rem;
       }
     }
-    p.change{
+    p.change {
       font-size: 0.3rem;
-      margin-top:.3rem; 
+      margin-top: 0.3rem;
     }
-     img{
-       vertical-align: middle;
-       position: relative;
-       bottom: .05rem
-
-     }
+    img {
+      vertical-align: middle;
+      position: relative;
+      bottom: 0.05rem;
+    }
   }
   .navBar img.leftImg {
     height: 0.45rem;
@@ -73,18 +72,18 @@ export default {
   }
   .navBar img.more {
     height: 0.45rem;
-    position: absolute;
+    position: fixed;
     top: 0.3rem;
     right: 0.2rem;
   }
   .navBar img.kefu {
     height: 0.45rem;
-    position: absolute;
+    position: fixed;
     top: 0.3rem;
     right: 1rem;
   }
   .search {
-    position: absolute;
+    position: fixed;
     top: 0.3rem;
     left: 1.1rem;
     width: 4rem;
