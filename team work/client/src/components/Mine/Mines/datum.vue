@@ -46,7 +46,11 @@ export default {
           font-size:0.3rem;
       }
       
-    }.mint-cell-wrapper{
+    }
+
+
+  
+    .mint-cell-wrapper{
           font-size:0.3rem;
       }
 </style>
