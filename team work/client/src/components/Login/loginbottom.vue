@@ -12,7 +12,10 @@
       <div class="wb"></div>
     </div>
     <div class="footer">
-      <p>登录注册表示同意<span>用户许可使用协议、隐私政策</span></p>
+      <p>
+        登录注册表示同意
+        <span>用户许可使用协议、隐私政策</span>
+      </p>
     </div>
   </div>
 </template>
@@ -26,53 +29,54 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.qq{
-  width: .5rem;
-  height: .5rem;
-  background: url(http://127.0.0.1:5050/icon/qq.png) no-repeat center;
-  border-radius:50% ;
+.qq {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: url(http://127.1:5050/icon/qq.png) no-repeat center;
+  border-radius: 50%;
   background-size: contain;
 }
-.wb{
-  background: url(http://127.0.0.1:5050/icon/wb.png) no-repeat center;
-   border-radius:50% ;
+.wb {
+  background: url(http://127.1:5050/icon/wb.png) no-repeat center;
+  border-radius: 50%;
   background-size: contain;
 }
-.buttom > div > .loginBtn {
-  width: 4rem;
-  height: 0.7rem;
-  margin-top:1.2rem; 
-  border-radius: 0.35rem;
-  font-weight: 100;
-  font-size: 0.28rem;
+.buttom > div {
+  .loginBtn {
+    width: 4rem;
+    height: 0.7rem;
+    margin-top: 1.2rem;
+    border-radius: 0.35rem;
+    font-weight: 100;
+    font-size: 0.28rem;
+  }
+  .forget {
+    font-size: 0.2rem;
+    margin-top: 0.2rem;
+  }
 }
-.buttom > div > .forget {
-  font-size: 0.2rem;
-  margin-top: 0.2rem;
-}
-.buttom > div.loginWay{
-  margin:.8rem 1.1rem 1rem ;
+
+.buttom > div.loginWay {
+  margin: 0.8rem 1.1rem 1rem;
   display: flex;
   justify-content: space-around;
+  div img {
+    width: 1rem;
+  }
 }
-.buttom > div.loginWay div img{
-  width: 1rem;
-  
-}
-.buttom > div.loginWay div{
+
+.buttom > div.loginWay div {
   width: 1rem;
   border-radius: 50%;
 }
 
-
-.buttom > div.footer p{
- margin-top:3rem ;
-  font-size:0.21rem;
-}
-.buttom > div.footer p span{
-
-  font-size:0.21rem;
-  color:#ef4f4f;
+.buttom > div.footer p {
+  margin-top: 3rem;
+  font-size: 0.21rem;
+  span {
+    font-size: 0.21rem;
+    color: #ef4f4f;
+  }
 }
 </style>
 
