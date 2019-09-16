@@ -2,10 +2,11 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../pool");
 
-router.get("/login", (req, res) => {
+router.post("/login", (req, res) => {
     //6.1:接收网页传递数据 用户名和密码
-    var u = req.query.uname;
-    var p = req.query.upwd;
+
+    var u = req.body.uname;
+    var p = req.body.upwd;
     console.log(u, p)
         //6.2:创建sql
     var sql = "SELECT U_id FROM diancan_user";

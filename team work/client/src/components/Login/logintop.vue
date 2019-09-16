@@ -12,16 +12,15 @@
         </div>
       </div>
     </div>
-    <div class="middle">
-      <div><span>账号:</span><input type="text" placeholder="请输入用户名"></div>
-      <div><span>密码:</span><input id="upwd" type="text" placeholder="请输入密码"></div>
-    </div>
+  
   </div>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+     
+    };
   },
   methods: {}
 };
@@ -60,35 +59,6 @@ div.top > div.words > p.beVip {
 font-size: 0.2rem;
 
 }
-div.middle{
-  text-align: left;
-}
-div.middle>div>input {
-  display: inline-block;
-  width: 3rem;
-  height: .5rem;
-  border: 0;
-  background-color:transparent;
-  border-bottom:0.01rem solid rgba(85,85,85,0.4);
-  padding-left:0.1rem;
-  margin-left: 0.2rem;
-  margin-top:1rem;
-}
-#upwd {
-  margin-top:.3rem;
-}
-div.middle>div>input::placeholder{
- color:rgba(85,85,85,0.4);
- font-size:0.15rem;
 
-}
-div.middle>div{
-  margin-left: 1.2rem;
-
-}
-div.middle>div>span{
-  display: inline-block;
-  font-size:0.25rem;
-}
 </style>
 

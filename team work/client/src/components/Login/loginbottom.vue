@@ -1,8 +1,18 @@
 <!--Login.vue 用户登录组件-->
 <template>
   <div class="buttom">
+    <div class="middle">
+      <div>
+        <span>账号:</span>
+        <input v-model="uname" type="text" placeholder="请输入用户名">
+      </div>
+      <div>
+        <span>密码:</span>
+        <input v-model="upwd" type="text" placeholder="请输入密码">
+      </div>
+    </div>
     <div>
-      <mt-button class="loginBtn" type="danger">登录</mt-button>
+      <mt-button class="loginBtn" type="danger" @click="login">登录</mt-button>
       <p class="forget">
         <span>忘记密码</span>
       </p>
@@ -22,13 +32,90 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+       upwd:"",
+      uname:"",
+    };
   },
-  methods: {}
+  methods: {
+    login() {
+      //功能一：完成用户登录操作
+      //1：获取用户名和密码
+      var u = this.uname;
+      var p = this.upwd;
+      console.log(u, p);
+      //2: 创建正则表达式  3~12位置 字母数字
+      var reg = /^[a-z0-9]{3,12}$/i;
+      //3: 判断如何错误 用户名提示
+      if (!reg.test(u)) {
+        this.$toast("用户名格式不正确");
+        return;
+      }
+      //4: 判断如何错误 密码提示
+      if (!reg.test(p)) {
+        this.$toast("密码格式不正确");
+        return;
+      }
+
+      //5: 发送ajax
+      var obj = { uname: u, upwd: p };
+      this.axios
+        .post("/user/login", Qs.stringify(obj)) //传参
+        .then(function(res) {
+          console.log(res);
+        })
+        .catch(function(err) {
+          console.log("请求失败233");
+        });
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
+div.middle{
+  text-align: left;
+}
+div.middle>div>input {
+  display: inline-block;
+  width: 3rem;
+  height: .5rem;
+  border: 0;
+  background-color:transparent;
+  border-bottom:0.01rem solid rgba(85,85,85,0.4);
+  padding-left:0.1rem;
+  margin-left: 0.2rem;
+  margin-top:1rem;
+}
+#upwd {
+  margin-top:.3rem;
+}
+div.middle>div>input::placeholder{
+ color:rgba(85,85,85,0.4);
+ font-size:0.15rem;
+
+}
+div.middle>div{
+  margin-left: 1.2rem;
+
+}
+div.middle>div>span{
+  display: inline-block;
+  font-size:0.25rem;
+}
+div.middle>div>input::placeholder{
+ color:rgba(85,85,85,0.4);
+ font-size:0.15rem;
+
+}
+div.middle>div{
+  margin-left: 1.2rem;
+
+}
+div.middle>div>span{
+  display: inline-block;
+  font-size:0.25rem;
+}
 .qq {
   width: 0.5rem;
   height: 0.5rem;
