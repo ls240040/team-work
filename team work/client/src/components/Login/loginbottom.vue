@@ -33,8 +33,8 @@
 export default {
   data() {
     return {
-       upwd:"",
-      uname:"",
+      upwd: "",
+      uname: ""
     };
   },
   methods: {
@@ -56,16 +56,24 @@ export default {
         this.$toast("密码格式不正确");
         return;
       }
-
       //5: 发送ajax
-      var obj = { uname: u, upwd: p };
+      // var obj = { 'uname': u, 'upwd': p };
+      // var formdata=JSON.stringify(obj);
+      // console.log(formdata);
+      var params = new URLSearchParams();
+      params.append("uname", u);
+      params.append("upwd", p);
       this.axios
-        .post("/user/login", Qs.stringify(obj)) //传参
-        .then(function(res) {
-          console.log(res);
+        .post("/user/login", params) //传参
+        .then(res=>{
+          if (res.data.code == 1) {
+            this.$router.push({
+              path: "/"
+            });
+          }
         })
         .catch(function(err) {
-          console.log("请求失败233");
+          console.log(err);
         });
     }
   }
@@ -73,48 +81,44 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-div.middle{
+div.middle {
   text-align: left;
 }
-div.middle>div>input {
+div.middle > div > input {
   display: inline-block;
   width: 3rem;
-  height: .5rem;
+  height: 0.5rem;
   border: 0;
-  background-color:transparent;
-  border-bottom:0.01rem solid rgba(85,85,85,0.4);
-  padding-left:0.1rem;
+  background-color: transparent;
+  border-bottom: 0.01rem solid rgba(85, 85, 85, 0.4);
+  padding-left: 0.1rem;
   margin-left: 0.2rem;
-  margin-top:1rem;
+  margin-top: 1rem;
 }
 #upwd {
-  margin-top:.3rem;
+  margin-top: 0.3rem;
 }
-div.middle>div>input::placeholder{
- color:rgba(85,85,85,0.4);
- font-size:0.15rem;
-
+div.middle > div > input::placeholder {
+  color: rgba(85, 85, 85, 0.4);
+  font-size: 0.15rem;
 }
-div.middle>div{
+div.middle > div {
   margin-left: 1.2rem;
-
 }
-div.middle>div>span{
+div.middle > div > span {
   display: inline-block;
-  font-size:0.25rem;
+  font-size: 0.25rem;
 }
-div.middle>div>input::placeholder{
- color:rgba(85,85,85,0.4);
- font-size:0.15rem;
-
+div.middle > div > input::placeholder {
+  color: rgba(85, 85, 85, 0.4);
+  font-size: 0.15rem;
 }
-div.middle>div{
+div.middle > div {
   margin-left: 1.2rem;
-
 }
-div.middle>div>span{
+div.middle > div > span {
   display: inline-block;
-  font-size:0.25rem;
+  font-size: 0.25rem;
 }
 .qq {
   width: 0.5rem;
