@@ -6,7 +6,7 @@
       <p class="more">更多话题</p>
     </div>
     <div class="titleItem">
-    <img src="http://127.1:5050/index/lbB1.png" alt=""><img src="http://127.1:5050/index/lbB1.png" alt=""><img src="http://127.1:5050/index/lbB1.png" alt=""><img src="http://127.1:5050/index/lbB1.png" alt="">
+    <img src="http://127.1:5050/index/lbB1.png" alt=""><img src="http://127.1:5050/index/lbB2.png" alt=""><img src="http://127.1:5050/index/lbB3.png" alt=""><img src="http://127.1:5050/index/lbB4.png" alt="">
     </div>
   </div>
 </template>
@@ -28,7 +28,7 @@ export default {
           display: flex;
           justify-content: left;
           flex-flow: row nowrap;
-          overflow-x: hidden;
+          overflow-x:scroll;
 
           img{
               width: 5rem;
