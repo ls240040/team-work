@@ -31,7 +31,35 @@
             v-show="value1">
             </mt-checklist>
         </div>
-        <transition name="pull-up">
+        <div class="confirm">
+            <div class="verify-box">
+                <div class="verify">
+                    <mt-field label="姓名：" placeholder="000vUEz1" v-model="username"></mt-field>
+                    <mt-radio
+                    v-model="value2"
+                    :options="['先生', '女士']">
+                    </mt-radio>
+                </div>
+            </div>
+             <div class="verify-box">
+                <div class="verify">
+                    <mt-field label="手机号：" placeholder="18755896255" v-model="phone"></mt-field>
+                </div>
+            </div>
+            <div class="verify-box">
+                <div class="verify">
+                    <p>特殊需求</p> 
+                    <img src="http://127.0.0.1:5050/icon/arrow-right.png"> 
+                </div>
+            </div>
+            <div class="submit-box">
+            <div class="submit">
+                <p>*提交订单后需要等待餐厅确认</p>
+                <button>立即预订</button>
+            </div>
+        </div>
+        </div>
+         <transition name="pull-up">
             <div class="confirm-box"  v-show="show">
                 <div class="confirm">
                     <span @click="close">取消</span>
@@ -41,15 +69,6 @@
                 <mt-picker :slots="slots" @change="onValuesChange"></mt-picker>
             </div>
         </transition>
-        <div class="confirm">
-            <div class="verify">
-                <mt-field label="姓名：" placeholder="000vUEz1" v-model="username"></mt-field>
-                <mt-radio
-                v-model="value"
-                :options="['先生', '女士']">
-                </mt-radio>
-            </div>
-        </div>
     </div>
 </template>
 <script>
@@ -68,7 +87,10 @@ export default {
             show:false,
             value1:false,
             selected:[""],
-            options:["没有包房可接受大厅"]
+            options:["没有包房可接受大厅"],
+            username:"",
+            value2:"",
+            phone:""
         }
     },
     methods:{
@@ -166,7 +188,7 @@ export default {
                 color:#000;
                 display: flex;
                 justify-content: space-between;
-                padding:.3rem .5rem;
+                padding:.4rem .5rem;
                 z-index: 100;
                 background-color: #fff;
             }
@@ -174,13 +196,14 @@ export default {
                 position: fixed;
                 bottom: 0;
                 width: 100%;
-                height: 45vh;
+                height: 42vh;
                 box-sizing: border-box;
                 z-index: 3;
                 overflow: hidden;
+                background-color: #fff;
             }
             .picker-item{
-                top:1.2rem;
+                top:1rem;
                 font-size: .4rem;
             }
             .picker-selected{
@@ -214,7 +237,7 @@ export default {
         }
         .confirm{
             background-color: #f7f7f7;
-             padding: 0 .3rem .3rem;
+             padding: 0 .3rem .2rem;
             .select-box{
                 font-size: .25rem;
                 color:#000;
@@ -271,7 +294,7 @@ export default {
                 border-color:#ff2626;
             }
             .mint-checkbox-input:checked + .mint-checkbox-core::after{
-                background-color: #ff2626;
+                background-color: #e70216;
                 border-radius: 50%;
                 border: transparent;
                 width: .24rem;
@@ -286,10 +309,17 @@ export default {
                 left:0;
                 margin-left:.08rem;
                 margin-top:.08rem;
+                border-radius: 50%;
             }
             .mint-cell{
                 background-color: transparent;
                 min-height: 0.4rem;
+            }
+            .mint-field .mint-cell-title{
+                margin-right: .2rem;
+            }
+            .mint-field-core{
+                width: auto;
             }
             .mint-cell:last-child{
                 background-image: none;
@@ -297,21 +327,28 @@ export default {
             .mint-cell-wrapper{
                 background-image: none;
             }
+            .verify-box{
+                padding: .3rem .3rem 0;
+                background-color:#fff;
+            }
             .verify{
                 justify-content: space-between;
                 display: flex;
-            }
-            .mint-radiolist-label{
-                width: 2rem;
+                border-bottom: 1px solid #f7f7f7;
+                padding-bottom:.3rem;
+                text-align: left;
+                p{
+                    font-size: .25rem;
+                    color:#000;
+                }
+                img{
+                    height: .3rem;
+                }
             }
             .mint-radiolist-label,.mint-radiolist{
                 display: flex;
                 padding: 0;
                 flex-wrap: nowrap;
-            }
-            .mint-radiolist{
-                width: 40vw;
-                border: 1px solid red;
             }
             .mint-field .mint-cell-title{
                 width: 1rem;
@@ -319,7 +356,8 @@ export default {
             .mint-radio-label{
                 margin-right:.1rem;
                 width: .6rem;
-                line-height: 1
+                line-height: .35rem;
+                font-size: .25rem;
             }
             .mint-cell-wrapper{
                 overflow:initial;
@@ -329,6 +367,50 @@ export default {
             }
             .mint-cell-wrapper{
                 padding: 0;
+            }
+            .mint-radio-core{
+                width: .35rem;
+                height: .35rem;
+            }
+            .mint-radio-core::after{
+                top:0;
+                left:0;
+                width: .3rem;
+                height: .3rem;
+                background-color: transparent;
+                background-image: url("http://127.0.0.1:5050/icon/chosen.png");
+                background-repeat: no-repeat;
+                background-position:top;
+                background-size: contain; 
+            }
+            .mint-radio-input:checked + .mint-radio-core{
+                background-color: #e70216;
+                border-color:#e70216;
+            }
+            .mintui-field-error:before{
+                content: "";
+            }
+            .mint-field-core{
+                color:#7b7b7b;
+            }
+        }
+        .submit{
+            font-size: .15rem;
+            padding:.3rem;
+            background-color: #fff;
+            p{
+                margin-top:1rem
+            }
+            button{
+                border: 0;
+                width: 100%;
+                font-size: .3rem;
+                color:#fff;
+                line-height: 2.2;
+                background-color: #e70216;
+                border-radius: .6rem;
+                margin-top:.3rem;
+                letter-spacing: .04rem
             }
         }
     }
