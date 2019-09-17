@@ -1,15 +1,18 @@
 <template>
     <div class="reserve">
+        <!-- 头部 -->
         <div class="top">
             <img src="http://127.0.0.1:5050/icon/arrow-left.png">
             <p>预订</p>
         </div>
+        <!-- banner -->
         <img class="banner" src="http://127.0.0.1:5050/icon/reserve-banner.png">
+        <!-- 主体 -->
         <div class="confirm">
             <div class="select-box">
                 <div class="select">
                     <p>就餐时间</p>
-                    <p>请选择<img src="http://127.0.0.1:5050/icon/arrow-right.png"></p>
+                    <p @click="chooseTime">{{time}}<img src="http://127.0.0.1:5050/icon/arrow-right.png"></p>
                 </div>
             </div>
             <div class="select-box">
@@ -59,6 +62,7 @@
             </div>
         </div>
         </div>
+        <!-- 选择人数 -->
          <transition name="pull-up">
             <div class="confirm-box"  v-show="show">
                 <div class="confirm">
@@ -69,9 +73,21 @@
                 <mt-picker :slots="slots" @change="onValuesChange"></mt-picker>
             </div>
         </transition>
+        <!-- 日历 -->
+        <transition name="pull-up">
+            <div class="calbox" v-show="calshow">
+                <div class="confirmCal">
+                    <span @click="closeCal">取消</span>
+                    <span>日历</span>
+                    <span @click="sure">确定</span>
+                </div>
+                <Calendar :choseDay="clickDay()" :changeMonth="changeDate" :isToday="clickToday" class="calendar" :agoDayHide="ago" :futureDayHide="future"></Calendar>
+            </div>
+        </transition>
     </div>
 </template>
 <script>
+import Calendar from 'vue-calendar-component';
 export default {
     data(){
         return{
@@ -84,18 +100,55 @@ export default {
                 }, 
             ],
             num:"请选择",
+            time:"请选择",
             show:false,
             value1:false,
             selected:[""],
             options:["没有包房可接受大厅"],
             username:"",
             value2:"",
-            phone:""
+            phone:"",
+            calshow:false,
+            ago:"",
+            future:""
         }
     },
+    components: {
+        Calendar
+    },
     methods:{
+        clickDay(){
+            
+        },
+        changeDate(){
+            
+        },
+        clickToday(){
+            
+        },
         close(){
             this.show=false;
+        },
+        closeCal(){
+            this.calshow=false;
+        },
+        sure(){
+            this.calshow=false;
+            var chosenDay=document.getElementsByClassName("wh_chose_day")[0];
+            if(chosenDay!=null){
+                chosenDay=chosenDay.innerHTML;
+                var date=document.getElementsByClassName("wh_content_li")[0].innerHTML;
+                var year=date.slice(0,4);
+                // console.log(chosenDay)
+                if(date.length==7){
+                    var day=date.slice(5,6);
+                }else if(date.length>7){
+                    var day=date.slice(5,7);
+                }
+                this.time=year+"-"+day+"-"+chosenDay;
+            }else{
+                this.time="请选择"
+            }
         },
         confirm(){
             var selected=document.getElementsByClassName("picker-selected")[0];
@@ -107,6 +160,14 @@ export default {
         },
         choose(){
             this.show=true;
+            this.calshow=false;
+        },
+        chooseTime(){
+            this.calshow=true;
+            this.show=false;
+            // var today=document.querySelector(".wh_content_item .wh_isToday[data-v-2ebcbc83]");
+            // today.innerHTML="今";
+
         },
         onValuesChange(picker,values){
             if(values[0]>values[1]){
@@ -114,7 +175,19 @@ export default {
             }
         },
         loadMore(){
-            this.$messagebox("温馨提示","各位捞粉大家好，每日早上7:00-9:00是我们闭店打扫时间，擦亮桌椅迎接您的到来，期间无法为您提供用餐服务，感谢您的谅解与支持。")
+            this.$messagebox("温馨提示","各位捞粉大家好，每日早上7:00-9:00是我们闭店打扫时间，擦亮桌椅迎接您的到来，期间无法为您提供用餐服务，感谢您的谅解与支持。");
+           
+            var start=Date.parse(new Date());
+            start=start/1000;
+            start=start.toString();
+            var end=Date.parse(new Date());
+            var addtime=20*24*60*60*1000;
+            end=parseInt(end)+parseInt(addtime);
+            end=end/1000;
+            end=end.toString();
+            console.log(end)
+            this.ago=start
+            this.future=end;
         }
     },
     created(){
@@ -123,7 +196,6 @@ export default {
 }
 </script>
 <style lang="scss">
-    // $deg:5;
     .mint-msgbox-message{
         font-size: .22rem;
         color:rgb(41, 41, 41)!important;
@@ -178,13 +250,14 @@ export default {
         }
 
         .confirm-box{
-            height:40%;
+            height:43%;
             position: fixed;
             bottom: 12vh;
             width: 100%;
             overflow: hidden;
             background-color: #fff;
             z-index: 99;
+            box-shadow:0 -0.2rem 0.3rem 0 #d6d6d6;
             .confirm{
                 font-size: .3rem;
                 color:#000;
@@ -198,7 +271,7 @@ export default {
                 position: fixed;
                 bottom: 0;
                 width: 100%;
-                height: 40%;
+                height: 45%;
                 box-sizing: border-box;
                 z-index: 3;
                 overflow: hidden;
@@ -206,17 +279,18 @@ export default {
             }
             .picker-item{
                 font-size: .4rem;
-                line-height: .4rem!important;
+                // line-height: .4rem!important;
             }
             .picker-selected{
                 color:#000;
-            }
-            .picker-center-highlight{
                 background-color:#ffe2cd;
-                z-index: 1;
-                height: .7rem!important;
-                top: 30%;
             }
+            // .picker-center-highlight{
+            //     background-color:#ffe2cd;
+            //     z-index: 1;
+            //     height: .7rem!important;
+            //     top: 40%;
+            // }
             .picker-slot.picker-slot-center.slot1{
                 z-index: 2;
                 // top:50%;
@@ -414,8 +488,64 @@ export default {
                 background-color: #e70216;
                 border-radius: .6rem;
                 margin-top:.3rem;
-                letter-spacing: .04rem
+                letter-spacing: .04rem;
+                outline: 0;
             }
         }
+        .calbox{
+            position: fixed;
+            bottom: 0;
+            background-color: #fff;
+            padding:0 .3rem;
+            height:55%!important;
+            box-shadow:0 -0.2rem 0.3rem 0 #d6d6d6;
+        }
+        .confirmCal{
+            font-size: .3rem;
+            color:#000;
+            background-color: #fff;
+            padding: .3rem;
+            display: flex;
+            justify-content: space-between;
+            span:first-child{
+                color:#b1b1b1;
+            }
+            span:last-child{
+                color:#e70216;
+            }
+        }
+        .calendar{
+            .wh_content_item[data-v-2ebcbc83], wh_content_item_tag[data-v-2ebcbc83],.wh_top_changge li[data-v-2ebcbc83]{
+                color:#000
+            }
+            .wh_jiantou2[data-v-2ebcbc83]{
+                border-top:2px solid #e70216;
+                border-right:2px solid #e70216;
+            }
+            .wh_jiantou1[data-v-2ebcbc83]{
+                border-top:2px solid #b1b1b1;
+                border-left:2px solid #b1b1b1;
+            }
+            .wh_content_all[data-v-2ebcbc83]{
+                background-color: #fff;
+            }
+            .wh_content_item .wh_isToday[data-v-2ebcbc83]{
+                background-color: transparent;
+            }
+            .wh_content_item .wh_chose_day[data-v-2ebcbc83]{
+                background: #e70216;
+                border-radius:.1rem;
+                color:#fff;
+            }
+            .wh_item_date[data-v-2ebcbc83], .wh_top_tag[data-v-2ebcbc83]{
+                width: 0.8rem;
+                height: .4rem;
+            }
+
+        }
+    }
+    .reserve .calendar{
+        max-width: 100%!important;
+        background: #fff!important;
     }
 </style>
