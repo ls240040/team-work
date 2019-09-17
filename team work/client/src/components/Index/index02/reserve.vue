@@ -52,7 +52,7 @@
             <div class="verify-box">
                 <div class="verify">
                     <p>特殊需求</p> 
-                    <img src="http://127.0.0.1:5050/icon/arrow-right.png"> 
+                    <img @click="linkTo" src="http://127.0.0.1:5050/icon/arrow-right.png"> 
                 </div>
             </div>
             <div class="submit-box">
@@ -117,6 +117,9 @@ export default {
         Calendar
     },
     methods:{
+        linkTo(){
+            this.$router.push("/demand");
+        },
         clickDay(){
             
         },
@@ -214,6 +217,8 @@ export default {
         font-size: .3rem!important;
     }
     .reserve{
+        background-color: #f7f7f7;
+        height: 100vh;
         .top{
             padding: .2rem .3rem;
             font-size: .4rem;
@@ -221,6 +226,7 @@ export default {
             justify-content: space-between;
             line-height: .6rem;
             position: relative;
+            background-color: #fff;
             img{
                 height: .4rem;
                 display: block;
