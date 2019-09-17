@@ -15,6 +15,7 @@
   height: 0.8rem;
   width: 100%;
 }
+div{z-index: 10;}
 .page-head {
   height: 0.8rem;
   text-align: center;

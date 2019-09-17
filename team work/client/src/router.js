@@ -9,58 +9,65 @@ import Login from './views/Login.vue'
 import reserve from './components/Index/index02/reserve.vue'
 import shopList from './components/Index/index02/shopList.vue'
 import datum from './components/Mine/Mines/datum.vue'
+import vipcarousel from './components/VIP/VIPCarouselDDD.vue'//vip轮播
 Vue.use(Router)
 
 export default new Router({
     routes: [{
-            path: '/',
-            name: 'index',
-            component: Index
-        },
-        {
-            path: '/Details',
-            name: 'details',
-            component: Details
-        },
-        {
-            path: '/Community',
-            name: 'community',
-            component: Community
-        },
-        {
-            path: '/Mine',
-            name: 'mine',
-            component: Mine
-        },
-        {
-            path: '/Vip',
-            name: 'vip',
-            component: Vip
-        },
-        {
-            path: '/Login',
-            name: 'login',
-            component: Login
-        },
-        {
-            path: '/shopList',
-            name: 'shopList',
-            component: shopList
-        },
-        {
-            path: '/reserve',
-            name: 'reserve',
-            component: reserve
-        },
-        {
-            path: '/datum',
-            name: 'datum',
-            component: datum
-        },
-        // {
-        //   path: '/about',
-        //   name: 'about',
-        //   component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-        // }
+        path: '/',
+        name: 'index',
+        component: Index
+    },
+    {
+        path: '/Details',
+        name: 'details',
+        component: Details
+    },
+    {
+        path: '/Community',
+        name: 'community',
+        component: Community
+    },
+    {
+        path: '/Mine',
+        name: 'mine',
+        component: Mine
+    },
+    {
+        path: '/Vip',
+        name: 'vip',
+        component: Vip
+    },
+    {
+        path: '/Login',
+        name: 'login',
+        component: Login
+    },
+    {
+        path: '/shopList',
+        name: 'shopList',
+        component: shopList
+    },
+    {
+        path: '/reserve',
+        name: 'reserve',
+        component: reserve
+    },
+    {
+        path: '/datum',
+        name: 'datum',
+        component: datum
+    },
+    // {
+    //   path: '/about',
+    //   name: 'about',
+    //   component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+    // }
+    {
+        path: '/vipcarousel',
+        name: 'vipcarousel',
+        component: vipcarousel
+    },
+
     ]
 })

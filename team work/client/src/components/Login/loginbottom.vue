@@ -56,11 +56,10 @@ export default {
         this.$toast("密码格式不正确");
         return;
       }
-
       //5: 发送ajax
-      var obj = { uname: u, upwd: p };
+      var obj = { 'uname': u, 'upwd': p };
       this.axios
-        .post("/user/login", Qs.stringify(obj)) //传参
+        .post("/user/login",obj) //传参
         .then(function(res) {
           console.log(res);
         })
