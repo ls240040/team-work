@@ -178,11 +178,13 @@ export default {
         }
 
         .confirm-box{
-            height: 40vh;
+            height:40%;
             position: fixed;
             bottom: 12vh;
             width: 100%;
             overflow: hidden;
+            background-color: #fff;
+            z-index: 99;
             .confirm{
                 font-size: .3rem;
                 color:#000;
@@ -196,15 +198,15 @@ export default {
                 position: fixed;
                 bottom: 0;
                 width: 100%;
-                height: 42vh;
+                height: 40%;
                 box-sizing: border-box;
                 z-index: 3;
                 overflow: hidden;
                 background-color: #fff;
             }
             .picker-item{
-                top:1rem;
                 font-size: .4rem;
+                line-height: .4rem!important;
             }
             .picker-selected{
                 color:#000;
@@ -212,10 +214,12 @@ export default {
             .picker-center-highlight{
                 background-color:#ffe2cd;
                 z-index: 1;
-                // margin-top:.45rem!important;
+                height: .7rem!important;
+                top: 30%;
             }
             .picker-slot.picker-slot-center.slot1{
                 z-index: 2;
+                // top:50%;
             }
             
             // @for $i from 1 through 10{
@@ -395,7 +399,7 @@ export default {
             }
         }
         .submit{
-            font-size: .15rem;
+            font-size: .2rem;
             padding:.3rem;
             background-color: #fff;
             p{
