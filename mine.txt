@@ -1,0 +1,8 @@
+mines
+datum  编辑个人资料
+head   修改头像
+set_user    修改用户名
+true_name  修改真实姓名
+sex        性别
+underwrite   个性签名
+income       收入
