@@ -1,6 +1,6 @@
-<!--mineAbout.vue 用户页面组件-->
+<!--datum.vue 用户页面组件-->
 <template>
-  <div class="about">
+  <div class="datum">
     <mt-header title="个人资料">
         <router-link to="/" slot="left">
             <mt-button icon="back"></mt-button>
@@ -44,7 +44,6 @@
       <mt-cell title="邮箱" is-link>
         <span>邮箱</span>
       </mt-cell>
-      <mt-cell title="标题文字" value="说明文字" is-link></mt-cell>
   </div>
 </template>
 <script>
@@ -59,7 +58,7 @@ export default {
 <style lang="scss">
     
     
-    .about{
+    .datum{
         background:#eee;   
         // 个人资料
     .mint-header{
@@ -73,7 +72,7 @@ export default {
       h6{
         font-size:0.25rem;
         text-align:left;
-        margin:0.2rem 0rem 0.1rem 0.2rem;
+        margin:0.3rem 0rem 0.1rem 0.2rem;
         }    
         /* 左对齐 */         
       .mint-cell-title{text-align: left;}     

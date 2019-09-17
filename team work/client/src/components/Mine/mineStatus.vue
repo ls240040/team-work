@@ -8,7 +8,7 @@
               <span>收藏夹</span>
           </li>
           <li class="my_li">
-              <img src="http://127.0.0.1:5050/icon/xiaoxi.png" alt="">
+              <img src="http://127.0.0.1:5050/icon/shequ.png" alt="">
               <span>社区</span>
           </li>
           <li>
