@@ -18,6 +18,7 @@ import axios from "axios";
 axios.defaults.baseURL = "http://127.0.0.1:5050/";
 // 7：配置axios 保存session信息
 axios.defaults.withCredentials = true;
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 // 8：注册vue 实例中
 //由于axios不支持use 将实例添加vue原型
 Vue.prototype.axios = axios;
@@ -25,7 +26,7 @@ Vue.prototype.axios = axios;
 import Vuex from "vuex";
 //10:注册Vuex
 Vue.use(Vuex);
-Vue.config.productionTip=false;
+Vue.config.productionTip = false;
 
 new Vue({
     router,
