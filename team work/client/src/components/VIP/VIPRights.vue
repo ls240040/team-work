@@ -37,7 +37,7 @@
     position: relative;
     float: left;
     margin-left: 0.5rem;
-    margin-right: 0.35rem;
+    margin-right: 0.35rem;    
 }
 .rights ul li img{
   position: absolute;
