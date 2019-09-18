@@ -81,7 +81,7 @@
                     <span>日历</span>
                     <span @click="sure">确定</span>
                 </div>
-                <Calendar :choseDay="clickDay()" :changeMonth="changeDate" :isToday="clickToday" class="calendar" :agoDayHide="ago" :futureDayHide="future"></Calendar>
+                <Calendar :choseDay="clickDay" :changeMonth="changeDate" :isToday="clickToday" class="calendar" :agoDayHide="ago" :futureDayHide="future"></Calendar>
             </div>
         </transition>
     </div>
