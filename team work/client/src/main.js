@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import vue_router from 'vue-router'
 import store from './store'
 import rem from './assets/js/rem'
+import './permission'
 //引入第三方的组件库 mint ui
 // 第1步 ：完整引入mint-ui组件库中的所有组件
 import MintUI from 'mint-ui'
@@ -10,6 +12,7 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 // 第3步 ： 将mint-ui注册到vue实例中
 Vue.use(MintUI);
+Vue.use(vue_router)
 Vue.use(rem);
 Vue.configproductionTip = false
     // 5：引入axios,第三方模块
@@ -28,8 +31,9 @@ Vue.prototype.axios = axios;
 // Vue.use(Vuex);
 // Vue.config.productionTip = false;
 
+
 new Vue({
-    router,
     store,
-    render: h => h(App)
+    render: h => h(App),
+    router
 }).$mount('#app')
