@@ -20,12 +20,12 @@ router.post("/login", (req, res) => {
         } else {
             //获取当前登录用户id
             //result=[{id:2}]
-            var id = result[0].id;
+            var uid = result[0].U_id;
             //将用户id保存session对象中
             //uid当前登录：用户凭证
-            req.session.uid = id;
-            //console.log(req.session);
-            res.send({ code: 1, msg: "登录成功" });
+            console.log(uid)
+                //console.log(req.session);
+            res.send({ code: 1, msg: "登录成功", id: uid });
         }
     });
 })
