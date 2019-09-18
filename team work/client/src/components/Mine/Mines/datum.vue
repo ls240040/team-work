@@ -60,9 +60,8 @@ export default {
   data() {
     return {};
   },
-  methods: {}
-};
-  window.onload = function () {
+  methods: {
+    fn() {
       /*获取blocks="id"给变量 blocks*/
         var blocks = document.getElementById("blocks");
          /*获取显示按钮id="btn_show"给变量 btn_show*/
@@ -79,6 +78,12 @@ export default {
             blocks.style.display = "none";
         }
   }
+  },
+  created() {
+    this.fn()
+  },
+};
+ 
 </script>
 
 <style lang="scss">    
