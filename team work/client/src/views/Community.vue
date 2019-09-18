@@ -24,12 +24,17 @@
                 <communitydoyen></communitydoyen>
             </mt-tab-container-item>
         </mt-tab-container>
+
+
+        <!-- 底部bar -->
+        <tab-bar></tab-bar>
     </div>
 </template>
 <script>
 import communityFriends from '../components/Community/communityFriends' 
 import communityRecommend from '../components/Community/communityRecommend' 
 import communityDoyen from '../components/Community/communityDoyen' 
+import TabBar from "../components/tab-bar";
 export default {
     data () {
         return {
@@ -40,6 +45,7 @@ export default {
         "communityfriends":communityFriends,
         "communityrecommend":communityRecommend,
         "communitydoyen":communityDoyen,
+        "tab-bar": TabBar,
     },
     methods: {
         
@@ -57,7 +63,7 @@ export default {
             margin-bottom:0;
         }
         .mint-tab-item-label{
-            font-size: .3rem!important;
+            font-size: .3rem;
         }
         .mint-navbar .mint-tab-item{
             padding: .2rem 0;
@@ -82,5 +88,11 @@ export default {
             padding-top: 0;
             font-size: .6rem;
         }
+    }
+
+
+    // 设置底部bar字体大小
+    #tab0>.mint-tabbar .mint-tab-item-label{
+        font-size: 0.2rem !important;
     }
 </style>

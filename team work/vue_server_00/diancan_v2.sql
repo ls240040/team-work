@@ -30,8 +30,7 @@ INSERT INTO diancan_carousel VALUES
 (null,"vip","/vip/lb1.png"),
 (null,"vip","/vip/lb2.png"),
 (null,"vip","/vip/lb3.png"),
-(null,"vip","/vip/lb4.png"),
-(null,"vip","/vip/lb5.png");
+(null,"vip","/vip/lb4.png");
 
 /****大图****/
 CREATE TABLE  diancan_pic(

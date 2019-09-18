@@ -8,6 +8,9 @@
     <mineserve></mineserve>
     <mineabout></mineabout>
     <mineset></mineset>
+
+    <!-- 底部bar -->
+    <tab-bar></tab-bar>
   </div>
 </template>
 <script>
@@ -23,6 +26,10 @@ import mineServe from "../components/Mine/mineServe";
 import mineAbout from "../components/Mine/mineAbout";
 //负责引入mineSet.vue 子组件
 import mineSet from "../components/Mine/mineSet";
+
+//负责底部bar组件
+import TabBar from "../components/tab-bar";
+
 export default {
   data() {
     return {};
@@ -34,8 +41,12 @@ export default {
     minestatus: mineStatus,
     mineserve: mineServe,
     mineabout: mineAbout,
-    mineset: mineSet
-  }
+    mineset: mineSet,
+    "tab-bar": TabBar,
+  },
+  mounted() {
+    window.scroll(0,0);//让跳转后页面在顶部
+  },
 };
 </script>
 <style lang="scss">
