@@ -10,15 +10,15 @@
     <div class="right">
       <div v-for="(item,index) in foodType" :key="index">
         <div  class="fenlei">{{item.FT_Name}}</div>
-        <div>
-          <img src="http://127.0.0.1:5050/menu/danguo/danguo_1.jpg" alt>
-          <div class="food">
-            <p class="mTitle">火锅牛排</p>
+        <div v-for="(food,index) in foodData" :key="index"  class="guilei" >
+          <img v-if="food.F_FTID==item.FT_ID" :src="`http://127.0.0.1:5050/menu${food.F_Url}`" alt>
+          <div v-if="food.F_FTID==item.FT_ID" class="food">
+            <p class="mTitle">{{food.F_Name}}</p>
             <p class="mPrice">
-              <i>￥</i> 599.22
+              <i>￥</i> {{food.F_Price}}
             </p>
           </div>
-          <div class="count">
+          <div v-if="food.F_FTID==item.FT_ID" class="count">
             <a class="cut" @click="cuts()"></a>
             <span>{{num}}</span>
             <a class="add" @click="add()"></a>
@@ -33,6 +33,7 @@ export default {
   data() {
     return {
       foodType: [],
+      foodData:[],
       num: 0
     };
   },
@@ -45,12 +46,16 @@ export default {
         }
         console.log(this.foodType);
       });
+      
+      var url2="/menu/food";
+      this.axios.get(url2).then(res => {
+        if (res.data.code == 1) {
+          this.foodData = res.data.data;
+        }
+        console.log(this.foodData);
+      });
      
     },
-     loadFood(){
-        var url = "/menu/food";
-        
-      },
     cuts: function() {
       if (this.num < 1) return;
       this.num--;
@@ -119,7 +124,9 @@ div.menu {
     div.count {
       display: inline-block;
       text-align: center;
-      margin-left: 1rem;
+      position: absolute;
+      bottom: 0.2rem;
+      right: 0.2rem;
       span {
         display: inline-block;
         width: 0.5rem;
@@ -155,4 +162,10 @@ div.menu {
     }
   }
 }
+
+.guilei{
+  position: relative;
+
+}
+
 </style>

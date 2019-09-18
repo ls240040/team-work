@@ -1,8 +1,18 @@
 <template>
   <div class="card">
-    <div>登录/注册</div>
+    <div @click="goLogin">登录/注册</div>
   </div>
 </template>
+
+<script>
+export default {
+  methods:{
+    goLogin:function(){
+      this.$router.push({ path: '/login'});
+    }
+  }
+}
+</script>
 
 <style scoped>
     .card{
