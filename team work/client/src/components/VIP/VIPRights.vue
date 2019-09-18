@@ -35,10 +35,9 @@
 }
 .rights ul li{
     position: relative;
-    display: inline-block;
+    float: left;
     margin-left: 0.5rem;
     margin-right: 0.35rem;
-    float: left;
 }
 .rights ul li img{
   position: absolute;
