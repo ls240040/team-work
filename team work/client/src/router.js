@@ -6,7 +6,9 @@ import Community from './views/Community.vue'
 import Mine from './views/Mine.vue'
 import Vip from './views/Vip.vue'
 import Login from './views/Login.vue'
+
 import reserve from './components/Index/index02/reserve.vue'
+import demand from './components/Index/index02/demand.vue'
 import shopList from './components/Index/index02/shopList.vue'
 /* mines */
 import datum from './components/Mine/Mines/datum.vue'
@@ -61,6 +63,11 @@ export default new Router({
         path: '/reserve',
         name: 'reserve',
         component: reserve
+    },
+    {
+        path: '/demand',
+        name: 'demand',
+        component: demand
     },
     {
         path: '/datum',
