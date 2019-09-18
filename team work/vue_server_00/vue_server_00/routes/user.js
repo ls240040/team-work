@@ -4,7 +4,6 @@ const pool = require("../pool");
 
 router.post("/login", (req, res) => {
     //6.1:接收网页传递数据 用户名和密码
-
     var u = req.body.uname;
     var p = req.body.upwd;
     console.log(u, p)
