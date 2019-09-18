@@ -22,11 +22,11 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 // 8：注册vue 实例中
 //由于axios不支持use 将实例添加vue原型
 Vue.prototype.axios = axios;
-//9:引入Vuex第三方模块
-import Vuex from "vuex";
-//10:注册Vuex
-Vue.use(Vuex);
-Vue.config.productionTip = false;
+// //9:引入Vuex第三方模块
+// import Vuex from "vuex";
+// //10:注册Vuex
+// Vue.use(Vuex);
+// Vue.config.productionTip = false;
 
 new Vue({
     router,

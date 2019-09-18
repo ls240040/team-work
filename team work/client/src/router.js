@@ -75,6 +75,11 @@ export default new Router({
             name: 'reserve',
             component: reserve
         },
+        {
+            path: '/demand',
+            name: 'demand',
+            component: demand
+        },
         /* mines */
         {
             path: '/datum',
