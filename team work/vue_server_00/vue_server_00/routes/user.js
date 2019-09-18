@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../pool");
 
+//http://127.0.0.1:5050/user/login?U_LoginID=15312345678&U_PassWord=123456
 router.post("/login", (req, res) => {
     //6.1:接收网页传递数据 用户名和密码
     var u = req.body.uname;
@@ -20,12 +21,12 @@ router.post("/login", (req, res) => {
         } else {
             //获取当前登录用户id
             //result=[{id:2}]
-            var id = result[0].id;
+            var uid = result[0].U_id;
             //将用户id保存session对象中
             //uid当前登录：用户凭证
-            req.session.uid = id;
-            //console.log(req.session);
-            res.send({ code: 1, msg: "登录成功" });
+            console.log(uid)
+                //console.log(req.session);
+            res.send({ code: 1, msg: "登录成功", id: uid });
         }
     });
 })

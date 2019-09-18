@@ -1,7 +1,7 @@
 <template>
     <div class="shoplist">
         <div class="top">
-            <img src="http://127.0.0.1:5050/icon/arrow-left.png">
+            <img @click="linkTo2" src="http://127.0.0.1:5050/icon/arrow-left.png">
             <p>预订</p>
             <div class="location">
                 <img src="http://127.0.0.1:5050/icon/row_num_posi.png">
@@ -38,7 +38,10 @@ export default {
     },
     methods:{
         linkTo(){
-            this.$router.push("/reserve");
+            this.$router.push("/reserve").then(this.$messagebox("温馨提示","各位捞粉大家好，每日早上7:00-9:00是我们闭店打扫时间，擦亮桌椅迎接您的到来，期间无法为您提供用餐服务，感谢您的谅解与支持。"));
+        },
+        linkTo2(){
+            this.$router.push("/");
         },
         loadMore(){
             var url='index/shoplist';

@@ -15,6 +15,42 @@ router.get('/shoplist', (req, res) => {
     })
 })
 
+
+
+
+//http://127.0.0.1:5050/index/reserve?R_Phone=18596855565&R_Name=tom
+router.get('/reserve',(req,res)=>{
+    var time=req.query.time;
+    var num=req.query.num;
+    var room=req.query.room;
+    var hall=req.query.hall;
+    var R_Name=req.query.name;
+    var R_Phone=req.query.phone;
+    var sex=req.query.sex;
+    var demand=req.query.demand;
+    console.log(time,num,room,hall,R_Name,R_Phone,sex,demand);
+    var sql = "SELECT R_Num FROM reserve WHERE R_Phone=? AND R_Name=?";
+    pool.query(sql,[R_Phone,R_Name],(err,result)=>{
+        if(err) throw err;
+        //6.在回调函数中 判断下一步操作
+        if(result.length==0){
+            var sql = `INSERT INTO reserve VALUES(NULL,'${time}','${num}',${room},'${hall}','${R_Name}',${R_Phone},'${sex}','${demand}')`;
+        }          
+        //7.执行sql获取返回结果
+        pool.query(sql,(err,result)=>{
+            if(err) throw err;
+            //8.如果 sql UPDATE INSERT DELETE
+            //判断执行成功  result.affectedRows 影响行数
+            if(result.affectedRows>0){
+                res.send({code:1,msg:"预订成功",data:result})
+            }else{
+                res.send({code:-2,msg:"预订失败"})
+            }
+        })
+    })
+})
+    
+
 router.get('/carousel', (req, res) => {
     var sql = "SELECT C_Href FROM diancan_carousel WHERE C_Place='indexTop'";
     pool.query(sql, (err, result) => {

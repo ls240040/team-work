@@ -67,9 +67,11 @@ export default {
         .post("/user/login", params) //传参
         .then(res=>{
           if (res.data.code == 1) {
-            this.$router.push({
-              path: "/"
-            });
+            {sessionStorage.setItem('accessToken' , res.data.id) }
+            // this.$router.push({
+            //   path: "/"
+            // });
+            this.$router.go(-1)
           }
         })
         .catch(function(err) {

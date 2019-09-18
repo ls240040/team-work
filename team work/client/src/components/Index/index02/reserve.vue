@@ -2,7 +2,7 @@
     <div class="reserve">
         <!-- 头部 -->
         <div class="top">
-            <img src="http://127.0.0.1:5050/icon/arrow-left.png">
+            <img @click="linkTo2" src="http://127.0.0.1:5050/icon/arrow-left.png">
             <p>预订</p>
         </div>
         <!-- banner -->
@@ -50,15 +50,18 @@
                 </div>
             </div>
             <div class="verify-box">
-                <div class="verify">
+                <div class="verify" @click="linkTo">
                     <p>特殊需求</p> 
-                    <img @click="linkTo" src="http://127.0.0.1:5050/icon/arrow-right.png"> 
+                    <img src="http://127.0.0.1:5050/icon/arrow-right.png"> 
                 </div>
+            </div>
+            <div class="msgbox">
+                <p class="getMsg">{{$store.getters.getMsg}}</p>
             </div>
             <div class="submit-box">
             <div class="submit">
                 <p>*提交订单后需要等待餐厅确认</p>
-                <button>立即预订</button>
+                <button @click="linkTo3">立即预订</button>
             </div>
         </div>
         </div>
@@ -120,6 +123,81 @@ export default {
         linkTo(){
             this.$router.push("/demand");
         },
+        linkTo2(){
+            this.$router.push("/shopList");
+        },
+        linkTo3(){
+            // this.$router.push("/menu");
+             // 传递数据给后台
+            var selected=document.getElementsByClassName("greySel")[0].innerHTML;
+            var time=this.time;
+            var hall;
+            var num;
+            console.log(this.num);
+            var room;
+            var sex;
+            var name=this.username;
+            var phone=this.phone;
+
+            if(selected=="请选择"){
+                num=0;
+            }else{
+                num=this.num;
+            }
+            if(room==""){
+                room=0;
+            }else{
+                room=this.value1;
+            }
+
+            if(hall==null){
+                hall="不接受大厅";
+            }else{
+                hall=this.selected;
+            }
+            
+            if(this.value2==""){
+                sex=null;
+            }else{
+                sex=this.value2;
+            }
+
+            var getmsg=this.$store.getters.getMsg;
+            if(this.$store.getters.getMsg==""){
+                var demand=null;
+            }else{
+                var demand=getmsg;
+            }
+            
+           
+            //2: 创建正则表达式  3~12位置 字母数字
+            var reg = /^[a-z0-9]{3,12}$/i;
+            var reg2=/^1[3-9]\d{9}$/i;
+            //3: 判断 用户名提示
+            if (!reg.test(name)) {
+                this.$toast("用户名格式不正确");
+                return;
+            }
+            //4: 判断 密码提示
+            if (!reg2.test(phone)) {
+                this.$toast("手机号格式不正确");
+                return;
+            }
+
+            // (NULL,'${time}','${num}',${room},'${hall}','${R_Name}',${R_Phone},'${sex}','${demand}'
+            var obj={time,num,room,hall,name,phone,sex,demand};
+            this.axios.get("/index/reserve", {params:obj}).then(res=>{
+                if(res.data.code==1){
+                    this.$toast("预订成功").then(res=>{
+                        this.$router.push("/menu");
+                    })
+                }else{
+                    this.$toast("请选择就餐时间")
+                }
+            }).catch(err=>{
+                console.log(err)
+            })
+        },
         clickDay(){
             
         },
@@ -178,8 +256,7 @@ export default {
             }
         },
         loadMore(){
-            this.$messagebox("温馨提示","各位捞粉大家好，每日早上7:00-9:00是我们闭店打扫时间，擦亮桌椅迎接您的到来，期间无法为您提供用餐服务，感谢您的谅解与支持。");
-           
+            // 预定时间
             var start=Date.parse(new Date());
             start=start/1000;
             start=start.toString();
@@ -191,6 +268,7 @@ export default {
             console.log(end)
             this.ago=start
             this.future=end;
+
         }
     },
     created(){
@@ -283,6 +361,9 @@ export default {
                 overflow: hidden;
                 background-color: #fff;
             }
+            .picker-center-highlight:before, .picker-center-highlight:after{
+                background-color: transparent;
+            }
             .picker-item{
                 font-size: .4rem;
                 // line-height: .4rem!important;
@@ -291,33 +372,10 @@ export default {
                 color:#000;
                 background-color:#ffe2cd;
             }
-            // .picker-center-highlight{
-            //     background-color:#ffe2cd;
-            //     z-index: 1;
-            //     height: .7rem!important;
-            //     top: 40%;
-            // }
             .picker-slot.picker-slot-center.slot1{
                 z-index: 2;
-                // top:50%;
             }
             
-            // @for $i from 1 through 10{
-            //         .picker-item.picker-selected~.picker-item:nth-child(#{$i}){
-            //             @if $i == 1{
-            //                 transform: rotateX(($deg*1) +10deg)!important;
-            //             } @else if $i == 2{
-            //                 transform: rotateX(($deg*2) +10deg)!important;
-            //             } @else if $i == 3{
-            //                 transform: rotateX(($deg*3) +10deg)!important;
-            //             } @else if $i == 4{
-            //                 transform: rotateX(($deg*4) +10deg)!important;
-            //             }
-            //         }
-            // }
-            // .picker-item.picker-selected{
-            //     transform: translate3d(0, 0, 0) rotateX(0deg)!important;
-            // }
         }
         .confirm{
             background-color: #f7f7f7;
@@ -414,6 +472,22 @@ export default {
             .verify-box{
                 padding: .3rem .3rem 0;
                 background-color:#fff;
+            }
+            .msgbox{
+                padding:0 .3rem;
+                font-size: .25rem;
+                background-color:#efefef;
+                text-align: left;
+                max-height: .75rem;
+                overflow: hidden;
+                .getMsg{
+                    -webkit-line-clamp:1;
+                    line-height: 3;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    -webkit-box-orient: vertical;
+                    white-space:nowrap;
+                }
             }
             .verify{
                 justify-content: space-between;
