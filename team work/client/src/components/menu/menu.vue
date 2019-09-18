@@ -44,7 +44,6 @@ export default {
         if (res.data.code == 1) {
           this.foodType = res.data.data;
         }
-        console.log(this.foodType);
       });
       
       var url2="/menu/food";
@@ -52,7 +51,6 @@ export default {
         if (res.data.code == 1) {
           this.foodData = res.data.data;
         }
-        console.log(this.foodData);
       });
      
     },

@@ -6,6 +6,9 @@
     <vipexchange></vipexchange>
     <div class="know">会员须知<img src="http://127.0.0.1:5050/icon/icon_go.webp" alt=""></div>
     <div class="problem">常见问题<img src="http://127.0.0.1:5050/icon/icon_go.webp" alt=""></div>
+
+    <!-- 底部bar -->
+    <tab-bar></tab-bar>
   </div>
   
 </template>
@@ -15,6 +18,7 @@ import TitleBar from "../components/VIP/TitleBar";
 import VIPCard from "../components/VIP/VIPCard";
 import VIPRights from "../components/VIP/VIPRights";
 import VIPExchange from "../components/VIP/VIPExchange";
+import TabBar from "../components/tab-bar";
 
 export default {
   
@@ -28,8 +32,12 @@ export default {
     "titlebar": TitleBar,
     "vipcard": VIPCard,
     "viprights": VIPRights,
-    "vipexchange": VIPExchange
-  }
+    "vipexchange": VIPExchange,
+    "tab-bar": TabBar,
+  },
+  mounted() {
+    window.scroll(0,0);//让跳转后页面在顶部
+  },
 };
 </script>
 

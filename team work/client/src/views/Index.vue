@@ -6,6 +6,9 @@
     <indexcarousel></indexcarousel>
     <indexshoplist></indexshoplist>
     <indextitle></indextitle>
+
+    <!-- 底部bar -->
+    <tab-bar></tab-bar>
   </div>
 </template>
 <script>
@@ -15,6 +18,7 @@ import indexF2 from "../components/Index/indexF2";
 import indexCarousel from "../components/Index/indexCarousel";
 import indexShoplist from "../components/Index/indexShoplist";
 import indexTitle from "../components/Index/indexTitle";
+import TabBar from "../components/tab-bar";
 export default {
   data() {
     return {};
@@ -25,8 +29,12 @@ export default {
     indexf2: indexF2,
     indexcarousel: indexCarousel,
     indexshoplist:indexShoplist,
-    indextitle:indexTitle
-  }
+    indextitle:indexTitle,
+    "tab-bar": TabBar,
+  },
+  mounted() {
+    window.scroll(0,0);//让跳转后页面在顶部
+  },
 };
 </script>
 <style lang="scss">
