@@ -51,17 +51,18 @@ INSERT INTO diancan_pic VALUES
 
 /****预定****/
 CREATE TABLE  reserve(
-  R_ID INT PRIMARY KEY AUTO_INCREMENT,
+  ID INT PRIMARY KEY AUTO_INCREMENT,
   R_Time VARCHAR(64),
   R_Num VARCHAR(8),
-  R_Room VARCHAR(64),
+  R_Room Boolean,
   R_Hall VARCHAR(64),
   R_Name VARCHAR(64),
   R_Phone VARCHAR(64),
   R_Sex VARCHAR(8),
-  R_Req VARCHAR(255)
+  R_Demand VARCHAR(255)
 );
-
+INSERT INTO reserve VALUES
+(null,"2019-9-17",'2人',0,'不接受大厅','tom','18596855565','先生',null);
 
 /****商品表****/
 CREATE TABLE  diancan_shop(

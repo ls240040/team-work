@@ -42,6 +42,7 @@ app.use(express.static('public'));
 //index
 const recommend = require('./routes/community');
 const shoplist = require('./routes/index');
+const reserve = require('./routes/index');
 const user = require('./routes/user');
 const vip = require('./routes/vip');
 const menu = require('./routes/menu');
@@ -49,6 +50,7 @@ const menu = require('./routes/menu');
 // app.use("/index",index);
 app.use("/community", recommend);
 app.use("/index", shoplist);
+app.use("/index", reserve);
 app.use("/user", user);
 app.use("/vip", vip);
 app.use("/menu", menu);
