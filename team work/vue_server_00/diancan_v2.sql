@@ -61,8 +61,8 @@ CREATE TABLE  reserve(
   R_Sex VARCHAR(8),
   R_Demand VARCHAR(255)
 );
-INSERT INTO reserve VALUES
-(null,"2019-9-17",'2人',0,'不接受大厅','tom','18596855565','先生',null);
+
+
 
 /****商品表****/
 CREATE TABLE  diancan_shop(
