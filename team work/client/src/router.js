@@ -29,61 +29,7 @@ export default new Router({
             path: '/menu',
             name: 'menu',
             component: Menu
-        }, {
-            path: '/',
-            name: 'index',
-            component: Index
         },
-        {
-            path: '/Details',
-            name: 'details',
-            component: Details
-        },
-        {
-            path: '/Community',
-            name: 'community',
-            component: Community
-        },
-        {
-            path: '/Mine',
-            name: 'mine',
-            component: Mine
-        },
-        {
-            path: '/Vip',
-            name: 'vip',
-            component: Vip
-        },
-        {
-            path: '/Login',
-            name: 'login',
-            component: Login
-        },
-        {
-            path: '/shopList',
-            name: 'shopList',
-            component: shopList
-        },
-        {
-            path: '/reserve',
-            name: 'reserve',
-            component: reserve
-        },
-        {
-            path: '/demand',
-            name: 'demand',
-            component: demand
-        },
-        {
-            path: '/datum',
-            name: 'datum',
-            component: datum
-        },
-        // {
-        //   path: '/about',
-        //   name: 'about',
-        //   component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-        // }
         {
             path: '/vipcarousel',
             name: 'vipcarousel',
