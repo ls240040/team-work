@@ -2,7 +2,7 @@
 <template>
   <div class="set_user"> 
     <mt-header title="修改用户名">
-        <router-link to="/" slot="left">
+        <router-link id="user" to="/" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
     </mt-header>    
@@ -17,8 +17,16 @@ export default {
     return {};
   },
   methods: {
-      
-  }
+       user(){
+      var users=document.getElementById("user");
+      users.onclick = function () {
+           window.location.href="http://127.0.0.1:8080/#/datum";
+        }     
+    },
+  },
+   mounted() {
+    this.user()
+  },
 };
 </script>
 
