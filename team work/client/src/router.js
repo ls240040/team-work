@@ -6,10 +6,13 @@ import Community from './views/Community.vue'
 import Mine from './views/Mine.vue'
 import Vip from './views/Vip.vue'
 import Login from './views/Login.vue'
+
 import reserve from './components/Index/index02/reserve.vue'
+import demand from './components/Index/index02/demand.vue'
 import shopList from './components/Index/index02/shopList.vue'
 /* mines */
 import datum from './components/Mine/Mines/datum.vue'
+import vipcarousel from './components/VIP/VIPCarouselDDD.vue' //vip轮播
 import head from './components/Mine/Mines/head.vue'
 import set_user from './components/Mine/Mines/set_user.vue'
 import true_name from './components/Mine/Mines/true_name.vue'
@@ -18,10 +21,75 @@ import underwrite from './components/Mine/Mines/underwrite.vue'
 import income from './components/Mine/Mines/income.vue'
 import phone from './components/Mine/Mines/phone.vue'
 import email from './components/Mine/Mines/email.vue'
+import Menu from './views/menu.vue'
 Vue.use(Router)
 
 export default new Router({
     routes: [{
+            path: '/menu',
+            name: 'menu',
+            component: Menu
+        }, {
+            path: '/',
+            name: 'index',
+            component: Index
+        },
+        {
+            path: '/Details',
+            name: 'details',
+            component: Details
+        },
+        {
+            path: '/Community',
+            name: 'community',
+            component: Community
+        },
+        {
+            path: '/Mine',
+            name: 'mine',
+            component: Mine
+        },
+        {
+            path: '/Vip',
+            name: 'vip',
+            component: Vip
+        },
+        {
+            path: '/Login',
+            name: 'login',
+            component: Login
+        },
+        {
+            path: '/shopList',
+            name: 'shopList',
+            component: shopList
+        },
+        {
+            path: '/reserve',
+            name: 'reserve',
+            component: reserve
+        },
+        {
+            path: '/demand',
+            name: 'demand',
+            component: demand
+        },
+        {
+            path: '/datum',
+            name: 'datum',
+            component: datum
+        },
+        // {
+        //   path: '/about',
+        //   name: 'about',
+        //   component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+        // }
+        {
+            path: '/vipcarousel',
+            name: 'vipcarousel',
+            component: vipcarousel
+        },
+        {
             path: '/',
             name: 'index',
             component: Index
