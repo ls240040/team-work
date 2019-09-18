@@ -50,16 +50,16 @@ INSERT INTO diancan_pic VALUES
 
 
 /****预定****/
-CREATE TABLE  demand(
-  D_ID INT PRIMARY KEY AUTO_INCREMENT,
-  D_Time VARCHAR(64),
-  D_Num VARCHAR(8),
-  D_Room VARCHAR(64),
-  D_Hall VARCHAR(64),
-  D_Name VARCHAR(64),
-  D_Phone VARCHAR(64),
-  D_Sex VARCHAR(8),
-  D_Req VARCHAR(255)
+CREATE TABLE  reserve(
+  R_ID INT PRIMARY KEY AUTO_INCREMENT,
+  R_Time VARCHAR(64),
+  R_Num VARCHAR(8),
+  R_Room VARCHAR(64),
+  R_Hall VARCHAR(64),
+  R_Name VARCHAR(64),
+  R_Phone VARCHAR(64),
+  R_Sex VARCHAR(8),
+  R_Req VARCHAR(255)
 );
 
 
