@@ -7,10 +7,11 @@ router.beforeEach((to, from, next) => {
     if (sessionStorage.getItem('accessToken')) {
         next()
     } else {
-        if (to.path === "/login" || to.path === '/') {
+        if (to.path === "/login" || to.path === '/' || to.path === '/shopList') {
             next()
         } else {
             next('/login')
+
         }
         NProgress.done()
     }
