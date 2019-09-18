@@ -43,8 +43,10 @@ app.use(express.static('public'));
 const recommend = require('./routes/community');
 const shoplist = require('./routes/index');
 const user = require('./routes/user');
+const vip = require('./routes/vip');
 /*使用路由器来管理路由*/
 // app.use("/index",index);
 app.use("/community", recommend);
 app.use("/index", shoplist);
 app.use("/user", user);
+app.use("/vip", vip);

@@ -15,7 +15,6 @@ import TitleBar from "../components/VIP/TitleBar";
 import VIPCard from "../components/VIP/VIPCard";
 import VIPRights from "../components/VIP/VIPRights";
 import VIPExchange from "../components/VIP/VIPExchange";
-import VIPCarouselDDD from "../components/VIP/VIPCarouselDDD";
 
 export default {
   
@@ -29,8 +28,7 @@ export default {
     "titlebar": TitleBar,
     "vipcard": VIPCard,
     "viprights": VIPRights,
-    "vipexchange": VIPExchange,
-    "vipcarouselddd": VIPCarouselDDD
+    "vipexchange": VIPExchange
   }
 };
 </script>

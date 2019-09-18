@@ -14,14 +14,57 @@
     <div>
     <mt-swipe :auto="4000">
       <mt-swipe-item v-for="item in items" :key="item.id">
-        <a :href="item.href" rel="external nofollow">
-          <img :src="item.url" class="img" />
+        <a rel="external nofollow">
+          <img :src="`http://127.0.0.1:5050${item.C_Href}`" class="img" />
         </a>
       </mt-swipe-item>
     </mt-swipe>
   </div>
   </div>
 </template>
+
+<script>
+import { Swipe, SwipeItem } from "mint-ui";
+import "mint-ui/lib/style.css";
+
+export default {
+  components: {
+    "mt-swipe": Swipe,
+    "mt-swipe-item": SwipeItem
+  },
+  data() {
+    return {
+      items: []
+    };
+  },
+  methods:{
+    // 拿轮播图地址
+    loadIndex() {
+      var url = "vip/carousel";
+      this.axios.get(url).then(res => {
+        console.log(res.data.data);
+        if (res.data.code == 1) {
+          this.items = res.data.data;
+          console.log(this.items);
+        }
+      });
+    },
+
+    //绑函数传值（？？？）
+    goCarousel0:function(){this.$router.push({ path: '/vipcarousel' ,query: {id: 0}});},
+    goCarousel1:function(){this.$router.push({ path: '/vipcarousel' ,query: {id: 1}});},
+    goCarousel2:function(){this.$router.push({ path: '/vipcarousel' ,query: {id: 2}});},
+    goCarousel3:function(){this.$router.push({ path: '/vipcarousel' ,query: {id: 3}});},
+    goCarousel4:function(){this.$router.push({ path: '/vipcarousel' ,query: {id: 4}});},
+    goCarousel5:function(){this.$router.push({ path: '/vipcarousel' ,query: {id: 5}});}
+  },
+  //创建时载入
+  created() {
+    this.loadIndex();
+  }
+
+};
+</script>
 <style scoped>
 .clear:after{
   content:"";
@@ -60,47 +103,4 @@
 .mint-swipe {
   height: 2.1rem;
 }
-
 </style>
-<script>
-import { Swipe, SwipeItem } from "mint-ui";
-import "mint-ui/lib/style.css";
-
-export default {
-  components: {
-    "mt-swipe": Swipe,
-    "mt-swipe-item": SwipeItem
-  },
-  data() {
-    return {
-      items: [
-        {
-          href: "",
-          url: "http://127.0.0.1:5050/vip/lb1.png"
-        },
-        {
-          href: "",
-          url: "http://127.0.0.1:5050/vip/lb2.png"
-        },
-        {
-          href: "",
-          url: "http://127.0.0.1:5050/vip/lb3.png"
-        },
-        {
-          href: "",
-          url: "http://127.0.0.1:5050/vip/lb4.png"
-        }
-      ]
-    };
-  },
-  methods:{
-    goCarousel0:function(){this.$router.push({ path: '/vipcarousel' ,query: {id: 0}});},
-    goCarousel1:function(){this.$router.push({ path: '/vipcarousel' ,query: {id: 1}});},
-    goCarousel2:function(){this.$router.push({ path: '/vipcarousel' ,query: {id: 2}});},
-    goCarousel3:function(){this.$router.push({ path: '/vipcarousel' ,query: {id: 3}});},
-    goCarousel4:function(){this.$router.push({ path: '/vipcarousel' ,query: {id: 4}});},
-    goCarousel5:function(){this.$router.push({ path: '/vipcarousel' ,query: {id: 5}});}
-  }
-
-};
-</script>
