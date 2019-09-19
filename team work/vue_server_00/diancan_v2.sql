@@ -30,8 +30,7 @@ INSERT INTO diancan_carousel VALUES
 (null,"vip","/vip/lb1.png"),
 (null,"vip","/vip/lb2.png"),
 (null,"vip","/vip/lb3.png"),
-(null,"vip","/vip/lb4.png"),
-(null,"vip","/vip/lb5.png");
+(null,"vip","/vip/lb4.png");
 
 /****大图****/
 CREATE TABLE  diancan_pic(
@@ -51,16 +50,17 @@ INSERT INTO diancan_pic VALUES
 
 /****预定****/
 CREATE TABLE  reserve(
-  R_ID INT PRIMARY KEY AUTO_INCREMENT,
+  ID INT PRIMARY KEY AUTO_INCREMENT,
   R_Time VARCHAR(64),
   R_Num VARCHAR(8),
-  R_Room VARCHAR(64),
+  R_Room Boolean,
   R_Hall VARCHAR(64),
   R_Name VARCHAR(64),
   R_Phone VARCHAR(64),
   R_Sex VARCHAR(8),
-  R_Req VARCHAR(255)
+  R_Demand VARCHAR(255)
 );
+
 
 
 /****商品表****/

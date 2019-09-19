@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../pool");
 
+//http://127.0.0.1:5050/user/login?U_LoginID=15312345678&U_PassWord=123456
 router.post("/login", (req, res) => {
     //6.1:接收网页传递数据 用户名和密码
     var u = req.body.uname;
