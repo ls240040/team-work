@@ -1,4 +1,4 @@
-<!--mineDatum.vue 用户页面组件-->
+<!--mineDatum.vue 我的订单页面组件-->
 <template>
   <div class="order">
       <!-- 我的订单 -->

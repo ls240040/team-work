@@ -1,4 +1,4 @@
-<!--mineServe.vue 用户页面组件-->
+<!--mineServe.vue 我的服务页面组件-->
 <template>
   <div class="serve">
       <h6>我的服务</h6>

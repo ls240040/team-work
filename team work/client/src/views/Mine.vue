@@ -59,7 +59,7 @@ export default {
   .mine{
     // 页头留空，以便显示 中国移动等信息
     padding-top:0.1rem;
-    padding-bottom:1.2rem;
+    padding-bottom:0.1rem;
     background:#eee;
   }
 </style>

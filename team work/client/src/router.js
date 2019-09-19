@@ -10,6 +10,8 @@ import Login from './views/Login.vue'
 import reserve from './components/Index/index02/reserve.vue'
 import demand from './components/Index/index02/demand.vue'
 import shopList from './components/Index/index02/shopList.vue'
+/* 预定详情 */
+import reserve_detailed from './components/Index/index02/reserve_detailed.vue'
 /* mines */
 import datum from './components/Mine/Mines/datum.vue'
 import vipcarousel from './components/VIP/VIPCarouselDDD.vue' //vip轮播
@@ -26,7 +28,8 @@ import Menu from './views/menu.vue'
 import paihao from './components/Mine/mineOrders/paihao.vue'
 import yuding from './components/Mine/mineOrders/yuding.vue'
 import diancan from './components/Mine/mineOrders/diancan.vue'
-
+/* set设置 */
+import set from './components/Mine/Mines/set.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -88,6 +91,14 @@ export default new Router({
             name: 'demand',
             component: demand
         },
+         /* 预定详情 */
+        {
+            path: '/reserve_detailed',
+            name: 'reserve_detailed',
+            component: reserve_detailed
+        },
+       
+
         /* mines */
         {
             path: '/datum',
@@ -134,6 +145,12 @@ export default new Router({
             name: 'email',
             component: email
         },
+        /* 设置 */
+        {
+            path: '/set',
+            name: 'set',
+            component: set
+        },
         /* mineOrders */
         {
             path: '/paihao',
@@ -150,6 +167,7 @@ export default new Router({
             name: 'diancan',
             component: diancan
         },
+        
         // {
         //   path: '/about',
         //   name: 'about',

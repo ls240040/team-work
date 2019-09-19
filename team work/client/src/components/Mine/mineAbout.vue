@@ -1,4 +1,4 @@
-<!--mineAbout.vue 用户页面组件-->
+<!--mineAbout.vue 关于海底捞页面组件-->
 <template>
   <div class="about">
       <h6>关于海底捞</h6>

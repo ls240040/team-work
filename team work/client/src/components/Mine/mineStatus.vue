@@ -1,4 +1,4 @@
-<!--mineStatus.vue 用户页面组件-->
+<!--mineStatus.vue 我的动态页面组件-->
 <template>
   <div class="status">
       <h6>我的动态</h6>

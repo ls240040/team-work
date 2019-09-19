@@ -168,7 +168,7 @@ export default {
         }
         /* 头像大小 rem */
         img{
-          width:0.4rem;height:0.4rem;
+          width:0.7rem;height:0.7rem;
         }
         /* 头像 */
         .head{
