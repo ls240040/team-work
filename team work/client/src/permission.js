@@ -7,7 +7,7 @@ router.beforeEach((to, from, next) => {
     if (sessionStorage.getItem('accessToken')) {
         next()
     } else {
-        if (to.path === '/shopList') {
+        if (to.path === '/menu') {
             next('/login')
         } else {
             next()
