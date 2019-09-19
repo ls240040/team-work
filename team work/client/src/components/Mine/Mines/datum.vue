@@ -2,7 +2,7 @@
 <template>
   <div class="datum">
     <mt-header title="个人资料">
-        <router-link id="datum" to="/" slot="left">
+        <router-link to="/mine" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
     </mt-header>  
@@ -12,10 +12,10 @@
             <img src="http://127.0.0.1:5050/icon/touxiang.png" alt="">
           </span>
         </mt-cell>
-        <mt-cell id="user" title="用户名" is-link>
-          <span>用户名</span>
+        <mt-cell to="/set_user" title="用户名" is-link>
+          <span>用户名</span>  
         </mt-cell>
-        <mt-cell id="true_name" title="真实姓名" is-link>
+        <mt-cell to="/true_name" title="真实姓名" is-link>
           <span>真实姓名</span>
         </mt-cell>
         <mt-cell id="btn_show2" title="性别" is-link>
@@ -27,17 +27,17 @@
         <mt-cell title="常住" is-link>
           <span>真实姓名</span>
         </mt-cell>
-        <mt-cell id="underwrite" title="个性签名" is-link>
+        <mt-cell to="/underwrite" title="个性签名" is-link>
           <span>个性签名</span>
         </mt-cell>
         <mt-cell id="btn_show3" title="收入" is-link>
           <span>收入</span>
         </mt-cell>
     <h6>联系方式</h6>
-      <mt-cell id="phone" title="手机号" is-link>
+      <mt-cell to="/phone" title="手机号" is-link>
       <span>手机号</span>
       </mt-cell>
-      <mt-cell id="email" title="邮箱" is-link>
+      <mt-cell to="/email" title="邮箱" is-link>
         <span>邮箱</span>
       </mt-cell>
       <!-- 修改头像 -->
@@ -84,20 +84,7 @@ export default {
     return {};
   },
   methods: {
-    /* 修改用户名 */
-    user(){
-      var users=document.getElementById("user");
-      users.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/set_user";
-        }     
-    },
-    /* 修改真实姓名 */
-    true_name(){
-      var true_names=document.getElementById("true_name");
-      true_names.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/true_name";
-        }     
-    },
+   
     /* 头像 */
     head(){
         var heads = document.getElementById("heads");
@@ -139,45 +126,12 @@ export default {
             incomes.style.display = "none";
         }
     },
-    /* 修改个性签名 */
-    underwrite(){
-      var underwrites=document.getElementById("underwrite");
-      underwrites.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/underwrite";
-        }     
-    },
-    /* 修改手机号 */
-    phone(){
-      var phones=document.getElementById("phone");
-      phones.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/phone";
-        }     
-    },
-    /* 修改邮箱 */
-    email(){
-      var emails=document.getElementById("email");
-      emails.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/email";
-        }     
-    },
-    datum(){
-      var datums=document.getElementById("datum");
-      datums.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/mine";
-        }     
-    }
+    
   },
   mounted() {
     this.head(),
-    this.user(),
-    this.true_name(),
     this.sex(),
-    this.income(),
-    this.underwrite(),
-    this.underwrite(),
-    this.phone(),
-    this.email(),    
-    this.datum()    
+    this.income()
   },
 };
  

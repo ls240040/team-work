@@ -24,6 +24,8 @@ import email from './components/Mine/Mines/email.vue'
 import Menu from './views/menu.vue'
 /* mineOrders */
 import paihao from './components/Mine/mineOrders/paihao.vue'
+import yuding from './components/Mine/mineOrders/yuding.vue'
+import diancan from './components/Mine/mineOrders/diancan.vue'
 
 Vue.use(Router)
 
@@ -198,6 +200,16 @@ export default new Router({
             meta:{
                 keepAlive:false //不需要被缓存的组件
              },
+        },
+        {
+            path: '/yuding',
+            name: 'yuding',
+            component: yuding
+        },
+        {
+            path: '/diancan',
+            name: 'diancan',
+            component: diancan
         },
         // {
         //   path: '/about',

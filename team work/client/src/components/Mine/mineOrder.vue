@@ -4,15 +4,15 @@
       <!-- 我的订单 -->
       <h6>我的订单</h6>
           <ul>
-              <li id="paihao">
+              <li @click="paihao">
                   <img src="http://127.0.0.1:5050/icon/paihao.png" alt="">
-                  <span>牌号</span>
+                  <span>排号</span>
               </li>
-              <li>
+              <li @click="yuding">
                   <img src="http://127.0.0.1:5050/icon/dingwei.png" alt="">
                   <span>订位</span>
               </li>
-              <li>
+              <li @click="diancan">
                   <img src="http://127.0.0.1:5050/icon/diancan.png" alt="">
                   <span>点餐</span>
               </li>
@@ -32,16 +32,16 @@ export default {
   data() {
     return {};
   },
-  methods: {
-      paihao(){
-      var paihaos=document.getElementById("paihao");
-      paihaos.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/paihao";
-        }     
-    }
-  },
-  mounted() {
-    this.paihao()
+  methods: {    
+     paihao(){
+      this.$router.push('/paihao');
+    },
+     yuding(){
+      this.$router.push('/yuding');
+    },
+     diancan(){
+      this.$router.push('/diancan');
+    },
   }
 };
 </script>

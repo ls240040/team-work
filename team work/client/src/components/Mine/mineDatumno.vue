@@ -8,7 +8,7 @@
     <div class="datum1">
       <!-- 头像 -->
         <img class="touxiang" src="http://127.0.0.1:5050/icon/touxiang_no.png" alt="">  
-        <h4><span id="login">点击登录/注册</span></h4>       
+        <h4><span @click="login">点击登录/注册</span></h4>       
     </div>
   </div>
 </template>
@@ -18,24 +18,11 @@ export default {
     return {};
   },
   methods: {
-     /* 修改个人资料 */
-    bianxie(){
-      var bianxies=document.getElementById("bianxie");
-      bianxies.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/datum";
-        }     
-    },
-     /* 登录 */
-    login(){
-      var logins=document.getElementById("login");
-      logins.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/login";
-        }     
+      login(){
+      this.$router.push("/login");
     },
   },
-  mounted() {
-    this.login()    
-  },
+  
 };
 </script>
 

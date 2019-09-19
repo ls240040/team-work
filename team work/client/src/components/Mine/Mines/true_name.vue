@@ -1,8 +1,8 @@
-<!--true_name.vue 头像设置页面组件-->
+<!--true_name.vue 真实姓名设置页面组件-->
 <template>
   <div class="true_name"> 
     <mt-header title="修改真实姓名">
-        <router-link id="true_name" to="/" slot="left">
+        <router-link to="/datum" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
     </mt-header>    
@@ -16,15 +16,6 @@ export default {
     return {};
   },
   methods: {
-      true_name(){
-      var true_names=document.getElementById("true_name");
-      true_names.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/datum";
-        }     
-    }
-  },
-   mounted() {
-    this.true_name()
   },
 };
 </script>

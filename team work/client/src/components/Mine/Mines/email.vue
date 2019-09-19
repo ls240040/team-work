@@ -1,8 +1,8 @@
-<!--email.vue 头像设置页面组件-->
+<!--email.vue 邮箱设置页面组件-->
 <template>
   <div class="email"> 
     <mt-header title="邮箱">
-        <router-link id="email" to="/" slot="left">
+        <router-link to="/datum" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
     </mt-header>    
@@ -16,15 +16,7 @@ export default {
     return {};
   },
   methods: {
-      email(){
-      var emails=document.getElementById("email");
-      emails.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/datum";
-        }     
-    }
-  },
-   mounted() {
-    this.email()
+     
   }
 };
 </script>

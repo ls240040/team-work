@@ -1,43 +1,43 @@
-<!--paihao.vue 排号设置页面组件-->
+<!--diancan.vue 点餐设置页面组件-->
 <template>
-  <div class="paihao"> 
-    <mt-header title="排号">
+  <div class="diancan"> 
+    <mt-header title="点餐">
         <router-link to="/mine" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
     </mt-header> 
-      <!-- 排号订单组件 -->
-      <paihaoOrder></paihaoOrder>
-      <!-- 暂无排号订单 -->
-      <nopaihaoOrder></nopaihaoOrder>
+      <!-- 点餐订单组件 -->
+      <diancanOrder></diancanOrder>
+      <!-- 暂无点餐订单 -->
+      <nodiancanOrder></nodiancanOrder>
   </div>
 </template>
 <script>
-//负责引入paihaoOrder.vue 子组件
-import paihaoOrder from "./paihaoOrder";
-//负责引入nopaihaoOrder.vue 子组件
-import nopaihaoOrder from "./nopaihaoOrder";
+//负责引入diancanOrder.vue 子组件
+import diancanOrder from "./diancanOrder";
+//负责引入nodiancanOrder.vue 子组件
+import nodiancanOrder from "./nodiancanOrder";
 
 export default {
   data() {
     return {};
   },
   methods: {
-     
+      
   },
   components: {
-    paihaoOrder: paihaoOrder,
-    nopaihaoOrder: nopaihaoOrder,    
+    diancanOrder: diancanOrder,
+    nodiancanOrder: nodiancanOrder,    
   },
-   
+ 
 };
 </script>
 
 <style lang="scss">
-     .paihao{
+     .diancan{
         background:#fff;   
         
-        /* 排号 */
+        /* 点餐*/
     .mint-header{
               padding-top:0.4rem;
               padding-bottom:0.2rem;

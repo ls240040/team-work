@@ -1,8 +1,8 @@
-<!--set_user.vue 头像设置页面组件-->
+<!--set_user.vue 用户名设置页面组件-->
 <template>
   <div class="set_user"> 
     <mt-header title="修改用户名">
-        <router-link id="user" to="/" slot="left">
+        <router-link to="/datum" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
     </mt-header>    
@@ -17,15 +17,6 @@ export default {
     return {};
   },
   methods: {
-       user(){
-      var users=document.getElementById("user");
-      users.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/datum";
-        }     
-    }
-  },
-   mounted() {
-    this.user()
   },
 };
 </script>
@@ -33,7 +24,7 @@ export default {
 <style lang="scss">
      .set_user{
         background:#eee;   
-        // 个人资料
+        // 用户名
     .mint-header{
               padding-top:0.4rem;
               padding-bottom:0.2rem;

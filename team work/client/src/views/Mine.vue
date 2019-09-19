@@ -2,7 +2,7 @@
 <template>
   <div class="mine">    
     <minedatumno></minedatumno>
-    <!-- <minedatum></minedatum> -->
+    <minedatum></minedatum>
     <mineorder></mineorder>
     <minestatus></minestatus>
     <mineserve></mineserve>

@@ -1,8 +1,8 @@
-<!--phone.vue 头像设置页面组件-->
+<!--phone.vue 手机设置页面组件-->
 <template>
   <div class="phone"> 
     <mt-header title="绑定手机号">
-        <router-link id="phone" to="/" slot="left">
+        <router-link to="/datum" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
     </mt-header>    
@@ -21,12 +21,7 @@ export default {
     return {};
   },
   methods: {
-      phone(){
-      var phones=document.getElementById("phone");
-      phones.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/datum";
-        }     
-    },
+     
     /* 倒计时 */    
     times(){
         var int=setInterval(clock,1000);
@@ -49,8 +44,7 @@ export default {
     },    
   },
    mounted() {
-    this.phone(),
-    this.yanzheng()
+    this.yanzheng(),
     this.times()
   }
 };
