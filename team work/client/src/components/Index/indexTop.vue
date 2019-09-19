@@ -1,5 +1,6 @@
 <!--index.vue 用户登录组件-->
 <template>
+<div style="background:#fff">
   <div class="iTop">
     <div class="navBar">
       <img class="leftImg" src="http://127.0.0.1:5050/icon/msg.png" alt>
@@ -25,6 +26,7 @@
       </div>
     </div>
   </div>
+</div>
 </template>
 <script>
 export default {
@@ -42,6 +44,22 @@ export default {
   height: 3.6rem;
   background: url(http://127.1:5050/icon/header_bg.png) no-repeat;
   background-size: 100%;
+  background-attachment: fixed;
+  .navBar{
+    background: url(http://127.1:5050/icon/header_bg.png) no-repeat;
+    background-attachment: fixed;
+    height: 3.6rem;
+    background-size: 100%;
+    position: fixed;
+    width: 100%;
+    height: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 .3rem;
+    box-sizing: border-box;
+    z-index: 100;
+  }
   .vipMsg {
     display: flex;
     padding-top: 2rem;
@@ -66,24 +84,24 @@ export default {
   .navBar img.leftImg {
     height: 0.45rem;
     vertical-align: middle;
-    position: fixed;
+    // position: fixed;
     top: 0.3rem;
     left: 0.2rem;
   }
   .navBar img.more {
     height: 0.45rem;
-    position: fixed;
+    // position: fixed;
     top: 0.3rem;
     right: 0.2rem;
   }
   .navBar img.kefu {
     height: 0.45rem;
-    position: fixed;
+    // position: fixed;
     top: 0.3rem;
     right: 1rem;
   }
   .search {
-    position: fixed;
+    // position: fixed;
     top: 0.3rem;
     left: 1.1rem;
     width: 4rem;

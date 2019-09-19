@@ -42,10 +42,8 @@ export default {
     loadIndex() {
       var url = "vip/carousel";
       this.axios.get(url).then(res => {
-        console.log(res.data.data);
         if (res.data.code == 1) {
           this.items = res.data.data;
-          console.log(this.items);
         }
       });
     },
