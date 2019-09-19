@@ -38,7 +38,7 @@ export default {
     },
     methods:{
         linkTo(){
-            this.$router.push("/reserve").then(this.$messagebox("温馨提示","各位捞粉大家好，每日早上7:00-9:00是我们闭店打扫时间，擦亮桌椅迎接您的到来，期间无法为您提供用餐服务，感谢您的谅解与支持。"));
+            this.$router.push("/reserve")
         },
         linkTo2(){
             this.$router.push("/");
@@ -46,7 +46,6 @@ export default {
         loadMore(){
             var url='index/shoplist';
             this.axios.get(url).then(res=>{
-                console.log(res.data.data);
                 if(res.data.code==1){
                     this.list=res.data.data;
                     console.log(this.list)
