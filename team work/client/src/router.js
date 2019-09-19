@@ -116,7 +116,7 @@ export default new Router({
             name: 'demand',
             component: demand,
             meta:{
-                keepAlive:true //需要被缓存的组件
+                keepAlive:false //需要被缓存的组件
              },
         },
         /* mines */
