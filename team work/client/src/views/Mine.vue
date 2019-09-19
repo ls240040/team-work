@@ -10,7 +10,7 @@
     <mineset></mineset>
 
     <!-- 底部bar -->
-    <tab-bar></tab-bar>
+    <tab-bar ref="child"></tab-bar>
   </div>
 </template>
 <script>
@@ -46,6 +46,8 @@ export default {
   },
   mounted() {
     window.scroll(0,0);//让跳转后页面在顶部
+    this.$refs.child.mineurl="mine_iconred.png";//改变图标颜色
+    this.$refs.child.minecolor="red";//改变图标颜色
   },
 };
 </script>
