@@ -41,8 +41,9 @@ export default {
     window.addEventListener('scroll',this.handleScroll);
   },
   methods: {
-    handleScroll(){
-      // var top=this.$refs.top;
+    handleScroll(e){
+      e.stopPropagation();
+      e.preventDefault();
       var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
       if(scrollTop>200){
         this.$refs.navbar.style.background="#fff";
@@ -79,6 +80,8 @@ export default {
   background: url(http://127.1:5050/icon/header_bg.png) no-repeat;
   background-size: 100%;
   background-attachment: fixed;
+  -webkit-overflow-scrolling: touch;
+  touch-action: none;
   .navBar{
     background: url(http://127.1:5050/icon/header_bg.png) no-repeat;
     background-attachment: fixed;

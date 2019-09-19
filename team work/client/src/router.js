@@ -68,7 +68,7 @@ export default new Router({
             name: 'community',
             component: Community,
             meta:{
-                keepAlive:false //不需要被缓存的组件
+                keepAlive:true //不需要被缓存的组件
              },
         },
         {
@@ -116,7 +116,7 @@ export default new Router({
             name: 'demand',
             component: demand,
             meta:{
-                keepAlive:false //需要被缓存的组件
+                keepAlive:true //需要被缓存的组件
              },
         },
         /* mines */
