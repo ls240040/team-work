@@ -127,9 +127,7 @@ export default {
             this.$router.push("/shopList");
         },
         linkTo3(){
-            // this.$router.push("/menu");
              // 传递数据给后台
-            // var selected=document.getElementsByClassName("greySel")[0].innerHTML;
             var time;
             var hall;
             var num;
@@ -139,18 +137,27 @@ export default {
             var name=this.username;
             var phone=this.phone;
 
+
             if(this.num=="请选择"){
-                this.$toast("请选择就餐人数")
+                num="未选择就餐人数";
             }else{
                 num=this.num+"人";
             }
-            if(room==""){
+
+            
+            if(this.time=="请选择"){
+                time="未选择就餐时间";
+            }else{
+                time=this.time;
+            }
+
+            if(this.value1==false){
                 room=0;
             }else{
                 room=this.value1;
             }
 
-            if(hall==null){
+            if(this.selected==null){
                 hall="不接受大厅";
             }else{
                 hall=this.selected;
@@ -162,14 +169,8 @@ export default {
                 sex=this.value2;
             }
 
-            if(time==null){
-                this.$toast("请选择就餐时间")
-            }else{
-                var time=this.time;
-            }
-
             var getmsg=this.$store.getters.getMsg;
-            if(this.$store.getters.getMsg==""){
+            if(getmsg==""){
                 var demand=null;
             }else{
                 var demand=getmsg;
@@ -177,16 +178,24 @@ export default {
             
            
             //2: 创建正则表达式  3~12位置 字母数字
-            var reg = /^[a-z0-9]{3,12}$/i;
+            var reg = /^[\u4e00-\u9fa5_a-zA-Z0-9]+$/;
             var reg2=/^1[3-9]\d{9}$/i;
             //3: 判断 用户名提示
             if (!reg.test(name)) {
-                this.$toast("用户名格式不正确");
+                if(name==""){
+                    this.$toast("请填写用户名");
+                }else{
+                    this.$toast("用户名格式不正确");
+                }
                 return;
             }
-            //4: 判断 密码提示
+            //4: 判断 手机号提示
             if (!reg2.test(phone)) {
-                this.$toast("手机号格式不正确");
+                if(phone==""){
+                    this.$toast("请填写手机号");
+                }else{
+                    this.$toast("手机号格式不正确");
+                }
                 return;
             }
 
@@ -197,8 +206,6 @@ export default {
                     this.$messagebox("预订成功").then(res=>{
                         this.$router.push("/menu");
                     })
-                }else{
-                    this.$toast("请选择就餐时间")
                 }
             }).catch(err=>{
                 console.log(err)
@@ -262,6 +269,7 @@ export default {
             }
         },
         loadMore(){
+            this.$messagebox("温馨提示","各位捞粉大家好，每日早上7:00-9:00是我们闭店打扫时间，擦亮桌椅迎接您的到来，期间无法为您提供用餐服务，感谢您的谅解与支持。")
             // 预定时间
             var start=Date.parse(new Date());
             start=start/1000;

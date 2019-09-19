@@ -1,12 +1,11 @@
 <!--index.vue 用户登录组件-->
 <template>
-<div style="background:#fff">
-  <div class="iTop">
-    <div class="navBar">
-      <img class="leftImg" src="http://127.0.0.1:5050/icon/msg.png" alt>
-      <input class="search" placeholder="搜索门店·内容·用户" type="text">
-      <img class="more" src="http://127.0.0.1:5050/icon/more.png" alt>
-      <img class="kefu" src="http://127.0.0.1:5050/icon/kefu.png" alt>
+  <div class="iTop" ref="top">
+    <div class="navBar" v-show="show" ref="navbar">
+      <img class="leftImg" :src="image1">
+      <input class="search1" :class="{class2:isScroll}" placeholder="搜索门店·内容·用户" type="text" ref="search">
+      <img class="more" :src="image2">
+      <img class="kefu" :src="image3">
     </div>
     <div class="vipMsg">
       <div>
@@ -26,14 +25,49 @@
       </div>
     </div>
   </div>
-</div>
 </template>
 <script>
 export default {
   data() {
-    return {};
+    return {
+      show:true,
+      image1:"http://127.0.0.1:5050/icon/msg.png",
+      image2:"http://127.0.0.1:5050/icon/more.png",
+      image3:"http://127.0.0.1:5050/icon/kefu.png",
+      isScroll:false
+    }
   },
-  methods: {}
+  mounted() {
+    window.addEventListener('scroll',this.handleScroll);
+  },
+  methods: {
+    handleScroll(){
+      // var top=this.$refs.top;
+      var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
+      if(scrollTop>200){
+        this.$refs.navbar.style.background="#fff";
+        this.image1="http://127.0.0.1:5050/icon/msg2.png";
+        this.image2="http://127.0.0.1:5050/icon/more2.png";
+        this.image3="http://127.0.0.1:5050/icon/kefu2.png";
+        this.$refs.search.style.backgroundColor="rgba(187, 187, 187, 0.2)";
+        this.isScroll=true
+      }else if(scrollTop<200 || scrollTop==0){
+        this.$refs.navbar.style.background="url(http://127.1:5050/icon/header_bg.png) no-repeat";
+        this.$refs.navbar.style.backgroundAttachment="fixed";
+        this.$refs.navbar.style.backgroundSize="100%";
+        this.$refs.navbar.style.height="1rem";
+        this.image1="http://127.0.0.1:5050/icon/msg.png";
+        this.image2="http://127.0.0.1:5050/icon/more.png";
+        this.image3="http://127.0.0.1:5050/icon/kefu.png";
+        this.$refs.search.style.backgroundColor="rgba(216, 216, 216, 0.2)";
+        this.isScroll=false;
+        
+      }
+    },
+  },
+  destroyed () {
+    window.removeEventListener('scroll',this.handleScroll);
+  }
 };
 </script>
 
@@ -100,19 +134,24 @@ export default {
     top: 0.3rem;
     right: 1rem;
   }
-  .search {
+  input {
     // position: fixed;
     top: 0.3rem;
     left: 1.1rem;
     width: 4rem;
     height: 0.45rem;
     border: 0;
-    border-radius: 0.15rem;
-    background-color: rgba(85, 85, 85, 0.2);
+    border-radius: 0.45rem;
+    background-color: rgba(113, 0, 0, 0.2);
     padding-left: 0.2rem;
+    outline: 0;
   }
-  .search::placeholder {
+  .search1::placeholder {
     color: rgba(255, 255, 255, 0.5);
+    font-weight: 100;
+  }
+  .class2::placeholder{
+    color: rgb(82, 82, 82);
     font-weight: 100;
   }
 }

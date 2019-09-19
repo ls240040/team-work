@@ -8,7 +8,7 @@ router.get('/shoplist', (req, res) => {
     pool.query(sql, (err, result) => {
         if (err) throw err;
         if (result.length == 0) {
-            res.send({ code: -1, msg: "查询失败", data: result });
+            res.send({ code: -1, msg: "查询失败"});
         } else {
             res.send({ code: 1, msg: "查询成功", data: result });
         }
@@ -29,14 +29,13 @@ router.get('/reserve',(req,res)=>{
     var sex=req.query.sex;
     var demand=req.query.demand;
     console.log(time,num,room,hall,R_Name,R_Phone,sex,demand);
-    var sql = "SELECT R_Num FROM reserve WHERE R_Phone=? AND R_Name=?";
+    var sql = "SELECT R_Time FROM reserve WHERE R_Phone=? AND R_Name=?";
     pool.query(sql,[R_Phone,R_Name],(err,result)=>{
         if(err) throw err;
         //6.在回调函数中 判断下一步操作
         if(result.length==0){
             var sql = `INSERT INTO reserve VALUES(NULL,'${time}','${num}',${room},'${hall}','${R_Name}',${R_Phone},'${sex}','${demand}')`;
-        }          
-        //7.执行sql获取返回结果
+            //7.执行sql获取返回结果
         pool.query(sql,(err,result)=>{
             if(err) throw err;
             //8.如果 sql UPDATE INSERT DELETE
@@ -47,6 +46,8 @@ router.get('/reserve',(req,res)=>{
                 res.send({code:-2,msg:"预订失败"})
             }
         })
+        }          
+        
     })
 })
     
