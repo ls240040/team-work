@@ -2,7 +2,7 @@
 <template>
   <div class="underwrite"> 
     <mt-header title="个性签名">
-        <router-link to="/" slot="left">
+        <router-link id="underwrite" to="/" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
     </mt-header>    
@@ -17,8 +17,16 @@ export default {
     return {};
   },
   methods: {
-      
-  }
+      underwrite(){
+      var underwrites=document.getElementById("underwrite");
+      underwrites.onclick = function () {
+           window.location.href="http://127.0.0.1:8080/#/datum";
+        }     
+    }
+  },
+  mounted() {
+    this.underwrite()
+  },
 };
 </script>
 
