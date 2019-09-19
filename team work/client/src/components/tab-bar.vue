@@ -1,23 +1,23 @@
 <!-- 底部导航栏 组件 -->
 <template>
   <div id="tab0">
-    <div id="faker"></div>
+    <div class="faker"></div>
     <mt-tabbar style="position: fixed">
       <mt-tab-item id="tab1" @click.native="goIndex">
         <img slot="icon" :src="`http://127.0.0.1:5050/icon/${indexurl}`">
-        首页
+        <span :style="`color:${indexcolor}`">首页</span>
       </mt-tab-item>
       <mt-tab-item id="tab2" @click.native="goCommunity">
         <img slot="icon" :src="`http://127.0.0.1:5050/icon/${communityurl}`">
-        社区
+        <span :style="`color:${communitycolor}`">社区</span>
       </mt-tab-item>
       <mt-tab-item id="tab3" @click.native="goVIP">
         <img slot="icon" :src="`http://127.0.0.1:5050/icon/${vipurl}`">
-        会员
+        <span :style="`color:${vipcolor}`">会员</span>
       </mt-tab-item>
       <mt-tab-item id="tab4" @click.native="goMine">
         <img slot="icon" :src="`http://127.0.0.1:5050/icon/${mineurl}`">
-        我的
+        <span :style="`color:${minecolor}`">我的</span>
       </mt-tab-item>
     </mt-tabbar>
   </div>
@@ -30,7 +30,12 @@ export default {
       indexurl: "index_icon.png",
       communityurl: "community_icon.png",
       vipurl: "vip_icon.png",
-      mineurl: "mine_icon.png"
+      mineurl: "mine_icon.png",
+
+      indexcolor: "",
+      communitycolor:"",
+      vipcolor:"",
+      minecolor:"",
     };
   },
   methods: {
@@ -50,7 +55,7 @@ export default {
 };
 </script>
 <style scoped>
-    #faker{
+    .faker{
         height: 1rem;
     }
 </style>

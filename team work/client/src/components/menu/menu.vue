@@ -9,19 +9,22 @@
     <div class="jiade"></div>
     <div class="right">
       <div v-for="(item,index) in foodType" :key="index">
-        <div  class="fenlei">{{item.FT_Name}}</div>
-        <div v-for="(food,index) in foodData" :key="index"  class="guilei" >
+        <div class="fenlei">{{item.FT_Name}}</div>
+        <div v-for="(food,index) in foodData" :key="index" class="guilei">
           <img v-if="food.F_FTID==item.FT_ID" :src="`http://127.0.0.1:5050/menu${food.F_Url}`" alt>
           <div v-if="food.F_FTID==item.FT_ID" class="food">
             <p class="mTitle">{{food.F_Name}}</p>
             <p class="mPrice">
-              <i>￥</i> {{food.F_Price}}
+              <i>￥</i>
+              {{food.F_Price}}
             </p>
           </div>
           <div v-if="food.F_FTID==item.FT_ID" class="count">
-            <a class="cut" @click="cuts()"></a>
-            <span>{{num}}</span>
-            <a class="add" @click="add()"></a>
+            <a class="cut" @click="cuts(food.F_ID)"></a>
+            <span>{{food.num}}</span>
+            <!-- 再见了，我的倔强 -->
+            <span style="display:none;">{{n}}</span>
+            <a class="add" @click="add(food.F_ID)"></a>
           </div>
         </div>
       </div>
@@ -33,8 +36,8 @@ export default {
   data() {
     return {
       foodType: [],
-      foodData:[],
-      num: 0
+      foodData: [],
+      n:0,//无意义，无视
     };
   },
   methods: {
@@ -45,26 +48,35 @@ export default {
           this.foodType = res.data.data;
         }
       });
-      
-      var url2="/menu/food";
+
+      var url2 = "/menu/food";
       this.axios.get(url2).then(res => {
         if (res.data.code == 1) {
           this.foodData = res.data.data;
+          // console.log(this.foodData);
+          for (var i = 0; i < this.foodData.length; i++) {
+            this.foodData[i].num = 0;
+          }
         }
       });
-     
     },
-    cuts: function() {
-      if (this.num < 1) return;
-      this.num--;
+    cuts: function(n) {
+      if (this.foodData[n - 1].num < 1) return;
+      this.n--;
+      this.foodData[n - 1].num--;
     },
-    add: function() {
-      this.num++;
+    add: function(n) {
+      // var numhou=this.foodData[n - 1].num++
+      // console.log(numhou);
+      // this.$set(this.foodData,'num',numhou);
+      // console.log(this.foodData[n-1]);
+      this.n++;
+      this.foodData[n - 1].num++;
     }
   },
   created() {
     this.loadMenu();
-  }
+  },
 };
 </script>
 
@@ -161,9 +173,7 @@ div.menu {
   }
 }
 
-.guilei{
+.guilei {
   position: relative;
-
 }
-
 </style>

@@ -8,7 +8,7 @@
     <div class="problem">常见问题<img src="http://127.0.0.1:5050/icon/icon_go.webp" alt=""></div>
 
     <!-- 底部bar -->
-    <tab-bar></tab-bar>
+    <tab-bar ref="child"></tab-bar>
   </div>
   
 </template>
@@ -37,6 +37,11 @@ export default {
   },
   mounted() {
     window.scroll(0,0);//让跳转后页面在顶部
+    this.$refs.child.vipurl="vip_iconred.png";//改变图标颜色
+    this.$refs.child.vipcolor="red";//改变图标颜色
+  },
+  created(){
+    
   },
 };
 </script>

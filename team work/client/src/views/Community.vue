@@ -26,7 +26,7 @@
     </mt-tab-container>
 
     <!-- 底部bar -->
-    <tab-bar></tab-bar>
+    <tab-bar ref="child"></tab-bar>
   </div>
 </template>
 <script>
@@ -49,6 +49,8 @@ export default {
   methods: {},
   mounted() {
     window.scroll(0, 0); //让跳转后页面在顶部
+    this.$refs.child.communityurl="community_iconred.png";//改变图标颜色
+    this.$refs.child.communitycolor="red";//改变图标颜色
   }
 };
 </script>

@@ -4,7 +4,7 @@
       <!-- 我的订单 -->
       <h6>我的订单</h6>
           <ul>
-              <li>
+              <li id="paihao">
                   <img src="http://127.0.0.1:5050/icon/paihao.png" alt="">
                   <span>牌号</span>
               </li>
@@ -32,7 +32,17 @@ export default {
   data() {
     return {};
   },
-  methods: {}
+  methods: {
+      paihao(){
+      var paihaos=document.getElementById("paihao");
+      paihaos.onclick = function () {
+           window.location.href="http://127.0.0.1:8080/#/paihao";
+        }     
+    }
+  },
+  mounted() {
+    this.paihao()
+  }
 };
 </script>
 
