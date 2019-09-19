@@ -33,110 +33,171 @@ export default new Router({
             name: 'menu',
             component: Menu,
             meta: {
-                isLogin: true // 添加该字段，表示进入这个路由是需要登录的
+                isLogin: true, // 添加该字段，表示进入这个路由是需要登录的
+                keepAlive:false
             }
         },
         {
             path: '/vipcarousel',
             name: 'vipcarousel',
-            component: vipcarousel
+            component: vipcarousel,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/',
             name: 'index',
-            component: Index
+            component: Index,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/Details',
             name: 'details',
-            component: Details
+            component: Details,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/Community',
             name: 'community',
-            component: Community
+            component: Community,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/Mine',
             name: 'mine',
-            component: Mine
+            component: Mine,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/Vip',
             name: 'vip',
-            component: Vip
+            component: Vip,
+            meta:{
+                keepAlive:false //需要被缓存的组件
+             },
         },
         {
             path: '/Login',
             name: 'login',
-            component: Login
+            component: Login,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/shopList',
             name: 'shopList',
-            component: shopList
+            component: shopList,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/reserve',
             name: 'reserve',
-            component: reserve
+            component: reserve,
+            meta:{
+                keepAlive:true //需要被缓存的组件
+             },
         },
         {
             path: '/demand',
             name: 'demand',
-            component: demand
+            component: demand,
+            meta:{
+                keepAlive:true //需要被缓存的组件
+             },
         },
         /* mines */
         {
             path: '/datum',
             name: 'datum',
-            component: datum
+            component: datum,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/head',
             name: 'head',
-            component: head
+            component: head,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/set_user',
             name: 'set_user',
-            component: set_user
+            component: set_user,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/true_name',
             name: 'true_name',
-            component: true_name
+            component: true_name,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/sex',
             name: 'sex',
-            component: sex
+            component: sex,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/underwrite',
             name: 'underwrite',
-            component: underwrite
+            component: underwrite,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/income',
             name: 'income',
-            component: income
+            component: income,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/phone',
             name: 'phone',
-            component: phone
+            component: phone,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         {
             path: '/email',
             name: 'email',
-            component: email
+            component: email,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         /* mineOrders */
         {
             path: '/paihao',
             name: 'paihao',
-            component: paihao
+            component: paihao,
+            meta:{
+                keepAlive:false //不需要被缓存的组件
+             },
         },
         // {
         //   path: '/about',
