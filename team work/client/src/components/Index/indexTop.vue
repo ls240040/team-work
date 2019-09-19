@@ -1,6 +1,6 @@
 <!--index.vue 用户登录组件-->
 <template>
-  <div class="iTop">
+  <div class="iTop" ref="top">
     <div class="navBar" v-show="show" ref="navbar">
       <img class="leftImg" :src="image1">
       <input class="search1" :class="{class2:isScroll}" placeholder="搜索门店·内容·用户" type="text" ref="search">
@@ -39,10 +39,10 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll',this.handleScroll);
-    // console.log(this.$refs.navbar)
   },
   methods: {
     handleScroll(){
+      // var top=this.$refs.top;
       var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
       if(scrollTop>200){
         this.$refs.navbar.style.background="#fff";
@@ -64,6 +64,9 @@ export default {
         
       }
     },
+  },
+  destroyed () {
+    window.removeEventListener('scroll',this.handleScroll);
   }
 };
 </script>
