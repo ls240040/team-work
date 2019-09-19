@@ -82,9 +82,15 @@ export default new Router({
             path: '/Community',
             name: 'community',
             component: Community,
+<<<<<<< HEAD
+            meta:{
+                keepAlive:true //不需要被缓存的组件
+             },
+=======
             meta: {
                 keepAlive: false //不需要被缓存的组件
             },
+>>>>>>> f3a869f2b0780621defa18f4eb7739b455cc7ec1
         },
         {
             path: '/Mine',
@@ -130,9 +136,15 @@ export default new Router({
             path: '/demand',
             name: 'demand',
             component: demand,
+<<<<<<< HEAD
+            meta:{
+                keepAlive:true //需要被缓存的组件
+             },
+=======
             meta: {
                 keepAlive: false //需要被缓存的组件
             },
+>>>>>>> f3a869f2b0780621defa18f4eb7739b455cc7ec1
         },
          /* 预定详情 */
         {

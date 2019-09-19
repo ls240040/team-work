@@ -63,6 +63,9 @@ export default {
     color: #ff2626 !important;
     margin-bottom: 0;
   }
+  .mint-navbar{
+    padding:0 .3rem;
+  }
   .mint-tab-item-label {
     font-size: 0.3rem;
   }
