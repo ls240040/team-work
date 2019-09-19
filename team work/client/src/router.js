@@ -22,6 +22,9 @@ import income from './components/Mine/Mines/income.vue'
 import phone from './components/Mine/Mines/phone.vue'
 import email from './components/Mine/Mines/email.vue'
 import Menu from './views/menu.vue'
+/* mineOrders */
+import paihao from './components/Mine/mineOrders/paihao.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -128,6 +131,12 @@ export default new Router({
             path: '/email',
             name: 'email',
             component: email
+        },
+        /* mineOrders */
+        {
+            path: '/paihao',
+            name: 'paihao',
+            component: paihao
         },
         // {
         //   path: '/about',
