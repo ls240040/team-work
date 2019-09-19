@@ -5,7 +5,7 @@
       <p>排号</p>
       <span>取号快人一步</span>
     </div>
-    <div class="middle" @click="linkTo">
+    <div class="middle">
       <p>预订</p>
       <span>早预定不等位</span>
     </div>
@@ -21,9 +21,7 @@ export default {
     return {};
   },
   methods: {
-    linkTo(){
-      this.$router.push("/shopList");
-    },
+   
   }
 };
 </script>

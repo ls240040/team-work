@@ -2,7 +2,7 @@
 <template>
   <div class="indexf3">
     <div class="iconf3">
-      <div>
+      <div  @click="linkTo">
         <img src="http://127.0.0.1:5050/icon/my_deliver_order.png" alt>
         <p>外卖</p>
       </div>
@@ -39,6 +39,9 @@ export default {
     };
   },
   methods: {
+     linkTo(){
+      this.$router.push("/shopList");
+    },
     loadIndex() {
       var url = "index/carousel";
       this.axios.get(url).then(res => {
