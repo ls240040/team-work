@@ -10,7 +10,7 @@ import Login from './views/Login.vue'
 import reserve from './components/Index/index02/reserve.vue'
 import demand from './components/Index/index02/demand.vue'
 import shopList from './components/Index/index02/shopList.vue'
-import rowNum from './components/Index/index01/rowNum.vue'
+import row from './components/Index/index01/row.vue'
 /* mines */
 import datum from './components/Mine/Mines/datum.vue'
 import vipcarousel from './components/VIP/VIPCarouselDDD.vue' //vip轮播
@@ -44,6 +44,14 @@ export default new Router({
             path: '/vipcarousel',
             name: 'vipcarousel',
             component: vipcarousel,
+            meta: {
+                keepAlive: false //不需要被缓存的组件
+            },
+        },
+        {
+            path: '/row',
+            name: 'row',
+            component: row,
             meta: {
                 keepAlive: false //不需要被缓存的组件
             },
