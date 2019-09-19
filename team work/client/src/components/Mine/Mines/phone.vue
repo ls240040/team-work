@@ -27,6 +27,16 @@ export default {
            window.location.href="http://127.0.0.1:8080/#/datum";
         }     
     },
+    /* 倒计时 */    
+    times(){
+        var int=setInterval(clock,1000);
+        var num=60;
+        function clock(){
+            num>0 ? num-- : clearInterval(int);
+            document.getElementById("time").innerHTML=num;
+             console.log(num)
+        }
+    },
     /* 获取验证码 */
     yanzheng(){
         var yanzheng = document.getElementById("yanzheng");
@@ -34,24 +44,13 @@ export default {
         
         yanzheng.onclick = function () {
            yanzheng.style.display = "none";
-           yanzheng2.style.display = "block";
+           yanzheng2.style.display = "block";           
         }
-    },
-    /* 倒计时 */
-    
-    times(){
-        var int=setInterval("clock()",1000);
-        var num=60;
-        function clock(){
-            num>0 ? num-- : clearInterval(int);
-            document.getElementById("time").innerHTML=num;
-            // console.log(num)
-        }
-    }
+    },    
   },
    mounted() {
     this.phone(),
-    this.yanzheng(),
+    this.yanzheng()
     this.times()
   }
 };

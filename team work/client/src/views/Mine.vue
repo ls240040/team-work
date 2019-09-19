@@ -1,8 +1,8 @@
 <!--Mine.vue 我的 页面组件-->
 <template>
-  <div class="mine">
-    
-    <minedatum></minedatum>
+  <div class="mine">    
+    <minedatumno></minedatumno>
+    <!-- <minedatum></minedatum> -->
     <mineorder></mineorder>
     <minestatus></minestatus>
     <mineserve></mineserve>
@@ -14,6 +14,8 @@
   </div>
 </template>
 <script>
+//负责引入mineDatum.vue 子组件
+import mineDatumno from "../components/Mine/mineDatumno";
 //负责引入mineDatum.vue 子组件
 import mineDatum from "../components/Mine/mineDatum";
 //负责引入mineOrder.vue 子组件
@@ -36,6 +38,7 @@ export default {
   },
   methods: {},
   components: {
+    minedatumno: mineDatumno,
     minedatum: mineDatum,
     mineorder: mineOrder,
     minestatus: mineStatus,
@@ -56,6 +59,7 @@ export default {
   .mine{
     // 页头留空，以便显示 中国移动等信息
     padding-top:0.1rem;
+    padding-bottom:1.2rem;
     background:#eee;
   }
 </style>

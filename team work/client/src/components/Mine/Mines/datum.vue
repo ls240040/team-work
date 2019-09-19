@@ -2,7 +2,7 @@
 <template>
   <div class="datum">
     <mt-header title="个人资料">
-        <router-link to="/" slot="left">
+        <router-link id="datum" to="/" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
     </mt-header>  
@@ -160,6 +160,12 @@ export default {
            window.location.href="http://127.0.0.1:8080/#/email";
         }     
     },
+    datum(){
+      var datums=document.getElementById("datum");
+      datums.onclick = function () {
+           window.location.href="http://127.0.0.1:8080/#/mine";
+        }     
+    }
   },
   mounted() {
     this.head(),
@@ -170,7 +176,8 @@ export default {
     this.underwrite(),
     this.underwrite(),
     this.phone(),
-    this.email()
+    this.email(),    
+    this.datum()    
   },
 };
  
