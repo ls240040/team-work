@@ -60,7 +60,7 @@ export default {
         this.image2="http://127.0.0.1:5050/icon/more.png";
         this.image3="http://127.0.0.1:5050/icon/kefu.png";
         this.$refs.search.style.backgroundColor="rgba(216, 216, 216, 0.2)";
-        this.isScroll=false
+        this.isScroll=false;
         
       }
     },
