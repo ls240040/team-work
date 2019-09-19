@@ -15,7 +15,7 @@
         <mt-cell id="user" title="用户名" is-link>
           <span>用户名</span>
         </mt-cell>
-        <mt-cell title="真实姓名" is-link>
+        <mt-cell id="true_name" title="真实姓名" is-link>
           <span>真实姓名</span>
         </mt-cell>
         <mt-cell id="btn_show2" title="性别" is-link>
@@ -27,17 +27,17 @@
         <mt-cell title="常住" is-link>
           <span>真实姓名</span>
         </mt-cell>
-        <mt-cell title="个性签名" is-link>
+        <mt-cell id="underwrite" title="个性签名" is-link>
           <span>个性签名</span>
         </mt-cell>
         <mt-cell id="btn_show3" title="收入" is-link>
           <span>收入</span>
         </mt-cell>
     <h6>联系方式</h6>
-      <mt-cell title="手机号" is-link>
+      <mt-cell id="phone" title="手机号" is-link>
       <span>手机号</span>
       </mt-cell>
-      <mt-cell title="邮箱" is-link>
+      <mt-cell id="email" title="邮箱" is-link>
         <span>邮箱</span>
       </mt-cell>
       <!-- 修改头像 -->
@@ -91,6 +91,13 @@ export default {
            window.location.href="http://127.0.0.1:8080/#/set_user";
         }     
     },
+    /* 修改真实姓名 */
+    true_name(){
+      var true_names=document.getElementById("true_name");
+      true_names.onclick = function () {
+           window.location.href="http://127.0.0.1:8080/#/true_name";
+        }     
+    },
     /* 头像 */
     head(){
         var heads = document.getElementById("heads");
@@ -131,13 +138,39 @@ export default {
         btn_hidden3.onclick = function () {
             incomes.style.display = "none";
         }
-    }
+    },
+    /* 修改个性签名 */
+    underwrite(){
+      var underwrites=document.getElementById("underwrite");
+      underwrites.onclick = function () {
+           window.location.href="http://127.0.0.1:8080/#/underwrite";
+        }     
+    },
+    /* 修改手机号 */
+    phone(){
+      var phones=document.getElementById("phone");
+      phones.onclick = function () {
+           window.location.href="http://127.0.0.1:8080/#/phone";
+        }     
+    },
+    /* 修改邮箱 */
+    email(){
+      var emails=document.getElementById("email");
+      emails.onclick = function () {
+           window.location.href="http://127.0.0.1:8080/#/email";
+        }     
+    },
   },
   mounted() {
     this.head(),
     this.user(),
+    this.true_name(),
     this.sex(),
-    this.income()
+    this.income(),
+    this.underwrite(),
+    this.underwrite(),
+    this.phone(),
+    this.email()
   },
 };
  

@@ -2,7 +2,7 @@
 <template>
   <div class="email"> 
     <mt-header title="邮箱">
-        <router-link to="/" slot="left">
+        <router-link id="email" to="/" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
     </mt-header>    
@@ -16,7 +16,15 @@ export default {
     return {};
   },
   methods: {
-      
+      email(){
+      var emails=document.getElementById("email");
+      emails.onclick = function () {
+           window.location.href="http://127.0.0.1:8080/#/datum";
+        }     
+    }
+  },
+   mounted() {
+    this.email()
   }
 };
 </script>

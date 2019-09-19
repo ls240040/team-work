@@ -1,6 +1,7 @@
 <!-- 底部导航栏 组件 -->
 <template>
   <div id="tab0">
+    <div id="faker"></div>
     <mt-tabbar style="position: fixed">
       <mt-tab-item id="tab1" @click.native="goIndex">
         <img slot="icon" :src="`http://127.0.0.1:5050/icon/${indexurl}`">
@@ -49,4 +50,7 @@ export default {
 };
 </script>
 <style scoped>
+    #faker{
+        height: 1rem;
+    }
 </style>
