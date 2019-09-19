@@ -182,12 +182,20 @@ export default {
             var reg2=/^1[3-9]\d{9}$/i;
             //3: 判断 用户名提示
             if (!reg.test(name)) {
-                this.$toast("用户名格式不正确");
+                if(name==""){
+                    this.$toast("请填写用户名");
+                }else{
+                    this.$toast("用户名格式不正确");
+                }
                 return;
             }
-            //4: 判断 密码提示
+            //4: 判断 手机号提示
             if (!reg2.test(phone)) {
-                this.$toast("手机号格式不正确");
+                if(phone==""){
+                    this.$toast("请填写手机号");
+                }else{
+                    this.$toast("手机号格式不正确");
+                }
                 return;
             }
 
