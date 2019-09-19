@@ -142,7 +142,7 @@ export default {
             if(this.num=="请选择"){
                 this.$toast("请选择就餐人数")
             }else{
-                num=this.num;
+                num=this.num+"人";
             }
             if(room==""){
                 room=0;
