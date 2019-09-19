@@ -129,8 +129,8 @@ export default {
         linkTo3(){
             // this.$router.push("/menu");
              // 传递数据给后台
-            var selected=document.getElementsByClassName("greySel")[0].innerHTML;
-            var time=this.time;
+            // var selected=document.getElementsByClassName("greySel")[0].innerHTML;
+            var time;
             var hall;
             var num;
             console.log(this.num);
@@ -139,8 +139,8 @@ export default {
             var name=this.username;
             var phone=this.phone;
 
-            if(selected=="请选择"){
-                num=0;
+            if(this.num=="请选择"){
+                this.$toast("请选择就餐人数")
             }else{
                 num=this.num;
             }
@@ -160,6 +160,12 @@ export default {
                 sex=null;
             }else{
                 sex=this.value2;
+            }
+
+            if(time==null){
+                this.$toast("请选择就餐时间")
+            }else{
+                var time=this.time;
             }
 
             var getmsg=this.$store.getters.getMsg;
@@ -188,7 +194,7 @@ export default {
             var obj={time,num,room,hall,name,phone,sex,demand};
             this.axios.get("/index/reserve", {params:obj}).then(res=>{
                 if(res.data.code==1){
-                    this.$toast("预订成功").then(res=>{
+                    this.$messagebox("预订成功").then(res=>{
                         this.$router.push("/menu");
                     })
                 }else{
