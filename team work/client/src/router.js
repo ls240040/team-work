@@ -10,12 +10,12 @@ import Login from './views/Login.vue'
 import reserve from './components/Index/index02/reserve.vue'
 import demand from './components/Index/index02/demand.vue'
 import shopList from './components/Index/index02/shopList.vue'
-<<<<<<< HEAD
+
 /* 预定详情 */
 import reserve_detailed from './components/Index/index02/reserve_detailed.vue'
-=======
+
 import row from './components/Index/index01/row.vue'
->>>>>>> f3a869f2b0780621defa18f4eb7739b455cc7ec1
+
 /* mines */
 import datum from './components/Mine/Mines/datum.vue'
 import vipcarousel from './components/VIP/VIPCarouselDDD.vue' //vip轮播
@@ -82,15 +82,14 @@ export default new Router({
             path: '/Community',
             name: 'community',
             component: Community,
-<<<<<<< HEAD
+
             meta:{
                 keepAlive:true //不需要被缓存的组件
              },
-=======
+
             meta: {
                 keepAlive: false //不需要被缓存的组件
             },
->>>>>>> f3a869f2b0780621defa18f4eb7739b455cc7ec1
         },
         {
             path: '/Mine',
@@ -136,15 +135,12 @@ export default new Router({
             path: '/demand',
             name: 'demand',
             component: demand,
-<<<<<<< HEAD
             meta:{
                 keepAlive:true //需要被缓存的组件
              },
-=======
             meta: {
                 keepAlive: false //需要被缓存的组件
             },
->>>>>>> f3a869f2b0780621defa18f4eb7739b455cc7ec1
         },
          /* 预定详情 */
         {
