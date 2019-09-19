@@ -29,7 +29,6 @@ export default {
           justify-content: left;
           flex-flow: row nowrap;
           overflow-x:scroll;
-
           img{
               width: 5rem;
               border-radius:.1rem; 
