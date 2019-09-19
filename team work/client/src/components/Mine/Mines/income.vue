@@ -1,4 +1,4 @@
-<!--income.vue 头像设置页面组件-->
+<!--income.vue 收入设置页面组件-->
 <template>
   <div class="income">      
       <div>

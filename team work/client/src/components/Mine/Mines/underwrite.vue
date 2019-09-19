@@ -1,8 +1,8 @@
-<!--underwrite.vue 头像设置页面组件-->
+<!--underwrite.vue 个性签名设置页面组件-->
 <template>
   <div class="underwrite"> 
     <mt-header title="个性签名">
-        <router-link id="underwrite" to="/" slot="left">
+        <router-link to="/datum" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
     </mt-header>    
@@ -17,15 +17,6 @@ export default {
     return {};
   },
   methods: {
-      underwrite(){
-      var underwrites=document.getElementById("underwrite");
-      underwrites.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/datum";
-        }     
-    }
-  },
-  mounted() {
-    this.underwrite()
   },
 };
 </script>

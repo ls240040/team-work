@@ -24,6 +24,8 @@ import email from './components/Mine/Mines/email.vue'
 import Menu from './views/menu.vue'
 /* mineOrders */
 import paihao from './components/Mine/mineOrders/paihao.vue'
+import yuding from './components/Mine/mineOrders/yuding.vue'
+import diancan from './components/Mine/mineOrders/diancan.vue'
 
 Vue.use(Router)
 
@@ -137,6 +139,16 @@ export default new Router({
             path: '/paihao',
             name: 'paihao',
             component: paihao
+        },
+        {
+            path: '/yuding',
+            name: 'yuding',
+            component: yuding
+        },
+        {
+            path: '/diancan',
+            name: 'diancan',
+            component: diancan
         },
         // {
         //   path: '/about',

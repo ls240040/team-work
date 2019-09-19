@@ -1,6 +1,6 @@
-<!--paihaoOrder.vue 排号页面组件-->
+<!--yudingOrder.vue 预定页面组件-->
 <template>
-  <div class="paihaoOrder">
+  <div class="yudingOrder">
       <div class="div1">
           <h3>
               <span>
@@ -24,7 +24,7 @@
               </ul>
           </div>
           <div class="div3">
-              <span>取消排号</span>
+              <span>取消预定</span>
               <span class="zxdc">在线点餐</span>
           </div>
       </div>
@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .paihaoOrder{
+    .yudingOrder{
         font-size:0.2rem;
         padding:0.2rem;
         background:#f1f1f1;

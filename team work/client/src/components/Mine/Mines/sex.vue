@@ -1,4 +1,4 @@
-<!--sex.vue 头像设置页面组件-->
+<!--sex.vue 性别设置页面组件-->
 <template>
   <div class="sex">      
       <div>

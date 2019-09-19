@@ -9,7 +9,7 @@
       <!-- 头像 -->
         <img class="touxiang" src="http://127.0.0.1:5050/icon/touxiang.png" alt=""> 
         <!-- 用户资料编写按钮 -->
-        <img id="bianxie" class="bianxie" src="http://127.0.0.1:5050/icon/bianxie.png" alt="">
+        <img @click="datum" class="bianxie" src="http://127.0.0.1:5050/icon/bianxie.png" alt="">
         <h5>
           <!-- 用户名 -->
           <span>用户名</span>
@@ -30,16 +30,9 @@ export default {
     return {};
   },
   methods: {
-     /* 修改个人资料 */
-    bianxie(){
-      var bianxies=document.getElementById("bianxie");
-      bianxies.onclick = function () {
-           window.location.href="http://127.0.0.1:8080/#/datum";
-        }     
+    datum(){
+      this.$router.push("/datum");
     },
-  },
-  mounted() {
-    this.bianxie()    
   },
 };
 </script>

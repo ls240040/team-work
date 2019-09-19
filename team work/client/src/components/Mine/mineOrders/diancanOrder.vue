@@ -1,32 +1,39 @@
-<!--paihaoOrder.vue 排号页面组件-->
+<!--yudingOrder.vue 预定页面组件-->
 <template>
-  <div class="paihaoOrder">
+  <div class="yudingOrder">
       <div class="div1">
           <h3>
               <span>
-                  <span>波澜大象城店</span> 
-                  <span>1.68km</span> 
+                  <span>下沙银泰店</span> 
+                  <span>5.5km</span> 
               </span>
-              <span>待叫号</span>
+              <span>
+                  <span class="myspan">到店</span>
+                  <span>外卖</span>
+                  <span class="myspan">已取消</span>
+              </span>
           </h3>
           <div class="div2">
               <ul>
-                  <li>小桌</li>
-                  <li>11</li>
+                  <li>大桌</li>
+                  <li>1</li>
               </ul>
               <ul>
                   <li>就餐时间</li>
-                  <li>15：19</li>
+                  <li>12：20</li>
               </ul>
               <ul>
                   <li>就餐人数</li>
-                  <li><span>1</span>人</li>
+                  <li><span>6</span>人</li>
               </ul>
           </div>
-          <div class="div3">
-              <span>取消排号</span>
-              <span class="zxdc">在线点餐</span>
+          <div>
+              
           </div>
+          <div class="div4">
+              <span>导航</span>
+              <span class="zxdc">继续点餐</span>
+          </div>         
       </div>
   </div>
 </template>
@@ -40,7 +47,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .paihaoOrder{
+    .yudingOrder{
         font-size:0.2rem;
         padding:0.2rem;
         background:#f1f1f1;
@@ -52,6 +59,9 @@ export default {
             display:flex;
             justify-content: space-between;
             padding:0.2rem;
+            .myspan{
+                color:#f00;
+            }
         }
         .div2{
             display:flex;
@@ -65,7 +75,7 @@ export default {
                 margin:0.2rem;
             }
         }
-        .div3{
+        .div4{
             text-align: right;
             padding:0.25rem;
             span{
