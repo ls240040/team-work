@@ -34,6 +34,7 @@ import Menu from './views/menu.vue'
 import paihao from './components/Mine/mineOrders/paihao.vue'
 import yuding from './components/Mine/mineOrders/yuding.vue'
 import diancan from './components/Mine/mineOrders/diancan.vue'
+import waisong from './components/Mine/mineOrders/waisong.vue'
 /* set设置 */
 import set from './components/Mine/Mines/set.vue'
 Vue.use(Router)
@@ -265,6 +266,14 @@ export default new Router({
             path: '/diancan',
             name: 'diancan',
             component: diancan,
+            meta: {
+                keepAlive: false //不需要被缓存的组件
+            }
+        },
+        {
+            path: '/waisong',
+            name: 'waisong',
+            component: waisong,
             meta: {
                 keepAlive: false //不需要被缓存的组件
             }
