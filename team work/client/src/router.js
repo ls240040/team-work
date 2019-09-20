@@ -10,6 +10,8 @@ import Login from './views/Login.vue'
 import reserve from './components/Index/index02/reserve.vue'
 import demand from './components/Index/index02/demand.vue'
 import shopList from './components/Index/index02/shopList.vue'
+/* 主页左上角消息*/
+import Messagelist from './components/Index/Messagelist.vue'
 /* 预定详情 */
 import reserve_detailed from './components/Index/index02/reserve_detailed.vue'
 /* 门店列表 */
@@ -130,6 +132,15 @@ export default new Router({
             path: '/demand',
             name: 'demand',
             component: demand,
+            meta:{
+                keepAlive:true //需要被缓存的组件
+             },
+        },
+        /*主页左上角消息 */
+        {
+            path: '/Messagelist',
+            name: 'Messagelist',
+            component: Messagelist,
             meta:{
                 keepAlive:true //需要被缓存的组件
              },
