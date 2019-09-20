@@ -10,10 +10,10 @@ import Login from './views/Login.vue'
 import reserve from './components/Index/index02/reserve.vue'
 import demand from './components/Index/index02/demand.vue'
 import shopList from './components/Index/index02/shopList.vue'
-
 /* 预定详情 */
 import reserve_detailed from './components/Index/index02/reserve_detailed.vue'
-
+/* 门店列表 */
+import storeList from './components/Index/index02/storeList.vue'
 import row from './components/Index/index01/row.vue'
 
 /* mines */
@@ -82,14 +82,9 @@ export default new Router({
             path: '/Community',
             name: 'community',
             component: Community,
-
             meta:{
                 keepAlive:true //不需要被缓存的组件
              },
-
-            meta: {
-                keepAlive: false //不需要被缓存的组件
-            },
         },
         {
             path: '/Mine',
@@ -146,7 +141,16 @@ export default new Router({
         {
             path: '/reserve_detailed',
             name: 'reserve_detailed',
-            component: reserve_detailed
+            component: reserve_detailed,
+            meta: {
+                keepAlive: false //不需要被缓存的组件
+            },
+        },
+         /* 门店列表*/
+        {
+            path: '/storeList',
+            name: 'storeList',
+            component: storeList
         },
        
 
@@ -227,7 +231,10 @@ export default new Router({
         {
             path: '/set',
             name: 'set',
-            component: set
+            component: set,
+            meta: {
+                keepAlive: false //不需要被缓存的组件
+            },
         },
         /* mineOrders */
         {
@@ -241,12 +248,18 @@ export default new Router({
         {
             path: '/yuding',
             name: 'yuding',
-            component: yuding
+            component: yuding,
+            meta: {
+                keepAlive: false //不需要被缓存的组件
+            },
         },
         {
             path: '/diancan',
             name: 'diancan',
-            component: diancan
+            component: diancan,
+            meta: {
+                keepAlive: false //不需要被缓存的组件
+            }
         },
         
         // {
