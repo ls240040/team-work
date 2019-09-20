@@ -3,7 +3,10 @@
   <div class="menu">
     <div class="left">
       <ul>
-        <li v-for="(item, i) in foodType" :key="i" @click="jump(i)">{{item.FT_Name}}</li>
+        <li v-for="(item, i) in foodType" :key="i" @click="jump(i)" :style="`background-color:${item.bgcolor}`">{{item.FT_Name}}
+          <!--对不起我再一次用了那个禁忌之术-->
+          <span style="display:none">{{now}}</span>
+        </li>
       </ul>
     </div>
     <div class="jiade"></div>
@@ -85,7 +88,7 @@ export default {
       cartDisplay: 0, //判断购物车是否展开
       totalPrice: 0, //食物的总价
       sendPrice: 400, //先来个起送价400
-      now:5,
+      now:0,//辅助修改颜色
     };
   },
   methods: {
@@ -99,6 +102,9 @@ export default {
       this.axios.get(url, { params: { M_ID: M_ID } }).then(res => {
         if (res.data.code == 1) {
           this.foodType = res.data.data;
+          for (var i = 0; i < this.foodType.length; i++) {
+            this.foodType[i].bgcolor = "";//增加一个属性用于修改滚动条到了之后的颜色
+          }
         }
       });
 
@@ -144,6 +150,7 @@ export default {
           this.totalPrice = 0; //总价清零
           this.shopcart_imgbgcolor = "#555"; //控制购物车背景变色
           this.shopcart_countdisplay = "none"; //控制右上红色数字到0的时候不显示
+          this.cartDisplay = 0;//重置是否展开状态
         }
         this.count = 0;
       });
@@ -197,9 +204,21 @@ export default {
 
     //监听滚动条
     onScroll() {
+      //滚动条现在的高度
       let scrolled =
-        document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop; // 586、1063分别为第二个和第三个锚点对应的距离
-        console.log(scrolled);
+        document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+        let jump = document.querySelectorAll(".fenlei");
+        //jump[index].offsetTop;这个是高度
+        //用于重置颜色
+        for(var i=0;i<this.foodType.length;i++){
+          this.foodType[i].bgcolor="";
+        }
+        for(var index=0;index<jump.length-1;index++){
+          if(jump[index].offsetTop<scrolled&&scrolled<jump[index+1].offsetTop){
+            this.foodType[index].bgcolor="#fff";//变成该颜色(白)
+            this.now++;//辅助修改颜色(无意义)
+          }
+        }
       // if (scrolled >= 1063) {
       //   this.steps.active = 2;
       // } else if (scrolled < 1063 && scrolled >= 586) {
@@ -246,7 +265,8 @@ div.menu {
     div.fenlei {
       padding: 0.2rem 0 0.2rem 0.2rem;
       font-size: 0.3rem;
-      background:#868586;
+      // background:#868586;
+      font-weight: bold;
     }
     div.food {
       display: inline-block;
