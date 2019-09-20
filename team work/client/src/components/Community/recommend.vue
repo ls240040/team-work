@@ -62,6 +62,7 @@ export default {
         .left{
             display: flex;
             justify-content: space-between;
+            line-height: .35rem;
             .avatar{
                 width: 12vw;
                 height: 12vw;
@@ -131,6 +132,7 @@ export default {
         }
         p{
             margin-top:.3rem;
+            line-height: .4rem;
         }
     }
     .bottominfo{
@@ -140,6 +142,7 @@ export default {
         color: #999;
         .left{
             display: flex;
+            line-height: .35rem;
             p{
                 margin-right:.2rem;
             }
@@ -155,7 +158,7 @@ export default {
                 display: flex;
                 margin-right:.1rem;
                  img{
-                    height: .3rem;
+                    height: .35rem;
                     display: block;
                     margin:0 .06rem;
                 }

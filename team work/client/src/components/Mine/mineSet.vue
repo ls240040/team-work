@@ -1,8 +1,8 @@
-<!--mineSet.vue 用户页面组件-->
+<!--mineSet.vue 设置页面组件-->
 <template>
   <div class="set">
       <ul>
-          <li>
+          <li @click="set">
               <img src="http://127.0.0.1:5050/icon/shezhi.png" alt="">
               <span>设置</span>
           </li>
@@ -14,7 +14,11 @@ export default {
   data() {
     return {};
   },
-  methods: {}
+  methods: {
+      set(){
+          this.$router.push('/set');
+      }
+  }
 };
 </script>
 
