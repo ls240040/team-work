@@ -42,15 +42,21 @@ export default {
   },
   methods: {
     loadMenu() {
+
+      // var M_ID=this.$route.query.M_ID; 拿到店面ID
+      var M_ID=1;
+      // var D_ID=this.$route.query.D_ID; 拿到桌子ID
+      var D_ID=1;
+
       var url = "/menu";
-      this.axios.get(url).then(res => {
+      this.axios.get(url,{params:{'M_ID':M_ID}}).then(res => {
         if (res.data.code == 1) {
           this.foodType = res.data.data;
         }
       });
 
-      var url2 = "/menu/food";
-      this.axios.get(url2).then(res => {
+      var url2 = "/menu/food";//获取所有食物
+      this.axios.get(url2,{params:{'M_ID':M_ID}}).then(res => {
         if (res.data.code == 1) {
           this.foodData = res.data.data;
           // console.log(this.foodData);
