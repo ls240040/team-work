@@ -5,7 +5,7 @@
       <p>排号</p>
       <span>取号快人一步</span>
     </div>
-    <div class="middle" @click="reserve_detailed">
+    <div class="middle" @click="linkTo">
       <p>预订</p>
       <span>早预定不等位</span>
     </div>
@@ -21,8 +21,8 @@ export default {
     return {};
   },
   methods: {
-    reserve_detailed(){
-      this.$router.push("/reserve_detailed");
+    linkTo(){
+      this.$router.push("/shopList");
     },
      linkTo1(){
       this.$router.push("/row");
