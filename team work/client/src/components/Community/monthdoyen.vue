@@ -1,6 +1,5 @@
 <template>
     <div class="main">
-        222
         <div class="info" v-for="(item,index) of list" :key="index">
             <div class="left">
                 <div class="avatar">
@@ -30,9 +29,9 @@ export default {
         loadMore(){
             var url='community/dmonth';
             this.axios.get(url).then(res=>{
-                console.log(res.data.data);
                 if(res.data.code==1){
-                    this.carousel=res.data.data;
+                    this.list=res.data.data;
+                    console.log(this.list)
                 }
             });
             
