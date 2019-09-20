@@ -2,7 +2,7 @@
 <template>
   <div class="iTop" ref="top">
     <div class="navBar" v-show="show" ref="navbar">
-      <img class="leftImg" :src="image1">
+      <img @click="Messagelist" class="leftImg" :src="image1">
       <input class="search1" :class="{class2:isScroll}" placeholder="搜索门店·内容·用户" type="text" ref="search">
       <img class="more" :src="image2">
       <img class="kefu" :src="image3">
@@ -41,6 +41,9 @@ export default {
     window.addEventListener('scroll',this.handleScroll);
   },
   methods: {
+    Messagelist(){
+            this.$router.push('/Messagelist')
+        },
     handleScroll(e){
       e.stopPropagation();
       e.preventDefault();

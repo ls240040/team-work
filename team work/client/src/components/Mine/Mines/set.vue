@@ -1,7 +1,7 @@
 <!--set.vue 设置页面组件--> 
 <template>
   <div class="set">
-    <mt-header title="个人资料">
+    <mt-header title="设置">
         <router-link to="/mine" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
@@ -13,7 +13,7 @@
 
         <mt-cell title="黑名单" is-link>
         </mt-cell>
-        <mt-cell to="/" title="修改密码" is-link>
+        <mt-cell to="/setPassword" title="修改密码" is-link>
         </mt-cell>
         <mt-cell title="清除缓存" is-link>
           <span>64.82M</span>
@@ -27,9 +27,8 @@
         </mt-cell>
         <mt-cell title="去评分" is-link>
         </mt-cell>
-        <h6></h6>
-        <mt-cell class="quit" title="退出登录">
-        </mt-cell>     
+        <h4>退出登录</h4>
+           
   </div>  
 </template>
 <script>
@@ -38,8 +37,7 @@ export default {
     return {};
   },
   methods: {
-   
-   
+    
   },
  
 };
@@ -77,10 +75,12 @@ export default {
         .mint-cell-value.is-link{
           font-size:0.3rem;
         }
-        .quit{
+        h4{
           background:#fff;
-          font-size:0.2rem;
-          padding:0.4rem;
+          font-size:0.3rem;
+          padding:0.2rem 0rem; 
+          background:#eee;
+          font-size:0.3rem;
         }    
    }
 </style>

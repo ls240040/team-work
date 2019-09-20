@@ -10,6 +10,11 @@ import Login from './views/Login.vue'
 import reserve from './components/Index/index02/reserve.vue'
 import demand from './components/Index/index02/demand.vue'
 import shopList from './components/Index/index02/shopList.vue'
+
+/* 排号详情 */
+import paihao_detailed from './components/Index/index01/paihao_detailed.vue'
+/* 主页左上角消息*/
+import Messagelist from './components/Index/Messagelist.vue'
 /* 预定详情 */
 import reserve_detailed from './components/Index/index02/reserve_detailed.vue'
 /* 门店列表 */
@@ -32,8 +37,11 @@ import Menu from './views/menu.vue'
 import paihao from './components/Mine/mineOrders/paihao.vue'
 import yuding from './components/Mine/mineOrders/yuding.vue'
 import diancan from './components/Mine/mineOrders/diancan.vue'
+import waisong from './components/Mine/mineOrders/waisong.vue'
 /* set设置 */
 import set from './components/Mine/Mines/set.vue'
+/* 修改密码 */
+import setPassword from './components/Mine/Mines/setPassword.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -61,6 +69,12 @@ export default new Router({
             meta: {
                 keepAlive: false //不需要被缓存的组件
             },
+        },
+        /* 排号详情 */
+        {
+            path: '/paihao_detailed',
+            name: 'paihao_detailed',
+            component: paihao_detailed,            
         },
         {
             path: '/',
@@ -130,6 +144,15 @@ export default new Router({
             path: '/demand',
             name: 'demand',
             component: demand,
+            meta:{
+                keepAlive:true //需要被缓存的组件
+             },
+        },
+        /*主页左上角消息 */
+        {
+            path: '/Messagelist',
+            name: 'Messagelist',
+            component: Messagelist,
             meta:{
                 keepAlive:true //需要被缓存的组件
              },
@@ -233,6 +256,15 @@ export default new Router({
                 keepAlive: false //不需要被缓存的组件
             },
         },
+        /* 修改密码 */
+        {
+            path: '/setPassword',
+            name: 'setPassword',
+            component: setPassword,
+            meta: {
+                keepAlive: false //不需要被缓存的组件
+            },
+        },
         /* mineOrders */
         {
             path: '/paihao',
@@ -254,6 +286,14 @@ export default new Router({
             path: '/diancan',
             name: 'diancan',
             component: diancan,
+            meta: {
+                keepAlive: false //不需要被缓存的组件
+            }
+        },
+        {
+            path: '/waisong',
+            name: 'waisong',
+            component: waisong,
             meta: {
                 keepAlive: false //不需要被缓存的组件
             }

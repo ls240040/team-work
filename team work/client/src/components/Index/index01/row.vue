@@ -1,6 +1,6 @@
 <template>
   <div class="shoplist">
-    <div class="top">
+    <div class="top" @click="linkTo1">
       <img src="http://127.0.0.1:5050/icon/arrow-left.png">
       <p>排号</p>
       <div class="location">
@@ -9,7 +9,13 @@
       </div>
     </div>
 
-    <div class="container" id="1" v-for="(item,index) of list" :key="index" @click="linkTo(index)">
+    <div
+      class="container"
+      id="1"
+      v-for="(item,index) of list"
+      :key="index"
+      @click="linkTo(item.M_Address)"
+    >
       <img class="logo" src="http://127.0.0.1:5050/icon/su_logo.png">
       <div class="info">
         <div class="infotop">
@@ -30,29 +36,35 @@
     </div>
     <div>
       <mt-popup position="bottom" v-model="popupVisible" popup-transition="popup-fade">
-        <div class="peopleNum" style="width:8rem;">
+        <div class="peopleNum" style="width:100%;padding:.1rem;">
           <div>
-              <div class="tabnav">
-                <span style="font-size:.3rem">请选择就餐人数</span> <span style="font-size:.3rem;color:#666;display:inline-block;margin-left:1rem;">取消</span> 
-              </div>
+            <div class="tabnav">
+              <span style="font-size:.3rem">请选择就餐人数</span>
+              <span class="d1" style @click="linkTo2">取消</span>
+            </div>
             <mt-picker :slots="slots" @change="onValuesChange" :visibleItemCount="3"></mt-picker>
-            <div class="discr"> 
-                <p>*12人以上请您联系门店</p>
-                <p>就餐时段 <span>午市(09:00-16:00)</span></p>
-                <p>不可跨市别排号，如果您想在下一个市别就餐，请在下一个市别开始后前去排号。午市(09:00-16:00)，晚市(16:00-23:00)，夜市(23:00-次日07:00)</p>
+            <div class="ETime">
+              <mt-button type="danger">{{ETime}}</mt-button>
+            </div>
+            <div class="discr">
+              <p>*12人以上请您联系门店</p>
+              <p>
+                就餐时段
+                <span>{{eTime}}</span>
+              </p>
+              <p>不可跨市别排号，如果您想在下一个市别就餐，请在下一个市别开始后前去排号。午市(09:00-16:00)，晚市(16:00-23:00)，夜市(23:00-次日07:00)</p>
             </div>
           </div>
         </div>
         <div class="btn">
-       <mt-button type="danger" size="large">确认取号</mt-button>
-       </div>
+          <mt-button type="danger" size="large" @click="getNum">确认取号</mt-button>
+        </div>
       </mt-popup>
     </div>
   </div>
 </template>
 <script>
 export default {
-
   data() {
     return {
       slots: [
@@ -75,29 +87,53 @@ export default {
           className: "slot1",
           textAlign: "center"
         }
-
       ],
-
+      num: "1人",
       list: [],
-
-      popupVisible: false
+      adress: "",
+      popupVisible: false,
+      ETime: "",
+      eTime:""
     };
   },
   methods: {
-    linkTo(S_ID) {
-      S_ID = S_ID + 1;
-      console.log(S_ID);
+    getNum() {
+      var uid = sessionStorage.getItem("accessToken");
+      console.log(this.num, uid, this.adress);
+    },
+    linkTo(addr) {
+      console.log(addr);
+      this.adress = addr;
+
       this.popupVisible = true;
-      // this.$router.push("/")
+      var now = new Date();
+      now = now.getHours();
+      if (now > 9 && now < 16) {
+        this.ETime = "午市";
+        this.eTime="午市(09:00-16:00)"
+      } else if (now > 16 && now < 23) {
+        this.ETime = "晚市";
+         this.eTime="晚市(16:00-23:00)"
+      } else {
+        this.ETime = "夜市";
+         this.eTime="夜市(23:00-次日07:00)"
+      }
+    },
+    linkTo1() {
+      this.$router.go(-1);
+    },
+    linkTo2() {
+      this.popupVisible = false;
     },
     onValuesChange(picker, values) {
       if (values[0] > values[1]) {
         picker.setSlotValue(1, values[0]);
       }
       console.log(values);
+      this.num = values;
     },
     loadMore() {
-      var url = "index/shoplist";
+      var url = "index/rowNum";
       this.axios.get(url).then(res => {
         if (res.data.code == 1) {
           this.list = res.data.data;
@@ -111,25 +147,37 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 // @import url('../../../assets/scss/reset.scss');
-.peopleNum{
-    font-size:.3rem ;
-    .btn{
-        width: 7rem;
+    .mint-button--large{
+        width: 6.7rem;
+        margin:0 auto .5rem;
     }
-    .tabnav{
-        margin-top:.3rem; 
+.peopleNum {
+
+  .ETime {
+    text-align: left;
+    margin-left: 1rem;
+  }
+  font-size: 0.3rem;
+  .d1 {
+    font-size: 0.3rem;
+    color: #666;
+    display: inline-block;
+    margin-left: 1rem;
+  }
+  .tabnav {
+    margin-top: 0.3rem;
+  }
+  div.discr {
+    margin-top: 0.5rem;
+    display: inline-block;
+    width: 7rem;
+    text-align: left;
+    p {
+      margin-bottom: 0.3rem;
     }
-    div.discr{
-        margin-top:.5rem; 
-        display: inline-block;
-        width: 7rem;
-        text-align: left;
-        p{
-            margin-bottom:.3rem 
-        }
-    }
+  }
 }
 .shoplist {
   .top {

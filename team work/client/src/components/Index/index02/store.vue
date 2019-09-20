@@ -1,3 +1,4 @@
+<!-- 门店组件-->
 <template>
     <div class="store">      
         <div class="div1">
