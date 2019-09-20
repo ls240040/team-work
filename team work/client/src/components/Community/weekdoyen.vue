@@ -3,77 +3,62 @@
         <div class="info">
             <div class="left">
                 <div class="avatar">
-                    <img src="http://127.0.0.1:5050/icon/camera.png">
+                    <img src="http://127.0.0.1:5050/icon/week.png">
+                    <img class="im1" src="http://127.0.0.1:5050/icon/avatar4.png">
                 </div>
                 <div class="name">
                     <span>大H8</span>
-                    <img src="http://127.0.0.1:5050/icon/warmth_v_4.png">
-                    <p>吃不胖</p>
+                    <p>达人称号：海捞达人</p>
                 </div>
-            </div>
-            <div class="logo">
-                <img src="http://127.0.0.1:5050/icon/elipsis.png">
-            </div>
-        </div>
-        <div class="centerinfo">
-            <p class="p1">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
-            <div class="pictures">
-                <div class="im">
-                    <img src="http://127.0.0.1:5050/icon/food.png">
-                </div>
-                <div class="im">
-                    <img src="http://127.0.0.1:5050/icon/food.png">
-                </div>
-            </div>
-        </div>
-        <div class="bottominfo">
-            <div class="left">
-                <p>发布于星期一</p>
             </div>
             <div class="right">
-                <div><img src="http://127.0.0.1:5050/icon/message.png"><span>18</span></div>
-                <div><img src="http://127.0.0.1:5050/icon/collect.png"><span>16</span></div>
+                <img src="http://127.0.0.1:5050/icon/label1.png">
+                <p>获得奖励：50捞币</p>
             </div>
         </div>
-        <hr>
     </div>
 </template>
 <style lang="scss" scoped>
     .main{
-         padding:0 .2rem .5rem;
+        background: #f7f7f7;
+        padding: .3rem 0;
+        margin-top:.6rem;
     }
     .info{
         display: flex;
         justify-content: space-between;
-        margin-top:.6rem;
         .left{
             display: flex;
             justify-content: space-between;
             line-height: .35rem;
+            padding-left: .2rem;
             .avatar{
-                width: 12vw;
-                height: 12vw;
-                border-radius: 50%;
-                background: #999;
-                overflow: hidden;
+                position: relative;
                 bottom: 0;
                 align-self:flex-end;
                 margin-right:.2rem;
                 img{
-                    width: 12vw;
+                    width: 22vw;
+                    z-index: 2;
+                    position: relative;
+                }
+                .im1{
+                    position: absolute;
+                    z-index: 1;
+                    left: .35rem;
+                    width: 14vw;
+                    height: 14vw;
+                    margin-top: .1rem;
                 }
             }
             .name{
                 line-height: .4rem;
                 align-self: top;
                 text-align: left;
+                padding-top: .2rem;
                 span{
                     font-size: .3rem;
                     margin-right:.2rem;
-                }
-                img{
-                    height: .3rem;
-                    margin-bottom:-.05rem;
                 }
                 P{
                     font-size: .2rem;
@@ -81,66 +66,17 @@
                 }
             }
         }
-        .logo{
-            width: 60vw;
-            display: flex;
-            justify-content:flex-end;
-           img{
-               height: .6rem;
-               align-self: center;
-               margin-left:.1rem;
-           }
-        }
-    }
-    .centerinfo{
-        text-align: left;
-        font-size: .25rem;
-        box-sizing:border-box;
-        .pictures{
-            display: flex;
-            margin:.2rem 0;
-            .im{
-                width:33%;
-                overflow: hidden;
-                margin-right:.2rem;
-                background: #999;
-                img{
-                    width: 100%;
-                }
-            }
-        }
-        p{
-            margin-top:.3rem;
-            line-height: .4rem;
-        }
-    }
-    .bottominfo{
-        display: flex;
-        justify-content: space-between;
-        font-size: .25rem;
-        color: #999;
-        line-height: .35rem;
-        .left{
-            display: flex;
-            p{
-                margin-right:.2rem;
-            }
-            i{
-                font-style: normal;
-                color:#ff8315;
-                margin-left:.1rem;
-            }
-        }
         .right{
-            display: flex;
-            div{
-                display: flex;
-                margin-right:.1rem;
-                 img{
-                    height: .35rem;
-                    display: block;
-                    margin:0 .06rem;
-                }
+            line-height: .35rem;
+            font-size: .3rem;
+            img{
+                height: .5rem;
+                margin-right: -1rem;
+                margin-top: .1rem;
+            }
+            p{
+                margin-top: .2rem;
+                margin-right: .2rem;
             }
         }
     }

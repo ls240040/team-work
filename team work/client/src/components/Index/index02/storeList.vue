@@ -51,7 +51,6 @@ export default {
 }
 </script>
 <style lang="scss">
-    body{background:#eee!important}
     .location{
         font-size:0.3rem;
         background:#fff;
