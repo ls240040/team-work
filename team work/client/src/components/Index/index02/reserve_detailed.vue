@@ -61,7 +61,6 @@ export default {
 }
 </script>
 <style lang="scss">
-    body{background:#eee!important}
     .res_det{
         .myheader{
             height:1.2rem;
@@ -110,15 +109,15 @@ export default {
         .div4{
             display:flex;
             justify-content: space-around;
-            background:#eee;
             span{
                 display:inline-block;
                 padding:0.2rem 0.5rem;
-                background:#fff;
+                background:#ccc;
                 border-radius:0.1rem;
+                border:1px solid #ccc;
             }
             .myspan{
-                background:#f00;
+                background:#e0272c;
                 color:#fff;
             }
         }
