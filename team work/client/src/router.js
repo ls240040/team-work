@@ -10,10 +10,10 @@ import Login from './views/Login.vue'
 import reserve from './components/Index/index02/reserve.vue'
 import demand from './components/Index/index02/demand.vue'
 import shopList from './components/Index/index02/shopList.vue'
-
 /* 预定详情 */
 import reserve_detailed from './components/Index/index02/reserve_detailed.vue'
-
+/* 门店列表 */
+import storeList from './components/Index/index02/storeList.vue'
 import row from './components/Index/index01/row.vue'
 
 /* mines */
@@ -142,6 +142,12 @@ export default new Router({
             meta: {
                 keepAlive: false //不需要被缓存的组件
             },
+        },
+         /* 门店列表*/
+        {
+            path: '/storeList',
+            name: 'storeList',
+            component: storeList
         },
        
 
