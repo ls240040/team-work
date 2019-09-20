@@ -133,9 +133,6 @@ export default new Router({
             meta:{
                 keepAlive:true //需要被缓存的组件
              },
-            meta: {
-                keepAlive: false //需要被缓存的组件
-            },
         },
          /* 预定详情 */
         {

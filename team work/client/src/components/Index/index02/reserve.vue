@@ -346,7 +346,6 @@ export default {
             -ms-transform: translateY(7rem);
             transform: translateY(7rem);
         }
-
         .confirm-box{
             height:43%;
             position: fixed;
@@ -389,7 +388,6 @@ export default {
             .picker-slot.picker-slot-center.slot1{
                 z-index: 2;
             }
-            
         }
         .confirm{
             background-color: #f7f7f7;
