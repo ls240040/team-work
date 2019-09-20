@@ -32,12 +32,13 @@ export default {
 </script>
 <style lang="scss">
 .f2 {
+  
   display: flex;
   justify-content: space-around;
   div{
-    margin-top:1rem; 
-    width:2rem ;
-    height: 3rem;
+    margin-top:.6rem; 
+    width:2.3rem ;
+    height: 3.5rem;
     border-radius: .2rem;
     position: relative;
     p{
@@ -56,10 +57,15 @@ export default {
      background-size: 100%;
      background-position: 0 .5rem;
     p {
+      position: relative;
+      top: .5rem;
       font-size: 0.5rem;
     }
     span {
       font-size: 0.3rem;
+      position: relative;
+      top: .1rem;
+      left: 0;
     }
   }
   .middle {
@@ -68,9 +74,14 @@ export default {
     background-position: 0 .5rem;
     p {
       font-size: 0.5rem;
+       position: relative;
+      top: .5rem;
     }
     span {
       font-size: 0.3rem;
+       position: relative;
+      top: .1rem;
+      left: 0;
     }
   }
   .right {
@@ -79,9 +90,15 @@ export default {
     background-position: 0 .5rem;
     p {
       font-size: 0.5rem;
+       position: relative;
+      top: .5rem;
     }
     span {
       font-size: 0.3rem;
+      font-size: 0.3rem;
+      position: relative;
+      top: .1rem;
+      left: 0;
     }
   }
 }
