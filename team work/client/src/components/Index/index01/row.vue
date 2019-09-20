@@ -1,6 +1,6 @@
 <template>
   <div class="shoplist">
-    <div class="top">
+    <div class="top"  @click="linkTo1">
       <img src="http://127.0.0.1:5050/icon/arrow-left.png">
       <p>排号</p>
       <div class="location">
@@ -33,7 +33,7 @@
         <div class="peopleNum" style="width:8rem;">
           <div>
               <div class="tabnav">
-                <span style="font-size:.3rem">请选择就餐人数</span> <span style="font-size:.3rem;color:#666;display:inline-block;margin-left:1rem;">取消</span> 
+                <span style="font-size:.3rem">请选择就餐人数</span> <span style="font-size:.3rem;color:#666;display:inline-block;margin-left:1rem;" @click="linkTo2">取消</span> 
               </div>
             <mt-picker :slots="slots" @change="onValuesChange" :visibleItemCount="3"></mt-picker>
             <div class="discr"> 
@@ -86,9 +86,13 @@ export default {
   methods: {
     linkTo(S_ID) {
       S_ID = S_ID + 1;
-      console.log(S_ID);
       this.popupVisible = true;
-      // this.$router.push("/")
+    },
+      linkTo1() {
+      this.$router.go(-1)
+    },
+     linkTo2() {
+     this.popupVisible = false;
     },
     onValuesChange(picker, values) {
       if (values[0] > values[1]) {
@@ -97,7 +101,7 @@ export default {
       console.log(values);
     },
     loadMore() {
-      var url = "index/shoplist";
+      var url = "index/rowNum";
       this.axios.get(url).then(res => {
         if (res.data.code == 1) {
           this.list = res.data.data;
