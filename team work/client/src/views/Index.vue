@@ -6,7 +6,6 @@
     <indexcarousel></indexcarousel>
     <indexshoplist></indexshoplist>
     <indextitle></indextitle>
-
     <!-- 底部bar -->
     <tab-bar ref="child"></tab-bar>
   </div>
@@ -41,5 +40,8 @@ export default {
 </script>
 <style lang="scss">
 @import url("../assets/scss/reset.scss");
+body{
+  background: #fff;
+}
 </style>
 
