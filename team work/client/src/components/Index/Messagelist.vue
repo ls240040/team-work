@@ -1,7 +1,7 @@
 <template>
     <div>
         <div style="border-bottom: 0.01rem solid #e2e2e2">
-            <img class="img1" src="http://127.0.0.1:5050/icon/arrow-left.png" alt="">
+            <img @click="jian" class="img1" src="http://127.0.0.1:5050/icon/arrow-left.png" alt="">
             <span class="b1">消 息</span>
         </div>
         <div class="bor" v-for="(item,i) of temp" :key="i">
@@ -21,6 +21,9 @@ export default {
     methods: {
         btn(){
             this.$router.push('/Mone0')
+        },
+        jian(){
+            this.$router.push('/')
         }
     },
 }
