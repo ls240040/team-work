@@ -10,6 +10,9 @@ import Login from './views/Login.vue'
 import reserve from './components/Index/index02/reserve.vue'
 import demand from './components/Index/index02/demand.vue'
 import shopList from './components/Index/index02/shopList.vue'
+
+/* 排号详情 */
+import paihao_detailed from './components/Index/index01/paihao_detailed.vue'
 /* 主页左上角消息*/
 import Messagelist from './components/Index/Messagelist.vue'
 /* 预定详情 */
@@ -64,6 +67,12 @@ export default new Router({
             meta: {
                 keepAlive: false //不需要被缓存的组件
             },
+        },
+        /* 排号详情 */
+        {
+            path: '/paihao_detailed',
+            name: 'paihao_detailed',
+            component: paihao_detailed,            
         },
         {
             path: '/',

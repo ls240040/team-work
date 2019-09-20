@@ -17,7 +17,7 @@
                     <img src="http://127.0.0.1:5050/icon/xiala.png" alt="">
                     <input type="text" placeholder="请输入外送门店">
                 </div>
-                <!-- 门店列表组件 -->
+                <!-- 引入门店列表组件 -->
                <store></store>
             </mt-tab-container-item>
             <mt-tab-container-item id="ziti">
@@ -26,7 +26,7 @@
                     <img src="http://127.0.0.1:5050/icon/xiala.png" alt="">
                     <input type="text" placeholder="请输入自提门店">
                 </div>
-                <!-- 门店列表组件 -->
+                <!-- 引入门店列表组件 -->
                 <store></store>
             </mt-tab-container-item>            
         </mt-tab-container>
