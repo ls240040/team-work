@@ -54,7 +54,7 @@ export default {
       count:0,//无意义，无视(嗯，当成一共点了多少个食物好了，完美)
       shopcart_imgbgcolor:"#555",//控制购物车背景变色
       shopcart_countdisplay:"none",//控制右上红色数字到0的时候不显示
-      totalprice,     //食物的总价
+      totalprice:0,     //食物的总价
     };
   },
   methods: {
