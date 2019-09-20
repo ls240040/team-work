@@ -417,24 +417,71 @@ CREATE TABLE diancan_Order(
 /**订单信息表插入数据**/
 
 
+/**社区-推荐**/
+CREATE TABLE recommend(
+  ID INT PRIMARY KEY AUTO_INCREMENT,
+  R_Avatar VARCHAR(255),
+  R_Name VARCHAR(66),
+  R_Title VARCHAR(66),
+  R_Vip VARCHAR(255),
+  R_Comment VARCHAR(255),
+  R_img1 VARCHAR(255),
+  R_img2 VARCHAR(255),
+  R_img3 VARCHAR(255),
+  R_Time VARCHAR(255),
+  R_Come VARCHAR(255),
+  R_Comnum INT,
+  R_Collect INT
+); 
+INSERT INTO recommend VALUES
+(NULL,'/community/avatar1.png','大H8','吃不胖','/community/warmth_v_3.png','服务超级棒，真的很有耐心','/community/c1.jpg','/community/c2.jpg',null,'发布于昨天','最新活动',13,2),
+(NULL,'/community/avatar2.png','阿圆6','求关注','/community/warmth_v_1.png','海底捞那么多年依然那么红火','/community/c3.jpg',null,null,'发布于昨天','最新活动',24,6),
+(NULL,'/community/avatar3.png','诶及傻猫','旅游','/community/warmth_v_2.png','和仙女们一起解锁海底捞生日歌','/community/c4.jpg',null,null,'发布于昨天','最新活动',5,1),
+(NULL,'/community/avatar4.png','小洛',null,'/community/warmth_v_1.png','聚会不二选','/community/c5.jpg','/community/c6.jpg','/community/c7.jpg','发布于昨天','海捞天地',60,12),
+(NULL,'/community/avatar5.png','捞粉儿','加油','/community/warmth_v_1.png','海底捞的老顾客了','/community/c8.jpg',null,null,'发布于星期一','客户讨论',18,2),
+(NULL,'/community/avatar6.png','Minnice',null,'/community/warmth_v_3.png','正准备去，走起','/community/c9.jpg','/community/c10.jpg','/community/c11.jpg','发布于星期三','海捞天地',13,2),
+(NULL,'/community/avatar7.png','Nako','长得帅','/community/warmth_v_2.png','今天被免单了，开森','/community/c12.jpg',null,null,'发布于星期三','海捞天地',19,3),
+(NULL,'/community/avatar8.png','奶昔v','感恩','/community/warmth_v_1.png','食材很新鲜','/community/c13.jpg',null,null,'发布于星期三','海捞天地',17,2),
+(NULL,'/community/avatar9.png','cyq晴','乖而又个性','/community/warmth_v_4.png','最喜欢的火锅店','/community/c14.jpg',null,null,'发布于星期三','海捞天地',42,5),
+(NULL,'/community/avatar10.png','左二','仙女本仙','/community/warmth_v_1.png','聚会圣地','/community/c15.jpg',null,null,'发布于星期三','海捞天地',36,7);
 
-/**评价表**/
-CREATE TABLE diancan_Evaluate(
-  E_ID INT PRIMARY KEY AUTO_INCREMENT,
-  E_MID Int,                    /**餐馆ID**/
-  E_UID Int,                    /**用户ID**/
-  E_AllRating Float,            /**用户总评 1-5**/
-  E_ServiceRating Float,        /**服务评价 1-5**/
-  E_ERation Float,              /**环境评价 1-5**/
-  E_Comment Varchar(120),       /**说明**/
-  E_FID Varchar(100)           /**特别推荐**/
-  -- E_ImgUrl Varchar(200),        /**图片地址**/
-  -- E_Statue Boolean              /**审核 是否通过**/
-);
-INSERT INTO  diancan_Evaluate VALUES
-(null,1,1,4.5,4,4.5,"还行",null),
-(null,1,2,5,5,4.5,"很好吃",null),
-(null,1,3,4.5,4,4.5,"服务很好",null),
-(null,1,4,4.5,4,4.5,"还行",null);
+/**社区-关注**/
+CREATE TABLE friends(
+  ID INT PRIMARY KEY AUTO_INCREMENT,
+  R_Avatar VARCHAR(255),
+  R_Name VARCHAR(66),
+  R_Title VARCHAR(66),
+  R_Vip VARCHAR(255),
+  R_Comment VARCHAR(255),
+  R_img1 VARCHAR(255),
+  R_img2 VARCHAR(255),
+  R_img3 VARCHAR(255),
+  R_Time VARCHAR(255),
+  R_Come VARCHAR(255),
+  R_Comnum INT,
+  R_Collect INT
+); 
 
-
+/**社区-达人**/
+CREATE TABLE doyen(
+  ID INT PRIMARY KEY AUTO_INCREMENT,
+  R_Id INT,
+  R_Back VARCHAR(255),
+  R_Avatar VARCHAR(255),
+  R_Name VARCHAR(66),
+  R_Title VARCHAR(66),
+  R_Label VARCHAR(255)
+); 
+INSERT INTO doyen VALUES
+(NULL,1,'/community/week1.png','/community/avatar1.png','大H8','海捞达人','/community/label1.png'),
+(NULL,1,'/community/week2.png','/community/avatar3.png','诶及傻猫','讨论达人','/community/label2.png'),
+(NULL,1,'/community/week2.png','/community/avatar4.png','小洛','投诉达人','/community/label3.png'),
+(NULL,1,'/community/week3.png','/community/avatar5.png','捞粉儿','最新达人','/community/label4.png'),
+(NULL,2,'/community/month1.png','/community/avatar9.png','cyq晴','海捞达人','/community/label1.png'),
+(NULL,2,'/community/month2.png','/community/avatar8.png','奶昔v','讨论达人','/community/label2.png'),
+(NULL,2,'/community/month2.png','/community/avatar1.png','大H8','反馈达人','/community/label3.png'),
+(NULL,2,'/community/month3.png','/community/avatar2.png','阿圆6','最新达人','/community/label4.png'),
+(NULL,3,'/community/year1.png','/community/avatar3.png','诶及傻猫','海捞达人','/community/label1.png'),
+(NULL,3,'/community/year2.png','/community/avatar4.png','小洛','讨论达人','/community/label2.png'),
+(NULL,3,'/community/year2.png','/community/avatar10.png','左二','反馈达人','/community/label3.png'),
+(NULL,3,'/community/year3.png','/community/avatar6.png','Minnice','活动达人','/community/label4.png');

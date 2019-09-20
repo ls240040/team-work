@@ -1,23 +1,48 @@
 <template>
     <div class="main">
-        <div class="info">
+        333
+        <div class="info" v-for="(item,index) of list" :key="index">
             <div class="left">
                 <div class="avatar">
-                    <img src="http://127.0.0.1:5050/icon/year.png">
-                    <img class="im1" src="http://127.0.0.1:5050/icon/avatar4.png">
+                    <img :src="`http://127.0.0.1:5050${item.R_Back}`">
+                    <img class="im1" :src="`http://127.0.0.1:5050${item.R_Avatar}`">
                 </div>
                 <div class="name">
-                    <span>大H8</span>
-                    <p>达人称号：海捞达人</p>
+                    <span>{{item.R_Name}}</span>
+                    <p>{{item.R_Title}}</p>
                 </div>
             </div>
             <div class="right">
-                <img src="http://127.0.0.1:5050/icon/label1.png">
+                <img :src="`http://127.0.0.1:5050${item.R_Label}`">
                 <p>获得奖励：50捞币</p>
             </div>
         </div>
     </div>
 </template>
+<script>
+export default {
+    data () {
+        return {
+            list:[]
+        }
+    },
+     methods:{
+        loadMore(){
+            var url='community/dyear';
+            this.axios.get(url).then(res=>{
+                console.log(res.data.data);
+                if(res.data.code==1){
+                    this.carousel=res.data.data;
+                }
+            });
+            
+        }
+    },
+    created () {
+        this.loadMore();
+    }
+}
+</script>
 <style lang="scss" scoped>
     .main{
         background: #f7f7f7;
