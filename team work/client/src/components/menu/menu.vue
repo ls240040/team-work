@@ -84,7 +84,8 @@ export default {
       shopcart_countdisplay: "none", //控制右上红色数字到0的时候不显示
       cartDisplay: 0, //判断购物车是否展开
       totalPrice: 0, //食物的总价
-      sendPrice: 400 //先来个起送价400
+      sendPrice: 400, //先来个起送价400
+      now:5,
     };
   },
   methods: {
@@ -107,7 +108,7 @@ export default {
           this.foodData = res.data.data;
           // console.log(this.foodData);
           for (var i = 0; i < this.foodData.length; i++) {
-            this.foodData[i].num = 0;
+            this.foodData[i].num = 0;//增加一个属性用于计数
           }
         }
       });
@@ -161,8 +162,8 @@ export default {
       let jump = document.querySelectorAll(".fenlei");
       let total = jump[index].offsetTop;
       let distance = document.documentElement.scrollTop || document.body.scrollTop;
-      // 平滑滚动，时长500ms，每10ms一跳，共50跳
-      let step = total / 10;
+      // 平滑滚动，时长500ms，每10ms一跳，共10跳
+      let step = total / 10;//10跳
       if (total > distance) {
         smoothDown();
       } else {
