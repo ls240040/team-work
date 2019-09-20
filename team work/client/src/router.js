@@ -10,10 +10,10 @@ import Login from './views/Login.vue'
 import reserve from './components/Index/index02/reserve.vue'
 import demand from './components/Index/index02/demand.vue'
 import shopList from './components/Index/index02/shopList.vue'
-
 /* 预定详情 */
 import reserve_detailed from './components/Index/index02/reserve_detailed.vue'
-
+/* 门店列表 */
+import storeList from './components/Index/index02/storeList.vue'
 import row from './components/Index/index01/row.vue'
 
 /* mines */
@@ -147,6 +147,12 @@ export default new Router({
             path: '/reserve_detailed',
             name: 'reserve_detailed',
             component: reserve_detailed
+        },
+         /* 门店列表*/
+        {
+            path: '/storeList',
+            name: 'storeList',
+            component: storeList
         },
        
 
