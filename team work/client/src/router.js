@@ -36,6 +36,8 @@ import yuding from './components/Mine/mineOrders/yuding.vue'
 import diancan from './components/Mine/mineOrders/diancan.vue'
 /* set设置 */
 import set from './components/Mine/Mines/set.vue'
+/* 修改密码 */
+import setPassword from './components/Mine/Mines/setPassword.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -237,6 +239,15 @@ export default new Router({
             path: '/set',
             name: 'set',
             component: set,
+            meta: {
+                keepAlive: false //不需要被缓存的组件
+            },
+        },
+        /* 修改密码 */
+        {
+            path: '/setPassword',
+            name: 'setPassword',
+            component: setPassword,
             meta: {
                 keepAlive: false //不需要被缓存的组件
             },
