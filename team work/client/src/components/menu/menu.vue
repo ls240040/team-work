@@ -150,6 +150,7 @@ export default {
           this.totalPrice = 0; //总价清零
           this.shopcart_imgbgcolor = "#555"; //控制购物车背景变色
           this.shopcart_countdisplay = "none"; //控制右上红色数字到0的时候不显示
+          this.cartDisplay = 0;//重置是否展开状态
         }
         this.count = 0;
       });
