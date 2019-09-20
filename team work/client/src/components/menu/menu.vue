@@ -3,13 +3,15 @@
   <div class="menu">
     <div class="left">
       <ul>
-        <li v-for="(item, i) in foodType" :key="i">{{item.FT_Name}}</li>
+        <li v-for="(item, i) in foodType" :key="i" @click="jump(i)">{{item.FT_Name}}</li>
       </ul>
     </div>
-    <div class="jiade"></div><!-- 左侧空div撑开 -->
-    <div class="right"><!-- 右侧菜品 -->
+    <div class="jiade"></div>
+    <!-- 左侧空div撑开 -->
+    <div class="right">
+      <!-- 右侧菜品 -->
       <div v-for="(item,index) in foodType" :key="index">
-        <div class="fenlei">{{item.FT_Name}}</div>
+        <div class="fenlei" :id="`FT${item.FT_ID}`">{{item.FT_Name}}</div>
         <div v-for="(food,index) in foodData" :key="index" class="guilei">
           <img v-if="food.F_FTID==item.FT_ID" :src="`http://127.0.0.1:5050/menu${food.F_Url}`" alt>
           <div v-if="food.F_FTID==item.FT_ID" class="food">
@@ -23,57 +25,84 @@
             <a class="cut" @click="cuts(food.F_ID)"></a>
             <span>{{food.num}}</span>
             <!-- 再见了，我的倔强 -->
-            <span style="display:none;">{{count}}</span>
             <a class="add" @click="add(food.F_ID)"></a>
+            <span style="display:none;">{{count}}</span>
           </div>
         </div>
       </div>
 
-      <div class="faker"></div><!-- 用于顶起被底部购物车遮住的部分 -->
+      <div class="faker"></div>
+      <!-- 用于顶起被底部购物车遮住的部分 -->
     </div>
-    
-    <div class="shopcartcontent"><!-- 购物车里面食物的内容 -->
-      
-    </div>
-    <div class="shopcart" ><!-- 底部购物车 -->
-      <div class="shopcart_img" :style="`background-color:${shopcart_imgbgcolor}`">
-        <img src="http://127.0.0.1:5050/icon/shopcart_icon.png">
-        <div :style="`display:${shopcart_countdisplay}`">{{count}}</div><!-- 右上食物计数 -->
-        <span class="totalprice">￥132</span>
+
+    <div class="shopcartcontent" v-if="count!=0 && cartDisplay!=0">
+      <!-- 购物车里面食物的内容 -->
+      <div>
+        <span>购物车</span>
+        <a @click="clearCart">清空购物车</a>
       </div>
+      <div></div>
+      <ul>
+        <li v-for="(food,index) in foodData" :key="index">
+          <div v-if="food.num!=0">
+            <span>{{food.F_Name}}</span>
+            <span>￥{{food.F_Price*food.num}}</span>
+            <a class="cut" @click="cuts(food.F_ID)"></a>
+            <span>{{food.num}}</span>
+            <a class="add" @click="add(food.F_ID)"></a>
+            <span style="display:none;">{{count}}</span>
+          </div>
+        </li>
+      </ul>
     </div>
-    
+
+    <div class="shopcart">
+      <!-- 底部购物车 -->
+      <div
+        class="shopcart_img"
+        :style="`background-color:${shopcart_imgbgcolor}`"
+        @click="showCart"
+      >
+        <img src="http://127.0.0.1:5050/icon/shopcart_icon.png">
+        <div :style="`display:${shopcart_countdisplay}`">{{count}}</div>
+        <!-- 右上食物计数 -->
+        <span class="totalprice">￥{{totalPrice}}</span>
+      </div>
+      <button v-if="totalPrice>=sendPrice">选好啦</button>
+      <span v-if="totalPrice<sendPrice">￥{{sendPrice}}起送</span>
+    </div>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      foodType: [],//FT_ID食物类型ID,FT_Name食物类型名字
-      foodData: [],//F_ID食物编号,F_FTID店家编号,F_Name食物名字,F_Url食物图片地址,F_Price价格,num点了多少个
-      count:0,//嗯，当成一共点了多少个食物好了，完美
-      shopcart_imgbgcolor:"#555",//控制购物车背景变色
-      shopcart_countdisplay:"none",//控制右上红色数字到0的时候不显示
-      totalprice:0,     //食物的总价
+      foodType: [], //FT_ID食物类型ID,FT_Name食物类型名字
+      foodData: [], //F_ID食物编号,F_FTID店家编号,F_Name食物名字,F_Url食物图片地址,F_Price价格,num点了多少个
+      count: 0, //嗯，当成一共点了多少个食物好了，完美
+      shopcart_imgbgcolor: "#555", //控制购物车背景变色
+      shopcart_countdisplay: "none", //控制右上红色数字到0的时候不显示
+      cartDisplay: 0, //判断购物车是否展开
+      totalPrice: 0, //食物的总价
+      sendPrice: 400 //先来个起送价400
     };
   },
   methods: {
     loadMenu() {
-
       // var M_ID=this.$route.query.M_ID; 拿到店面ID
-      var M_ID=1;
+      var M_ID = 1;
       // var D_ID=this.$route.query.D_ID; 拿到桌子ID
-      var D_ID=1;
+      // var D_ID=1;
 
-      var url = "/menu";//获取左边所有菜品类名
-      this.axios.get(url,{params:{'M_ID':M_ID}}).then(res => {
+      var url = "/menu"; //获取左边所有菜品类名
+      this.axios.get(url, { params: { M_ID: M_ID } }).then(res => {
         if (res.data.code == 1) {
           this.foodType = res.data.data;
         }
       });
 
-      var url2 = "/menu/food";//获取所有食物
-      this.axios.get(url2,{params:{'M_ID':M_ID}}).then(res => {
+      var url2 = "/menu/food"; //获取所有食物
+      this.axios.get(url2, { params: { M_ID: M_ID } }).then(res => {
         if (res.data.code == 1) {
           this.foodData = res.data.data;
           // console.log(this.foodData);
@@ -89,23 +118,104 @@ export default {
       this.count--;
       console.log(this.count);
       this.foodData[n - 1].num--; //对应食物数量减少 数组下标是(n-1)
-      if(this.count==0){//减到0之后，失去高光(灰色)和count
-        this.shopcart_imgbgcolor="#555";
-        this.shopcart_countdisplay="none";
+      if (this.count == 0) {
+        //减到0之后，失去高光(灰色)和count
+        this.shopcart_imgbgcolor = "#555";
+        this.shopcart_countdisplay = "none";
       }
+      this.totalPrice -= this.foodData[n - 1].F_Price; //总价减少
     },
     //数量++
     add: function(n) {
       this.count++;
       console.log(this.count);
       this.foodData[n - 1].num++; //对应食物数量增加 数组下标是(n-1)
-      this.shopcart_imgbgcolor="#1798dc"//增加后绝对大于0，不加判断了
-      this.shopcart_countdisplay="";//同上一行
+      this.shopcart_imgbgcolor = "#1798dc"; //增加后绝对大于0，不加判断了
+      this.shopcart_countdisplay = ""; //同上一行
+      this.totalPrice += this.foodData[n - 1].F_Price; //总价增加
+    },
+
+    //清空购物车
+    clearCart() {
+      this.$messagebox.confirm("确认清空吗？").then(action => {
+        for (var i = 0; i < this.foodData.length; i++) {
+          this.foodData[i].num = 0;
+          this.totalPrice = 0; //总价清零
+          this.shopcart_imgbgcolor = "#555"; //控制购物车背景变色
+          this.shopcart_countdisplay = "none"; //控制右上红色数字到0的时候不显示
+        }
+        this.count = 0;
+      });
+    },
+    //展开或关闭购物车
+    showCart() {
+      if (this.cartDisplay == 0) {
+        this.cartDisplay = 1;
+      } else {
+        this.cartDisplay = 0;
+      }
+    },
+
+    jump(index) {
+      // 用 class="d_jump" 添加锚点
+      let jump = document.querySelectorAll(".fenlei");
+      let total = jump[index].offsetTop;
+      let distance = document.documentElement.scrollTop || document.body.scrollTop;
+      // 平滑滚动，时长500ms，每10ms一跳，共50跳
+      let step = total / 10;
+      if (total > distance) {
+        smoothDown();
+      } else {
+        let newTotal = distance - total;
+        step = newTotal / 50;
+        smoothUp();
+      }
+      function smoothDown() {
+        if (distance < total) {
+          distance += step;
+          document.body.scrollTop = distance;
+          document.documentElement.scrollTop = distance;
+          setTimeout(smoothDown, 10);
+        } else {
+          document.body.scrollTop = total;
+          document.documentElement.scrollTop = total;
+        }
+      }
+      function smoothUp() {
+        if (distance > total) {
+          distance -= step;
+          document.body.scrollTop = distance;
+          document.documentElement.scrollTop = distance;
+          setTimeout(smoothUp, 10);
+        } else {
+          document.body.scrollTop = total;
+          document.documentElement.scrollTop = total;
+        }
+      }
+    },
+
+    //监听滚动条
+    onScroll() {
+      let scrolled =
+        document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop; // 586、1063分别为第二个和第三个锚点对应的距离
+        console.log(scrolled);
+      // if (scrolled >= 1063) {
+      //   this.steps.active = 2;
+      // } else if (scrolled < 1063 && scrolled >= 586) {
+      //   this.steps.active = 1;
+      // } else {
+      //   this.steps.active = 0;
+      // }
     }
   },
   created() {
     this.loadMenu();
   },
+  mounted() {
+    this.$nextTick(function() {
+      window.addEventListener("scroll", this.onScroll);
+    });
+  }
 };
 </script>
 
@@ -133,10 +243,9 @@ div.menu {
   }
   div.right {
     div.fenlei {
-      padding: 0.2rem 0 0.3rem 0.2rem;
-
+      padding: 0.2rem 0 0.2rem 0.2rem;
       font-size: 0.3rem;
-      background: #f9f7fa;
+      background:#868586;
     }
     div.food {
       display: inline-block;
@@ -205,16 +314,44 @@ div.menu {
 .guilei {
   position: relative;
 }
+.faker {
+  height: 1rem;
+  width: 100%;
+}
 
-.shopcart{
+.shopcart {
+  position: relative;
   width: 100%;
   height: 1rem;
   position: fixed;
   z-index: 10;
   bottom: 0;
   background-color: #555;
+  button {
+    position: absolute;
+    bottom: 0rem;
+    right: 0rem;
+    height: 1rem;
+    width: 2rem;
+    background-color: #1798dc;
+    font-size: 0.3rem; // "选好啦"字体大小
+    color: #fff;
+    font-weight: bold;
+    z-index: 10;
+  }
 }
-.shopcart>.shopcart_img{
+.shopcart > span {
+  //XX元起送
+  position: absolute;
+  bottom: 0rem;
+  right: 0.2rem;
+  font-size: 0.4rem;
+  color: #fff;
+  line-height: 1rem;
+  z-index: 5;
+}
+.shopcart > .shopcart_img {
+  //购物车图片
   position: relative;
   text-align: center;
   line-height: 0.8rem;
@@ -222,10 +359,10 @@ div.menu {
   width: 0.8rem;
   border-radius: 50%;
   border: 0.1rem solid black;
-  img{
+  img {
     height: 80%;
   }
-  div{
+  div {
     line-height: 0.35rem;
     font-size: 0.1rem;
     color: #fff;
@@ -238,7 +375,7 @@ div.menu {
     right: -0.15rem;
     top: -0.15rem;
   }
-  .totalprice{
+  .totalprice {
     color: #fff;
     font-size: 0.5rem;
     position: absolute;
@@ -246,5 +383,99 @@ div.menu {
     left: 1rem;
   }
 }
-.faker{height: 1rem;width: 100%;}
+
+.shopcartcontent {
+  //存放已点的食物
+  height: 3rem;
+  width: 100%;
+  overflow-y: auto;
+  position: fixed;
+  bottom: 1rem;
+  background-color: #fff;
+}
+.shopcartcontent > div {
+  position: relative;
+  height: 0.5rem;
+  background-color: #fdc09d;
+  line-height: 0.3rem;
+  font-size: 0.3rem;
+
+  span {
+    position: absolute;
+    left: 0.2rem;
+    top: 0.1rem;
+  }
+  a {
+    font-size: 0.28rem;
+    position: absolute;
+    right: 0.2rem;
+    top: 0.1rem;
+  }
+}
+.shopcartcontent > div:nth-child(1) {
+  z-index: 10;
+  position: fixed;
+  height: 0rem;
+  height: 0.5rem;
+  width: 100%;
+  background-color: #fdc09d;
+  line-height: 0.3rem;
+  font-size: 0.3rem;
+}
+
+.shopcartcontent > ul > li > div {
+  height: 0.6rem;
+  position: relative;
+  font-size: 0.3rem;
+  span:nth-child(1) {
+    //食物名字
+    position: absolute;
+    left: 0.2rem;
+    top: 0.2rem;
+  }
+  span:nth-child(2) {
+    //食物总价
+    position: absolute;
+    left: 3.5rem;
+    top: 0.2rem;
+  }
+  a:nth-child(3) {
+    //"-"
+    position: absolute;
+    right: 1rem;
+    top: 0.2rem;
+  }
+  span:nth-child(4) {
+    //食物数量
+    position: absolute;
+    right: 0.6rem;
+    top: 0.23rem;
+  }
+  a:nth-child(5) {
+    //"+"
+    position: absolute;
+    right: 0.2rem;
+    top: 0.2rem;
+  }
+  a.cut {
+    display: inline-block;
+    height: 0.35rem;
+    width: 0.35rem;
+    border-radius: 50%;
+    background-image: url(http://127.1:5050/icon/reduce.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  a.add {
+    display: inline-block;
+    height: 0.35rem;
+    width: 0.35rem;
+    border-radius: 50%;
+    background-image: url(http://127.1:5050/icon/plus.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+}
 </style>

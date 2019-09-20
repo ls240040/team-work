@@ -43,7 +43,7 @@ export default new Router({
             component: Menu,
             meta: {
                 isLogin: true, // 添加该字段，表示进入这个路由是需要登录的
-                keepAlive: false
+                keepAlive: true
             }
         },
         {
@@ -133,9 +133,6 @@ export default new Router({
             meta:{
                 keepAlive:true //需要被缓存的组件
              },
-            meta: {
-                keepAlive: false //需要被缓存的组件
-            },
         },
          /* 预定详情 */
         {
