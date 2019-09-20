@@ -6,8 +6,8 @@
         <li v-for="(item, i) in foodType" :key="i">{{item.FT_Name}}</li>
       </ul>
     </div>
-    <div class="jiade"></div>
-    <div class="right">
+    <div class="jiade"></div><!-- 左侧空div撑开 -->
+    <div class="right"><!-- 右侧菜品 -->
       <div v-for="(item,index) in foodType" :key="index">
         <div class="fenlei">{{item.FT_Name}}</div>
         <div v-for="(food,index) in foodData" :key="index" class="guilei">
@@ -23,21 +23,38 @@
             <a class="cut" @click="cuts(food.F_ID)"></a>
             <span>{{food.num}}</span>
             <!-- 再见了，我的倔强 -->
-            <span style="display:none;">{{n}}</span>
+            <span style="display:none;">{{count}}</span>
             <a class="add" @click="add(food.F_ID)"></a>
           </div>
         </div>
       </div>
+
+      <div class="faker"></div><!-- 用于顶起被底部购物车遮住的部分 -->
     </div>
+    
+    <div class="shopcartcontent"><!-- 购物车里面食物的内容 -->
+      
+    </div>
+    <div class="shopcart" ><!-- 底部购物车 -->
+      <div class="shopcart_img" :style="`background-color:${shopcart_imgbgcolor}`">
+        <img src="http://127.0.0.1:5050/icon/shopcart_icon.png">
+        <div :style="`display:${shopcart_countdisplay}`">{{count}}</div><!-- 右上食物计数 -->
+        <span class="totalprice">￥132</span>
+      </div>
+    </div>
+    
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      foodType: [],
-      foodData: [],
-      n:0,//无意义，无视
+      foodType: [],//FT_ID食物类型ID,FT_Name食物类型名字
+      foodData: [],//F_ID食物编号,F_FTID店家编号,F_Name食物名字,F_Url食物图片地址,F_Price价格,num点了多少个
+      count:0,//无意义，无视(嗯，当成一共点了多少个食物好了，完美)
+      shopcart_imgbgcolor:"#555",//控制购物车背景变色
+      shopcart_countdisplay:"none",//控制右上红色数字到0的时候不显示
+      totalprice,     //食物的总价
     };
   },
   methods: {
@@ -48,7 +65,7 @@ export default {
       // var D_ID=this.$route.query.D_ID; 拿到桌子ID
       var D_ID=1;
 
-      var url = "/menu";
+      var url = "/menu";//获取左边所有菜品类名
       this.axios.get(url,{params:{'M_ID':M_ID}}).then(res => {
         if (res.data.code == 1) {
           this.foodType = res.data.data;
@@ -66,18 +83,24 @@ export default {
         }
       });
     },
+    // 数量--
     cuts: function(n) {
       if (this.foodData[n - 1].num < 1) return;
-      this.n--;
-      this.foodData[n - 1].num--;
+      this.count--;
+      console.log(this.count);
+      this.foodData[n - 1].num--; //对应食物数量减少 数组下标是(n-1)
+      if(this.count==0){//减到0之后，失去高光(灰色)和count
+        this.shopcart_imgbgcolor="#555";
+        this.shopcart_countdisplay="none";
+      }
     },
+    //数量++
     add: function(n) {
-      // var numhou=this.foodData[n - 1].num++
-      // console.log(numhou);
-      // this.$set(this.foodData,'num',numhou);
-      // console.log(this.foodData[n-1]);
-      this.n++;
-      this.foodData[n - 1].num++;
+      this.count++;
+      console.log(this.count);
+      this.foodData[n - 1].num++; //对应食物数量增加 数组下标是(n-1)
+      this.shopcart_imgbgcolor="#1798dc"//增加后绝对大于0，不加判断了
+      this.shopcart_countdisplay="";//同上一行
     }
   },
   created() {
@@ -182,4 +205,46 @@ div.menu {
 .guilei {
   position: relative;
 }
+
+.shopcart{
+  width: 100%;
+  height: 1rem;
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  background-color: #555;
+}
+.shopcart>.shopcart_img{
+  position: relative;
+  text-align: center;
+  line-height: 0.8rem;
+  height: 0.8rem;
+  width: 0.8rem;
+  border-radius: 50%;
+  border: 0.1rem solid black;
+  img{
+    height: 80%;
+  }
+  div{
+    line-height: 0.35rem;
+    font-size: 0.1rem;
+    color: #fff;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    border: 0.01rem solid #fff;
+    background-color: #fb3b2a;
+    position: absolute;
+    right: -0.15rem;
+    top: -0.15rem;
+  }
+  .totalprice{
+    color: #fff;
+    font-size: 0.5rem;
+    position: absolute;
+    top: 0rem;
+    left: 1rem;
+  }
+}
+.faker{height: 1rem;width: 100%;}
 </style>
