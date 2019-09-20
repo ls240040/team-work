@@ -38,6 +38,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
 
+
 //路由器导入
 //index
 const recommend = require('./routes/community');

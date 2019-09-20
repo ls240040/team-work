@@ -1,7 +1,7 @@
 <!--index.vue 用户登录组件-->
 <template>
   <div class="f2">
-    <div class="left">
+    <div class="left"  @click="linkTo1">
       <p>排号</p>
       <span>取号快人一步</span>
     </div>
@@ -23,6 +23,9 @@ export default {
   methods: {
     linkTo(){
       this.$router.push("/shopList");
+    },
+     linkTo1(){
+      this.$router.push("/row");
     },
   }
 };

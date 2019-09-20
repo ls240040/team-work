@@ -307,7 +307,14 @@ INSERT INTO diancan_Food VALUES
 (null,9,1,"自选小料","/jiushui/jiushui_16.jpg",9.00,1,1),
 (null,9,1,"自选饮料","/jiushui/jiushui_16.jpg",6.00,1,1);
 
-
+/*排号表*/
+CREATE TABLE diancan_RowNum(
+  R_ID INT PRIMARY KEY AUTO_INCREMENT,/*排号号码*/
+  U_ID INT,/*用户ID*/
+  R_Time Datetime,
+  R_People Int,
+  R_Address Varchar(200)
+);
 
 
 /****桌子信息****/
