@@ -1,66 +1,132 @@
 <template>
-    <div>
-        <img src="" alt="">
-        <p>关闭</p>
-        <p>确认订单</p>
-        <div v-for="(item,i) of temp" :key=i style="position: relative;">
-           <img :src="`http://127.0.0.1:5050/icon/image${i}.png`" alt="">
-           <span class="table1">{{item}}</span>
-           <img class="img1" src="http://127.0.0.1:5050/icon/arrow-right.png" alt=""> 
+    <div class="Wai" style="background-color:#ff0;">
+       <div class="y1">
+            <mt-navbar v-model="selected">
+                <mt-tab-item id="waisong">外送</mt-tab-item>
+                <mt-tab-item id="myself">自提</mt-tab-item>
+            </mt-navbar>
+            <!-- tab-container -->
+            <mt-tab-container v-model="selected">
+                <mt-tab-container-item id="waisong">
+                    <div v-for="(item,i) of temp" :key="i">
+                        <span class="c1" style="text-align:left">{{item}}</span>
+                    </div>
+                </mt-tab-container-item>
+                <mt-tab-container-item id="myself">
+                    <div v-for="(item,i) of tem" :key="i">
+                        <span class="c1">{{item}}</span>
+                    </div>   
+                </mt-tab-container-item> 
+            </mt-tab-container>
         </div>
-        <div>
-            <p>海底捞火锅外送(庆春路店)</p>
-            <span class="table2">已选商品</span>
-            <span class="table2">共5份</span>
-            <span class="table02">6-8人餐nq1x</span>
-            <span>￥699</span>
-            <span class="table02">配送费</span>
-            <span>￥38</span>
+
+
+
+
+        <div class="y1">
+            <div style="border-bottom:0.01rem solid #e2e2e2">
+                <span class="c1">———— 海底捞火锅外送(庆春路店) ————</span>
+                <div class="d1">
+                    <span class="z1">已选商品</span>
+                    <span class="z1">共5份</span>
+                </div>
+            </div>
+            <div>
+               <waisongOrder></waisongOrder>
+            </div>
+            <div class="d1" style="margin-bottom:0.1rem">
+                <span class="a1">配送费</span>
+                <span class="a1" style="font-size:0.3rem">￥38</span>
+            </div>
         </div>
-        <div>
-            <span class="table1">整单商品优惠</span>
-            <span>未使用优惠</span>
-            <img src="http://127.0.0.1:5050/icon/next.png" alt="">
+        <div class="y1">
+            <div  style="border-bottom:0.01rem solid #e2e2e2">
+                <div class="d1" style="height:0.6rem;line-height:0.6rem;overflow:hidden">
+                    <span class="b1">整单商品优惠</span>
+                    <span class="z1">所有商品立减20.0元</span>
+                </div>
+            </div>
+            <div class="t1">
+                <p class="z1">原价</p>
+                <p class="z1">￥309</p>
+            </div>
         </div>
-        <p>选填</p>
-        <div v-for="(item1,i) of tep" :key="i">
-            <span>{{item1}}</span>
-            <span></span>
+        <div style="background-color:#fff">
+            <div style="border-top:0.01rem solid #e2e2e2;margin:0;padding:0;">
+                <div class="d1" style="margin:0;padding:0;" >
+                    <span style="margin-top:.3rem;margin-left:0.2rem" class="z1">已优惠 -￥45</span>
+                    <span style="margin-top:.3rem;" class="z1">还需付 ￥309</span>
+                    <mt-button type="primary">确认下单</mt-button>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 <script>
+import waisongOrder from './waisongOrder'
 export default {
-    data(){
-        return{
-            temp:["收获地址","送达时间","支付方式"]
-        }
-    }
+  data(){
+      return{
+        selected:'waisong',
+        temp:["选择收获时间","送达时间","支付方式"],
+        tem:["自取地址","联系方式","到店时间","支付方式"]
+      }
+  },
+  components:{
+      waisongOrder : waisongOrder
+  }
 }
 </script>
 <style lang="scss">
-    div.div{
-        background: #000;
-        opacity: 0.1;
-        z-index: -1;
-        height: 3rem;
-    }
-    .table1{
-        font-size:0.15rem;
-        color: #000;
-    }
-    .table2{
-        font-size:0.05rem;
-        color:#666;
-    }
-    .table02{
-        font-size: 0.1rem;
-        color: rgb(46, 45, 45);
-    }
-    .img1{
-        position:absolute;
-        right: 0.1rem;
-        width:0.3rem;
-        height:0.3rem;
+    .Wai{
+        .img{
+            position: absolute;
+            right:0.1rem;
+            top: 1rem;
+            width:0.3rem;
+            height: 0.3rem;
+        }
+        .w1{
+            display:flex;justify-content:space-around;
+            font-size:0.3rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 500;
+        }
+        .t1{
+            font-size: 0.2rem;
+            color: #666;
+            font-family:"Times New Roman",Georgia,Serif;
+            display:flex;
+            justify-content: space-between;
+            margin:0.3rem;
+        }
+        .y1{
+            margin:0.1rem;background-color:#fff;border-radius:3%
+        }
+        .b1{
+            font-size: 0.4rem;
+            color: #000;
+        }
+        .c1{
+            font-size: 0.3rem;
+            color:#000;
+            // font-family:"Times New Roman",Georgia,Serif;
+            
+        }
+        .z1{
+            font-size: 0.2rem;
+            color: #666;
+            font-family:"Times New Roman",Georgia,Serif;
+        }
+        .d1{
+            display:flex;
+            justify-content: space-between;
+            margin:0.3rem;
+        }
+        .a1{
+            font-size: 0.2rem;
+            color: #000;
+            // font-family:"Times New Roman",Georgia,Serif;
+        }
     }
 </style>
