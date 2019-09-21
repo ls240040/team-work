@@ -20,6 +20,8 @@ import reserve_detailed from './components/Index/index02/reserve_detailed.vue'
 /* 门店列表 */
 import storeList from './components/Index/index02/storeList.vue'
 import row from './components/Index/index01/row.vue'
+/* 城市列表 */
+import cityStore from './components/Index/index02/cityStore.vue'
 
 /* mines */
 import datum from './components/Mine/Mines/datum.vue'
@@ -171,6 +173,12 @@ export default new Router({
             path: '/storeList',
             name: 'storeList',
             component: storeList
+        },
+         /* 城市列表*/
+        {
+            path: '/cityStore',
+            name: 'cityStore',
+            component: cityStore
         },
        
 

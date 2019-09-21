@@ -7,23 +7,27 @@
         </mt-header>  
         <mt-navbar v-model="selected">
         <mt-tab-item id="waisong">外送</mt-tab-item>
-        <mt-tab-item id="ziti">自提</mt-tab-item>
+        <mt-tab-item id="myself">自提</mt-tab-item>
         </mt-navbar>
         <!-- tab-container -->
         <mt-tab-container v-model="selected">
             <mt-tab-container-item id="waisong">
                 <div class="location">
-                    <span>杭州</span>
+                    <span  @click="cityStore">
+                        <span>杭州</span>
                     <img src="http://127.0.0.1:5050/icon/xiala.png" alt="">
+                    </span>                    
                     <input type="text" placeholder="请输入外送门店">
                 </div>
                 <!-- 引入门店列表组件 -->
                <store></store>
             </mt-tab-container-item>
-            <mt-tab-container-item id="ziti">
+            <mt-tab-container-item id="myself">
                 <div class="location">
-                    <span>杭州</span>
+                    <span  @click="cityStore">
+                        <span>杭州</span>
                     <img src="http://127.0.0.1:5050/icon/xiala.png" alt="">
+                    </span>                    
                     <input type="text" placeholder="请输入自提门店">
                 </div>
                 <!-- 引入门店列表组件 -->
@@ -44,7 +48,11 @@ export default {
             selected: 'waisong'
         }
     },
-    methods:{ },
+    methods:{
+        cityStore(){
+            this.$router.push('/cityStore')
+        }        
+     },
     components: {
     store: store,
   },
