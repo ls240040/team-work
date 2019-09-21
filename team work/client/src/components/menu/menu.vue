@@ -89,6 +89,9 @@ export default {
       totalPrice: 0, //食物的总价
       sendPrice: 400, //先来个起送价400
       now:0,//辅助修改颜色
+
+      //{ M_ID(店家ID),D_ID(桌子ID),foodData:[{F_ID(F_ID食物编号),F_Price(F_Price价格),num(num点了多少个)},{},{},...] }
+
     };
   },
   methods: {
