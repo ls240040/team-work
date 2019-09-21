@@ -90,33 +90,69 @@ export default {
       ],
       num: "1人",
       list: [],
-      adress: "",
+      address: "",
       popupVisible: false,
       ETime: "",
-      eTime:""
+      eTime: ""
     };
   },
   methods: {
     getNum() {
       var uid = sessionStorage.getItem("accessToken");
-      console.log(this.num, uid, this.adress);
+      var time = new Date();
+      var year = time.getFullYear();
+      var month = time.getMonth() + 1;
+      var date = time.getDate();
+      var hour = time.getHours();
+      var min = time.getMinutes();
+      var sec = time.getSeconds();
+      time =
+        year + "-" + month + "-" + date + " " + hour + ":" + min + ":" + sec;
+      console.log(this.num, uid, this.address, this.eTime, this.ETime);
+      //未登陆跳转至登陆页面
+      if (uid == null) {
+        this.$router.push("/login");
+      } else {
+        var params = new URLSearchParams();
+        params.append("uid", uid);
+        params.append("addr", this.address);
+        params.append("eTime", this.eTime);
+        params.append("ETime", this.ETime);
+        params.append("num", this.num);
+        params.append("time", time);
+        this.axios
+          .post("/index/rownum", params) //传参
+          .then(res => {
+            if (res.data.code == 1) {
+              // this.$router.push({
+              //   path: "/"
+              // });
+              this.$router.push("/");
+            } else {
+              this.$toast({ message: "请勿重复排号"});
+            }
+          })
+          .catch(function(err) {
+            console.log(err);
+          });
+      }
     },
     linkTo(addr) {
       console.log(addr);
-      this.adress = addr;
-
+      this.address = addr;
       this.popupVisible = true;
       var now = new Date();
       now = now.getHours();
-      if (now > 9 && now < 16) {
+      console.log(now);
+      if (now >= 9 && now < 16) {
         this.ETime = "午市";
-        this.eTime="午市(09:00-16:00)"
-      } else if (now > 16 && now < 23) {
+        this.eTime = "午市(09:00-16:00)";
+      } else if (now >= 16 && now < 23) {
         this.ETime = "晚市";
-         this.eTime="晚市(16:00-23:00)"
+        this.eTime = "晚市(16:00-23:00)";
       } else {
         this.ETime = "夜市";
-         this.eTime="夜市(23:00-次日07:00)"
+        this.eTime = "夜市(23:00-次日07:00)";
       }
     },
     linkTo1() {
@@ -132,8 +168,9 @@ export default {
       console.log(values);
       this.num = values;
     },
+    //加载店铺信息
     loadMore() {
-      var url = "index/rowNum";
+      var url = "index/shoplist";
       this.axios.get(url).then(res => {
         if (res.data.code == 1) {
           this.list = res.data.data;
@@ -149,12 +186,22 @@ export default {
 </script>
 <style lang="scss">
 // @import url('../../../assets/scss/reset.scss');
-    .mint-button--large{
-        width: 6.7rem;
-        margin:0 auto .5rem;
-    }
-.peopleNum {
+//修改toast样式
+.mint-toast{
+  z-index: 9999;
+  
+}
+.mint-toast.is-placemiddle{
+  position: fixed;
+ top: 35%;
+}
+//修改button样式
+.mint-button--large {
+  width: 6.7rem;
+  margin: 0 auto 0.5rem;
+}
 
+.peopleNum {
   .ETime {
     text-align: left;
     margin-left: 1rem;

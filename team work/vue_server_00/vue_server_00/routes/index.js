@@ -15,22 +15,32 @@ router.get('/shoplist', (req, res) => {
         })
     })
     //http://127.0.0.1:5050/index/rowNum
-router.get('/rowNum', (req, res) => {
-    var sql = "SELECT M_Name,M_Address,M_Distance FROM diancan_Mer";
-    pool.query(sql, (err, result) => {
+router.post('/rownum', (req, res) => {
+    addr = req.body.addr
+    uid = req.body.uid
+    num = req.body.num
+    ETime = req.body.ETime
+    eTime = req.body.eTime
+    Time = req.body.time
+    var sql1 = "SELECT R_ID FROM diancan_rownum WHERE U_ID=?"
+    pool.query(sql1, uid, (err, result) => {
+        console.log(result.length == 0)
         if (err) throw err;
         if (result.length == 0) {
-            res.send({ code: -1, msg: "查询失败" });
+            var sql = "INSERT INTO  diancan_RowNum  SET U_ID=?,R_Time=?,R_People=?,R_Address=?,R_Etime=?";
+            pool.query(sql, [uid, Time, num, addr, eTime], (err, result) => {
+                if (err) throw err;
+                if (result.length == 0) {
+                    res.send({ code: -1, msg: "排号失败" });
+                } else {
+                    res.send({ code: 1, msg: "排号成功", data: result });
+                }
+            })
         } else {
-
-
-
-
-
-
-            res.send({ code: 1, msg: "查询成功", data: result });
+            res.send({ code: -2, msg: "请勿重复排号", data: result });
         }
     })
+
 })
 
 
