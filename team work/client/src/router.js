@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from './views/Index.vue'
-import Details from './views/Details.vue'
 import Community from './views/Community.vue'
 import Mine from './views/Mine.vue'
 import Vip from './views/Vip.vue'
@@ -69,14 +68,14 @@ export default new Router({
             name: 'row',
             component: row,
             meta: {
-                keepAlive: false //不需要被缓存的组件
+                keepAlive: true //不需要被缓存的组件
             },
         },
         /* 排号详情 */
         {
             path: '/paihao_detailed',
             name: 'paihao_detailed',
-            component: paihao_detailed,            
+            component: paihao_detailed,
         },
         {
             path: '/',
@@ -87,20 +86,12 @@ export default new Router({
             },
         },
         {
-            path: '/Details',
-            name: 'details',
-            component: Details,
-            meta: {
-                keepAlive: false //不需要被缓存的组件
-            },
-        },
-        {
             path: '/Community',
             name: 'community',
             component: Community,
-            meta:{
-                keepAlive:true //不需要被缓存的组件
-             },
+            meta: {
+                keepAlive: true //不需要被缓存的组件
+            },
         },
         {
             path: '/Mine',
@@ -146,20 +137,20 @@ export default new Router({
             path: '/demand',
             name: 'demand',
             component: demand,
-            meta:{
-                keepAlive:true //需要被缓存的组件
-             },
+            meta: {
+                keepAlive: true //需要被缓存的组件
+            },
         },
         /*主页左上角消息 */
         {
             path: '/Messagelist',
             name: 'Messagelist',
             component: Messagelist,
-            meta:{
-                keepAlive:true //需要被缓存的组件
-             },
+            meta: {
+                keepAlive: true //需要被缓存的组件
+            },
         },
-         /* 预定详情 */
+        /* 预定详情 */
         {
             path: '/reserve_detailed',
             name: 'reserve_detailed',
@@ -168,7 +159,7 @@ export default new Router({
                 keepAlive: false //不需要被缓存的组件
             },
         },
-         /* 门店列表*/
+        /* 门店列表*/
         {
             path: '/storeList',
             name: 'storeList',
@@ -180,7 +171,6 @@ export default new Router({
             name: 'cityStore',
             component: cityStore
         },
-       
 
         /* mines */
         {
@@ -306,7 +296,7 @@ export default new Router({
                 keepAlive: false //不需要被缓存的组件
             }
         },
-        
+
         // {
         //   path: '/about',
         //   name: 'about',

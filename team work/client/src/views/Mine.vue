@@ -1,8 +1,8 @@
 <!--Mine.vue 我的 页面组件-->
 <template>
   <div class="mine">    
-    <minedatumno></minedatumno>
-    <minedatum></minedatum>
+    <minedatumno v-if="!islogin"></minedatumno>
+    <minedatum v-else=""></minedatum>
     <mineorder></mineorder>
     <minestatus></minestatus>
     <mineserve></mineserve>
@@ -34,7 +34,9 @@ import TabBar from "../components/tab-bar";
 
 export default {
   data() {
-    return {};
+    return {
+      islogin:""
+    };
   },
   methods: {},
   components: {
@@ -51,6 +53,11 @@ export default {
     window.scroll(0,0);//让跳转后页面在顶部
     this.$refs.child.mineurl="mine_iconred.png";//改变图标颜色
     this.$refs.child.minecolor="red";//改变图标颜色
+   if( sessionStorage.getItem("accessToken")){
+     this.islogin=true
+   }else{
+      this.islogin=false
+   }
   },
 };
 </script>

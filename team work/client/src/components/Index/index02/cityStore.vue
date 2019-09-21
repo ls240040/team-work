@@ -89,7 +89,7 @@ export default {
             margin-right:0.3rem;
         }
         input{
-            width:50%;
+            width:70%;
             border:none;
             background:#e9e9e9;
             padding:0.1rem 0.2rem;

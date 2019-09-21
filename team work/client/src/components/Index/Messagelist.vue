@@ -28,7 +28,7 @@ export default {
     },
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     .img1{
         position: absolute;top:0.55rem;left:0.15rem;
         width:0.3rem;
