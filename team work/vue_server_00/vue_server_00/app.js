@@ -41,7 +41,11 @@ app.use(express.static('public'));
 
 //路由器导入
 //index
+const carousel = require('./routes/community');
 const recommend = require('./routes/community');
+const dweek = require('./routes/community');
+const dmonth = require('./routes/community');
+const dyear = require('./routes/community');
 const shoplist = require('./routes/index');
 const reserve = require('./routes/index');
 const user = require('./routes/user');
@@ -49,7 +53,11 @@ const vip = require('./routes/vip');
 const menu = require('./routes/menu');
 /*使用路由器来管理路由*/
 // app.use("/index",index);
+app.use("/community", carousel);
 app.use("/community", recommend);
+app.use("/community", dweek);
+app.use("/community", dmonth);
+app.use("/community", dyear);
 app.use("/index", shoplist);
 app.use("/index", reserve);
 app.use("/user", user);

@@ -1,6 +1,6 @@
 <template>
   <div class="shoplist">
-    <div class="top"  @click="linkTo1">
+    <div class="top" @click="linkTo1">
       <img src="http://127.0.0.1:5050/icon/arrow-left.png">
       <p>排号</p>
       <div class="location">
@@ -9,7 +9,13 @@
       </div>
     </div>
 
-    <div class="container" id="1" v-for="(item,index) of list" :key="index" @click="linkTo(index)">
+    <div
+      class="container"
+      id="1"
+      v-for="(item,index) of list"
+      :key="index"
+      @click="linkTo(item.M_Address)"
+    >
       <img class="logo" src="http://127.0.0.1:5050/icon/su_logo.png">
       <div class="info">
         <div class="infotop">
@@ -30,29 +36,35 @@
     </div>
     <div>
       <mt-popup position="bottom" v-model="popupVisible" popup-transition="popup-fade">
-        <div class="peopleNum" style="width:8rem;">
+        <div class="peopleNum" style="width:100%;padding:.1rem;">
           <div>
-              <div class="tabnav">
-                <span style="font-size:.3rem">请选择就餐人数</span> <span style="font-size:.3rem;color:#666;display:inline-block;margin-left:1rem;" @click="linkTo2">取消</span> 
-              </div>
+            <div class="tabnav">
+              <span style="font-size:.3rem">请选择就餐人数</span>
+              <span class="d1" style @click="linkTo2">取消</span>
+            </div>
             <mt-picker :slots="slots" @change="onValuesChange" :visibleItemCount="3"></mt-picker>
-            <div class="discr"> 
-                <p>*12人以上请您联系门店</p>
-                <p>就餐时段 <span>午市(09:00-16:00)</span></p>
-                <p>不可跨市别排号，如果您想在下一个市别就餐，请在下一个市别开始后前去排号。午市(09:00-16:00)，晚市(16:00-23:00)，夜市(23:00-次日07:00)</p>
+            <div class="ETime">
+              <mt-button type="danger">{{ETime}}</mt-button>
+            </div>
+            <div class="discr">
+              <p>*12人以上请您联系门店</p>
+              <p>
+                就餐时段
+                <span>{{eTime}}</span>
+              </p>
+              <p>不可跨市别排号，如果您想在下一个市别就餐，请在下一个市别开始后前去排号。午市(09:00-16:00)，晚市(16:00-23:00)，夜市(23:00-次日07:00)</p>
             </div>
           </div>
         </div>
         <div class="btn">
-       <mt-button type="danger" size="large">确认取号</mt-button>
-       </div>
+          <mt-button type="danger" size="large" @click="getNum">确认取号</mt-button>
+        </div>
       </mt-popup>
     </div>
   </div>
 </template>
 <script>
 export default {
-
   data() {
     return {
       slots: [
@@ -75,33 +87,90 @@ export default {
           className: "slot1",
           textAlign: "center"
         }
-
       ],
-
+      num: "1人",
       list: [],
-
-      popupVisible: false
+      address: "",
+      popupVisible: false,
+      ETime: "",
+      eTime: ""
     };
   },
   methods: {
-    linkTo(S_ID) {
-      S_ID = S_ID + 1;
+    getNum() {
+      var uid = sessionStorage.getItem("accessToken");
+      var time = new Date();
+      var year = time.getFullYear();
+      var month = time.getMonth() + 1;
+      var date = time.getDate();
+      var hour = time.getHours();
+      var min = time.getMinutes();
+      var sec = time.getSeconds();
+      time =
+        year + "-" + month + "-" + date + " " + hour + ":" + min + ":" + sec;
+      console.log(this.num, uid, this.address, this.eTime, this.ETime);
+      //未登陆跳转至登陆页面
+      if (uid == null) {
+        this.$router.push("/login");
+      } else {
+        var params = new URLSearchParams();
+        params.append("uid", uid);
+        params.append("addr", this.address);
+        params.append("eTime", this.eTime);
+        params.append("ETime", this.ETime);
+        params.append("num", this.num);
+        params.append("time", time);
+        this.axios
+          .post("/index/rownum", params) //传参
+          .then(res => {
+            if (res.data.code == 1) {
+              // this.$router.push({
+              //   path: "/"
+              // });
+              this.$router.push("/");
+            } else {
+              this.$toast({ message: "请勿重复排号"});
+            }
+          })
+          .catch(function(err) {
+            console.log(err);
+          });
+      }
+    },
+    linkTo(addr) {
+      console.log(addr);
+      this.address = addr;
       this.popupVisible = true;
+      var now = new Date();
+      now = now.getHours();
+      console.log(now);
+      if (now >= 9 && now < 16) {
+        this.ETime = "午市";
+        this.eTime = "午市(09:00-16:00)";
+      } else if (now >= 16 && now < 23) {
+        this.ETime = "晚市";
+        this.eTime = "晚市(16:00-23:00)";
+      } else {
+        this.ETime = "夜市";
+        this.eTime = "夜市(23:00-次日07:00)";
+      }
     },
-      linkTo1() {
-      this.$router.go(-1)
+    linkTo1() {
+      this.$router.go(-1);
     },
-     linkTo2() {
-     this.popupVisible = false;
+    linkTo2() {
+      this.popupVisible = false;
     },
     onValuesChange(picker, values) {
       if (values[0] > values[1]) {
         picker.setSlotValue(1, values[0]);
       }
       console.log(values);
+      this.num = values;
     },
+    //加载店铺信息
     loadMore() {
-      var url = "index/rowNum";
+      var url = "index/shoplist";
       this.axios.get(url).then(res => {
         if (res.data.code == 1) {
           this.list = res.data.data;
@@ -115,25 +184,47 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 // @import url('../../../assets/scss/reset.scss');
-.peopleNum{
-    font-size:.3rem ;
-    .btn{
-        width: 7rem;
+//修改toast样式
+.mint-toast{
+  z-index: 9999;
+  
+}
+.mint-toast.is-placemiddle{
+  position: fixed;
+ top: 35%;
+}
+//修改button样式
+.mint-button--large {
+  width: 6.7rem;
+  margin: 0 auto 0.5rem;
+}
+
+.peopleNum {
+  .ETime {
+    text-align: left;
+    margin-left: 1rem;
+  }
+  font-size: 0.3rem;
+  .d1 {
+    font-size: 0.3rem;
+    color: #666;
+    display: inline-block;
+    margin-left: 1rem;
+  }
+  .tabnav {
+    margin-top: 0.3rem;
+  }
+  div.discr {
+    margin-top: 0.5rem;
+    display: inline-block;
+    width: 7rem;
+    text-align: left;
+    p {
+      margin-bottom: 0.3rem;
     }
-    .tabnav{
-        margin-top:.3rem; 
-    }
-    div.discr{
-        margin-top:.5rem; 
-        display: inline-block;
-        width: 7rem;
-        text-align: left;
-        p{
-            margin-bottom:.3rem 
-        }
-    }
+  }
 }
 .shoplist {
   .top {

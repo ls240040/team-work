@@ -51,7 +51,7 @@ import recommend from './recommend'
 export default {
     data(){
         return{
-            carousel:[]
+            carousel:[],
         }
     },
     components:{
@@ -59,14 +59,15 @@ export default {
     },
     methods:{
         loadMore(){
-            var url='community/recommend';
+            // 轮播
+            var url='community/carousel';
             this.axios.get(url).then(res=>{
                 console.log(res.data.data);
                 if(res.data.code==1){
                     this.carousel=res.data.data;
-                    console.log(this.carousel)
                 }
-            })
+            });
+            
         }
     },
     created () {
