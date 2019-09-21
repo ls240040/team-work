@@ -4,7 +4,6 @@
     <div class="left">
       <ul>
         <li v-for="(item, i) in foodType" :key="i" @click="jump(i)" :style="`background-color:${item.bgcolor}`">{{item.FT_Name}}
-          <!--对不起我再一次用了那个禁忌之术-->
           <span style="display:none">{{now}}</span>
         </li>
       </ul>
@@ -27,7 +26,6 @@
           <div v-if="food.F_FTID==item.FT_ID" class="count">
             <a class="cut" @click="cuts(food.F_ID)"></a>
             <span>{{food.num}}</span>
-            <!-- 再见了，我的倔强 -->
             <a class="add" @click="add(food.F_ID)"></a>
             <span style="display:none;">{{count}}</span>
           </div>
