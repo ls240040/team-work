@@ -487,16 +487,16 @@ CREATE TABLE recommend(
   R_Collect INT
 ); 
 INSERT INTO recommend VALUES
-(NULL,'/community/avatar1.png','大H8','吃不胖','/community/warmth_v_3.png','服务超级棒，真的很有耐心','/community/c1.jpg','/community/c2.jpg',null,'发布于昨天','最新活动',13,2),
-(NULL,'/community/avatar2.png','阿圆6','求关注','/community/warmth_v_1.png','海底捞那么多年依然那么红火','/community/c3.jpg',null,null,'发布于昨天','最新活动',24,6),
-(NULL,'/community/avatar3.png','诶及傻猫','旅游','/community/warmth_v_2.png','和仙女们一起解锁海底捞生日歌','/community/c4.jpg',null,null,'发布于昨天','最新活动',5,1),
+(NULL,'/community/avatar1.png','大H8','吃不胖','/community/warmth_v_3.png','服务超级棒，真的很有耐心','/community/c1.jpg','/community/c2.jpg','/community/blank.jpg','发布于昨天','最新活动',13,2),
+(NULL,'/community/avatar2.png','阿圆6','求关注','/community/warmth_v_1.png','海底捞那么多年依然那么红火','/community/c3.jpg','/community/blank.jpg','/community/blank.jpg','发布于昨天','最新活动',24,6),
+(NULL,'/community/avatar3.png','诶及傻猫','旅游','/community/warmth_v_2.png','和仙女们一起解锁海底捞生日歌','/community/c4.jpg','/community/blank.jpg','/community/blank.jpg','发布于昨天','最新活动',5,1),
 (NULL,'/community/avatar4.png','小洛',null,'/community/warmth_v_1.png','聚会不二选','/community/c5.jpg','/community/c6.jpg','/community/c7.jpg','发布于昨天','海捞天地',60,12),
-(NULL,'/community/avatar5.png','捞粉儿','加油','/community/warmth_v_1.png','海底捞的老顾客了','/community/c8.jpg',null,null,'发布于星期一','客户讨论',18,2),
+(NULL,'/community/avatar5.png','捞粉儿','加油','/community/warmth_v_1.png','海底捞的老顾客了','/community/c8.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期一','客户讨论',18,2),
 (NULL,'/community/avatar6.png','Minnice',null,'/community/warmth_v_3.png','正准备去，走起','/community/c9.jpg','/community/c10.jpg','/community/c11.jpg','发布于星期三','海捞天地',13,2),
-(NULL,'/community/avatar7.png','Nako','长得帅','/community/warmth_v_2.png','今天被免单了，开森','/community/c12.jpg',null,null,'发布于星期三','海捞天地',19,3),
-(NULL,'/community/avatar8.png','奶昔v','感恩','/community/warmth_v_1.png','食材很新鲜','/community/c13.jpg',null,null,'发布于星期三','海捞天地',17,2),
-(NULL,'/community/avatar9.png','cyq晴','乖而又个性','/community/warmth_v_4.png','最喜欢的火锅店','/community/c14.jpg',null,null,'发布于星期三','海捞天地',42,5),
-(NULL,'/community/avatar10.png','左二','仙女本仙','/community/warmth_v_1.png','聚会圣地','/community/c15.jpg',null,null,'发布于星期三','海捞天地',36,7);
+(NULL,'/community/avatar7.png','Nako','长得帅','/community/warmth_v_2.png','今天被免单了，开森','/community/c12.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期三','海捞天地',19,3),
+(NULL,'/community/avatar8.png','奶昔v','感恩','/community/warmth_v_1.png','食材很新鲜','/community/c13.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期三','海捞天地',17,2),
+(NULL,'/community/avatar9.png','cyq晴','乖而又个性','/community/warmth_v_4.png','最喜欢的火锅店','/community/c14.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期三','海捞天地',42,5),
+(NULL,'/community/avatar10.png','左二','仙女本仙','/community/warmth_v_1.png','聚会圣地','/community/c15.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期三','海捞天地',36,7);
 
 /**社区-关注**/
 CREATE TABLE friends(

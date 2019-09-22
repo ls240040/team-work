@@ -73,7 +73,7 @@ export default {
 <style lang="scss" scoped>
 @import url('../../assets/scss/reset.scss');
     .crecommend{
-        padding:0 .2rem .5rem;
+        padding:0 .2rem 0;
     }
     hr{
         opacity: .5;
@@ -90,7 +90,6 @@ export default {
                 width: 12vw;
                 height: 12vw;
                 border-radius: 50%;
-                background: #999;
                 overflow: hidden;
                 bottom: 0;
                 align-self:flex-end;
@@ -118,7 +117,7 @@ export default {
             }
         }
         .logo{
-            width: 60vw;
+            width: 50vw;
             display: flex;
             justify-content:flex-end;
            .attention{
@@ -143,13 +142,15 @@ export default {
         .pictures{
             display: flex;
             margin:.2rem 0;
+            height: 2.5rem;
             .im{
                 width:33%;
                 overflow: hidden;
                 margin-right:.2rem;
-                background: #999;
                 img{
                     width: 100%;
+                    height: 100%;
+                    object-fit:cover;
                 }
             }
         }
