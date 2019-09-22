@@ -1,5 +1,5 @@
 <template>
-    <div class="Wai" style="background-color:#ff0;">
+    <div class="Wai" style="background-color:rgb(252, 252, 252);">
        <div class="y1">
             <mt-navbar v-model="selected">
                 <mt-tab-item id="waisong">外送</mt-tab-item>
@@ -8,12 +8,13 @@
             <!-- tab-container -->
             <mt-tab-container v-model="selected">
                 <mt-tab-container-item id="waisong">
-                    <div v-for="(item,i) of temp" :key="i">
+                    <div style="" class="bor" v-for="(item,i) of temp" :key="i">
+                        <img style="margin:0.15rem" :src="`http://127.0.0.1:5050/icon/image${i}.png`" alt="">
                         <span class="c1" style="text-align:left">{{item}}</span>
                     </div>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="myself">
-                    <div v-for="(item,i) of tem" :key="i">
+                    <div class="bor" v-for="(item,i) of tem" :key="i">
                         <span class="c1">{{item}}</span>
                     </div>   
                 </mt-tab-container-item> 
@@ -79,6 +80,17 @@ export default {
 </script>
 <style lang="scss">
     .Wai{
+        .bor{
+            text-align:left;
+        align-items: center;
+        display: flex;
+        height: 1rem;
+        position: relative;
+        }
+        .nav{
+            height:3rem;
+            background: #000;
+        }
         .img{
             position: absolute;
             right:0.1rem;
@@ -99,6 +111,7 @@ export default {
             display:flex;
             justify-content: space-between;
             margin:0.3rem;
+            background: rgb(252, 252, 252);
         }
         .y1{
             margin:0.1rem;background-color:#fff;border-radius:3%
