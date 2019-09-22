@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="logo">
-                    <span class="attention">+关注</span>
+                    <span class="attention" @click="attention(index)" v-show="show" :data-id="index">+关注</span>
                     <img src="http://127.0.0.1:5050/icon/elipsis.png">
                 </div>
             </div>
@@ -49,10 +49,41 @@
 export default {
     data () {
         return {
-             list:[]
+             list:[],
+             friends:[],
+             show:true
         }
     },
      methods:{
+        attention(index){
+            index=parseInt(index)+1;
+            console.log(index)
+            for(var item of this.list){
+                if(item.ID==index){
+                    var avatar = item.R_Avatar;
+                    var name = item.R_Name;
+                    var title = item.R_Title;
+                    var vip = item.R_Vip;
+                    var comment = item.R_Comment;
+                    var img1 = item.R_img1;
+                    var img2 = item.R_img2;
+                    var img3 = item.R_img3;
+                    var time = item.R_Time;
+                    var comnum = item.R_Comnum;
+                    var collect = item.R_Collect;
+                    var url='community/friends';
+                    var obj={avatar,name,title,vip,comment,img1,img2,img3,time,comnum,collect};
+                    this.axios.get(url,{params:obj}).then(res=>{
+                        if(res.data.code==1){
+                            this.friends=res.data.data;
+                            console.log(this.friends);
+                            this.loadMore()
+                        }
+                    });
+                }
+                
+            }
+        },
         loadMore(){
             // 推荐
             var url='community/recommend';

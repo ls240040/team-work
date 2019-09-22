@@ -510,7 +510,6 @@ CREATE TABLE friends(
   R_img2 VARCHAR(255),
   R_img3 VARCHAR(255),
   R_Time VARCHAR(255),
-  R_Come VARCHAR(255),
   R_Comnum INT,
   R_Collect INT
 ); 
