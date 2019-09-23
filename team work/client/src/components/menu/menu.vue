@@ -252,7 +252,7 @@ export default {
           var example={F_ID:this.foodData[i].F_ID,F_Price:this.foodData[i].F_Price,num:this.foodData[i].num}
           foodData.push(example);
         }
-        // this.$router.push({ path: '/order' ,query: {M_ID: 1,D_ID:1,foodData}});
+        this.$router.push({ path: '/waisong' ,query: {M_ID: 1,D_ID:1,foodData}});
         console.log(foodData);
       }
 
