@@ -90,6 +90,17 @@ router.get('/carousel', (req, res) => {
         }
     })
 })
+router.get('/indexShop', (req, res) => {
+    var sql = "SELECT S_Title,S_price,S_Count,S_Href FROM diancan_shop";
+    pool.query(sql, (err, result) => {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败", data: result });
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+})
 router.get('/shop', (req, res) => {
     var sql = "SELECT S_Href,S_Title,S_price,S_Count FROM diancan_shop";
     pool.query(sql, (err, result) => {

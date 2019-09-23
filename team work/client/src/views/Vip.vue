@@ -1,8 +1,8 @@
 <template>
   <div class="vip">
     <titlebar></titlebar>
-    <vipcard></vipcard>
-    <vipcardlogined></vipcardlogined>
+    <vipcard v-if="islog"></vipcard>
+    <vipcardlogined v-else=""></vipcardlogined>
     <viprights></viprights>
     <vipexchange></vipexchange>
     <div class="know">会员须知<img src="http://127.0.0.1:5050/icon/icon_go.webp" alt=""></div>
@@ -25,7 +25,9 @@ import TabBar from "../components/tab-bar";
 export default {
   
   data(){
-      return{};
+      return{
+        islog:""
+      };
   },
   methods:{
 
@@ -44,8 +46,15 @@ export default {
     this.$refs.child.vipcolor="red";//改变图标颜色
   },
   created(){
-    
+     
   },
+  mounted(){
+    if( sessionStorage.getItem("accessToken")){
+     this.islogin=true
+   }else{
+      this.islog=false
+   }
+  }
 };
 </script>
 
