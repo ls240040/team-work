@@ -1,15 +1,15 @@
 <template>
     <div>
-        <div class="comfriend">
+        <div class="comfriend" v-for="(item,index) of list" :key="index">
             <div class="info">
                 <div class="left">
                     <div class="avatar">
-                        <img src="http://127.0.0.1:5050/icon/camera.png">
+                        <img :src="`http://127.0.0.1:5050${item.R_Avatar}`">
                     </div>
                     <div class="name">
-                        <span>大H8</span>
-                        <img src="http://127.0.0.1:5050/icon/warmth_v_4.png">
-                        <p>吃不胖</p>
+                        <span>{{item.R_Name}}</span>
+                        <img :src="`http://127.0.0.1:5050${item.R_Vip}`">
+                        <p>{{item.R_Title}}</p>
                     </div>
                 </div>
                 <div class="logo">
@@ -17,23 +17,26 @@
                 </div>
             </div>
             <div class="centerinfo">
-                <p class="p1">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+                <p class="p1">{{item.R_Comment}}</p>
                 <div class="pictures">
                     <div class="im">
-                        <img src="http://127.0.0.1:5050/icon/food.png">
+                        <img :src="`http://127.0.0.1:5050${item.R_img1}`">
                     </div>
                     <div class="im">
-                        <img src="http://127.0.0.1:5050/icon/food.png">
+                        <img :src="`http://127.0.0.1:5050${item.R_img2}`">
+                    </div>
+                    <div class="im">
+                        <img :src="`http://127.0.0.1:5050${item.R_img3}`">
                     </div>
                 </div>
             </div>
             <div class="bottominfo">
                 <div class="left">
-                    <p>发布于星期一</p>
+                    <p>{{item.R_Time}}</p>
                 </div>
                 <div class="right">
-                    <div><img src="http://127.0.0.1:5050/icon/message.png"><span>18</span></div>
-                    <div><img src="http://127.0.0.1:5050/icon/collect.png"><span>16</span></div>
+                    <div><img src="http://127.0.0.1:5050/icon/message.png"><span>{{item.R_Comnum}}</span></div>
+                    <div><img src="http://127.0.0.1:5050/icon/collect.png"><span>{{item.R_Collect}}</span></div>
                 </div>
             </div>
             <hr>
@@ -42,13 +45,31 @@
 </template>
 <script>
 export default {
-    
+    data () {
+        return {
+            list:[]
+        }
+    },
+     methods:{
+        loadMore(){
+            var url='community/friends2';
+            this.axios.get(url).then(res=>{
+                if(res.data.code==1){
+                    this.list=res.data.data;
+                    console.log(this.list);
+                }
+            });
+        }
+    },
+    created () {
+        this.loadMore();
+    }
 }
 </script>
 <style lang="scss" scoped>
 @import url('../../assets/scss/reset.scss');
     .comfriend{
-        padding:0 .2rem .5rem;
+        padding:0 .2rem 0;
     }
     hr{
         opacity: .5;
@@ -93,7 +114,7 @@ export default {
             }
         }
         .logo{
-            width: 60vw;
+            width: 50vw;
             display: flex;
             justify-content:flex-end;
            img{
@@ -110,6 +131,7 @@ export default {
         .pictures{
             display: flex;
             margin:.2rem 0;
+            height: 2.5rem;
             .im{
                 width:33%;
                 overflow: hidden;
@@ -117,6 +139,8 @@ export default {
                 background: #999;
                 img{
                     width: 100%;
+                    height: 100%;
+                    object-fit: cover;
                 }
             }
         }
