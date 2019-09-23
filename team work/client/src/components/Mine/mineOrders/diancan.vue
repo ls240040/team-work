@@ -55,7 +55,6 @@ export default {
     return {
       orderList: [], //用于存储这个用户所有的订单内容
       nameInOrder: [],
-      n:0,
     };
   },
   components: {
@@ -111,6 +110,8 @@ export default {
     //查看订单详情
     watchOrder(index) {
       var O_ID = this.orderList[index].O_ID;
+      var merName=this.nameInOrder[index].M_Name;
+      this.$router.push({ path: '/diancanordercontent' ,query: {O_ID: O_ID,M_Name:merName,totalPrice:this.orderList[index].O_Totle}});
     }
   },
   created() {
