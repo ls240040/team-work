@@ -232,7 +232,7 @@ export default {
     toOrder(){
       //{ M_ID(店家ID),D_ID(桌子ID),foodData:[{F_ID(F_ID食物编号),F_Price(F_Price价格),num(num点了多少个)},{},{},...] }需要传输的数据
       var potCount=0;
-      console.log(this.foodData);
+
       for(var i=0;i<this.foodData.length;i++){//遍历计数锅的个数
         if(this.foodData[i].F_FTID==1||this.foodData[i].F_FTID==2||this.foodData[i].F_FTID==3){
           potCount+=this.foodData[i].num;
@@ -252,7 +252,7 @@ export default {
           var example={F_ID:this.foodData[i].F_ID,F_Price:this.foodData[i].F_Price,num:this.foodData[i].num}
           foodData.push(example);
         }
-        // this.$router.push({ path: '/vipcarousel' ,query: {M_ID: 1,D_ID:1,foodData}});
+        // this.$router.push({ path: '/order' ,query: {M_ID: 1,D_ID:1,foodData}});
         console.log(foodData);
       }
 
