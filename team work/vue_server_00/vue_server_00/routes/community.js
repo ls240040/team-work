@@ -84,6 +84,7 @@ router.get('/friends',(req,res)=>{
     pool.query(sql,(R_Name),(err,result)=>{
         if(err) throw err;
         if(result.length==0){
+            res.send({code:-2,msg:"查询失败"});
             var sql=`INSERT INTO friends VALUES(NULL,'${R_Avatar}','${R_Name}','${R_Title}','${R_Vip}','${R_Comment}','${R_img1}','${R_img2}','${R_img3}','${R_Time}',${R_Comnum},${R_Collect})`;
             pool.query(sql,(err,result)=>{
                 if(err) throw err;
@@ -94,7 +95,7 @@ router.get('/friends',(req,res)=>{
                 }
             })
         }else{
-            res.send({code:2,msg:"已关注"});
+            res.send({code:2,msg:"已关注",data:result});
         }
     })
 })

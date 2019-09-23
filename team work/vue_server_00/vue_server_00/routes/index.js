@@ -43,7 +43,19 @@ router.post('/rownum', (req, res) => {
 
 })
 
-
+//http://127.0.0.1:5050/index/rowNum2
+router.get('/rowNum2',(req,res)=>{
+    var U_ID = req.query.uid;
+    var sql = "SELECT R_ID,R_Time,R_People,R_Address FROM diancan_rownum WHERE U_ID=?"
+    pool.query(sql,[U_ID],(err,result)=>{
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败" });
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+})
 
 //http://127.0.0.1:5050/index/reserve?R_Phone=18596855565&R_Name=tom
 router.get('/reserve', (req, res) => {
