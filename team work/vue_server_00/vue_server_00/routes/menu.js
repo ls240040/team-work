@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
             res.send({ code: 1, msg: "查询成功", data: result });
         }
     })
-})
+});
 
 //根据店铺ID获取里面所有菜品
 router.get('/food', (req, res) => {
@@ -35,9 +35,39 @@ router.get('/food', (req, res) => {
             res.send({ code: 1, msg: "查询成功", data: result });
         }
     })
-})
+});
 
+//根据店铺ID获取它的店铺名称
+router.get('/getMerName', (req, res) => {
+    var params = url.parse(req.url, true).query;
+    let M_ID = params.M_ID;//店铺ID
 
+    var sql = "SELECT M_Name FROM diancan_mer where M_ID=?";
+    pool.query(sql,[M_ID] ,(err, result) => {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败", data: result });
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+});
+
+//根据食物ID获取它的食物名称
+router.get('/getFoodName', (req, res) => {
+    var params = url.parse(req.url, true).query;
+    let F_ID = params.F_ID;//食物ID
+
+    var sql = "SELECT F_ID,F_Name,F_Price FROM diancan_food where F_ID=?";
+    pool.query(sql,[F_ID] ,(err, result) => {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败", data: result });
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+});
 
 
 module.exports = router;
