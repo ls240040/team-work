@@ -23,50 +23,56 @@
 
     <div class="y1">
       <div style="border-bottom:0.01rem solid #e2e2e2">
-        <span class="c1">———— 海底捞火锅外送(庆春路店) ————</span>
+        <span class="c1">———— 海底捞火锅外送({{MerName}}) ————</span>
         <div class="d1">
           <span class="z1">已选商品</span>
-          <span class="z1">共5份</span>
+          <span class="z1">共{{count}}份</span>
         </div>
       </div>
       <!-- 内部生成food列表 -->
       <div>
         <div class="cs" style="border-bottom:0.01rem solid #e2e2e2;">
-          <div class="d1" style="margin-bottom: 0.1rem;">
-            <span class="a1">2-5人餐np1x</span>
-            <span style="margin-left:2rem" class="z1">x1</span>
-            <span style="color:#f00;font-size:0.3rem">￥309</span>
+          <div
+            class="d1"
+            style="margin-bottom: 0.1rem;position:relative;"
+            v-for="(food,index) in foodList"
+            :key="index"
+          >
+            <span class="a1">{{food.F_Name}}</span>
+            <span class="z1">x{{food.num}}</span>
+            <span style="color:#f00;font-size:0.3rem">￥{{food.F_Price*food.num}}</span>
           </div>
         </div>
       </div>
 
       <!-- 共计 -->
-      <div class="d1" style="margin-bottom:0.1rem">
+      <!-- <div class="d1" style="margin-bottom:0.1rem">
         <span class="a1">配送费</span>
         <span class="a1" style="font-size:0.3rem">￥38</span>
-      </div>
+      </div>-->
     </div>
     <div class="y1">
-      <div style="border-bottom:0.01rem solid #e2e2e2">
+      <!-- <div style="border-bottom:0.01rem solid #e2e2e2">
         <div class="d1" style="height:0.6rem;line-height:0.6rem;overflow:hidden">
           <span class="b1">整单商品优惠</span>
           <span class="z1">所有商品立减20.0元</span>
         </div>
-      </div>
-      <div class="t1">
-        <p class="z1">原价</p>
-        <p class="z1">￥309</p>
-      </div>
+      </div>-->
     </div>
     <div style="background-color:#fff">
       <div style="border-top:0.01rem solid #e2e2e2;margin:0;padding:0;">
-        <div class="d1" style="margin:0;padding:0;">
-          <span style="margin-top:.3rem;margin-left:0.2rem" class="z1">已优惠 -￥45</span>
-          <span style="margin-top:.3rem;" class="z1">还需付 ￥309</span>
-          <mt-button type="primary">确认下单</mt-button>
+        <div class="d1 toPay" style>
+          <!-- <span style="margin-top:.3rem;margin-left:0.2rem" class="z1">已优惠 -￥45</span>
+          <span style="margin-top:.3rem;" class="z1">还需付 ￥309</span>-->
+          <div class="t1">
+            <p class="z1">总价</p>
+            <p class="z1">￥{{totalPrice}}</p>
+          </div>
+          <mt-button type="primary" @click="addOrder">确认下单</mt-button>
         </div>
       </div>
     </div>
+    <div class="faker"></div>
   </div>
 </template>
 <script>
@@ -75,17 +81,50 @@ export default {
     return {
       selected: "waisong",
       temp: ["选择收获时间", "送达时间", "支付方式"],
-      tem: ["自取地址", "联系方式", "到店时间", "支付方式"]
+      tem: ["自取地址", "联系方式", "到店时间", "支付方式"],
+      MerName: "", //店铺名称
+      count: this.$route.query.count, //一共多少食物
+      foodList: [], //已点食物
+      totalPrice: this.$route.query.totalPrice //总价
     };
   },
   methods: {
     //加载传过来的已点的food
     loadList() {
-      var M_ID=this.$route.query.M_ID;//拿到店家ID
-      var D_ID=this.$route.query.D_ID;//拿到桌子ID
-      var foodData = this.$route.query.foodData;//拿到已点的food
-      
+      var M_ID = this.$route.query.M_ID; //拿到店家ID
+      var D_ID = this.$route.query.D_ID; //拿到桌子ID
+      var foodData = this.$route.query.foodData; //拿到已点的food
 
+      var url = "/menu/getMerName"; //获取店铺名称
+      this.axios.get(url, { params: { M_ID: M_ID } }).then(res => {
+        if (res.data.code == 1) {
+          this.MerName = res.data.data[0].M_Name;
+        }
+      });
+
+      var url1 = "/menu/getFoodName";
+      for (let i = 0; i < foodData.length; i++) {
+        this.axios
+          .get(url1, { params: { F_ID: foodData[i].F_ID } })
+          .then(res => {
+            if (res.data.code == 1) {
+              let FName = res.data.data[0].F_Name;
+              let FPrice = res.data.data[0].F_Price;
+              let example = {
+                F_Name: FName,
+                F_Price: this.$route.query.foodData[i].num,
+                num: this.$route.query.foodData[i].num,
+                F_Price: FPrice
+              };
+              this.foodList.push(example);
+            }
+          });
+        // console.log(this.foodList);
+      }
+    },
+    //点击按钮后添加订单道数据库
+    addOrder(){
+      alert("add!")
     }
   },
   created() {
@@ -95,6 +134,7 @@ export default {
 </script>
 <style lang="scss">
 .Wai {
+  position: relative;
   .bor {
     text-align: left;
     align-items: center;
@@ -144,8 +184,9 @@ export default {
     // font-family:"Times New Roman",Georgia,Serif;
   }
   .z1 {
-    font-size: 0.2rem;
-    color: #666;
+    font-size: 0.3rem;
+    color: #333;
+    font-weight: bold;
     font-family: "Times New Roman", Georgia, Serif;
   }
   .d1 {
@@ -159,20 +200,37 @@ export default {
     // font-family:"Times New Roman",Georgia,Serif;
   }
   .cs {
+    // height: 3rem;
+    // overflow-y: auto;
     .d1 {
       display: flex;
       justify-content: space-between;
       margin: 0.3rem;
     }
     .a1 {
-      font-size: 0.2rem;
+      font-size: 0.25rem;
       color: #000;
     }
     .z1 {
-      font-size: 0.2rem;
+      font-size: 0.25rem;
       color: #666;
       font-family: "Times New Roman", Georgia, Serif;
+      position: absolute;
+      right: 2rem;
     }
   }
+}
+.toPay {
+  width: 100%;
+  margin: 0 !important;
+  padding: 0;
+  position: fixed;
+  right: 0rem;
+  bottom: 0rem;
+  background-color: #fff;
+}
+.faker{
+  height: 1rem;
+  width: 100%;
 }
 </style>
