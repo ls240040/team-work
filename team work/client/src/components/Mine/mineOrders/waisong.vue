@@ -133,7 +133,7 @@ export default {
       var M_ID = this.$route.query.M_ID, //拿到店家ID
         D_ID = this.$route.query.D_ID, //拿到桌子ID
         U_ID = sessionStorage.getItem("accessToken"), //拿到用户ID
-        Time = null,
+        Time = this.getNowFormatDate(),
         Statue = 1,
         Phone = 15312345678,
         Dis = 0,
@@ -172,10 +172,39 @@ export default {
             console.log("success");
             this.OrderSuccess="",
             this.OrderStatue="none";
+            this.$router.push({ path: '/diancan' });
+            this.$router.go(0);
             
           }else{console.log("fail")}
         });
-    }
+    },
+    //获取现在的时间
+    getNowFormatDate() {
+      var date = new Date();
+      var seperator1 = "-";
+      var seperator2 = ":";
+      var month = date.getMonth() + 1;
+      var strDate = date.getDate();
+      if (month >= 1 && month <= 9) {
+        month = "0" + month;
+      }
+      if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+      }
+      var currentdate =
+        date.getFullYear() +
+        seperator1 +
+        month +
+        seperator1 +
+        strDate +
+        " " +
+        date.getHours() +
+        seperator2 +
+        date.getMinutes() +
+        seperator2 +
+        date.getSeconds();
+      return currentdate;
+    },
   },
   created() {
     this.loadList();

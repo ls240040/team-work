@@ -446,7 +446,7 @@ CREATE TABLE diancan_Order(
   O_MID Int,                    /**餐馆ID**/
   O_UID Int,                    /**用户ID**/
   O_DID Int,                    /**桌子ID**/
-  O_Time Datetime,              /**下单时间**/
+  O_Time Varchar(50),              /**下单时间**/
   O_Statue Int,                 /**订单状态 有效 无效 完成**/
   O_Phone Varchar(11),          /**下单电话**/
   O_FID Varchar(200),           /**所点菜ID   !用逗号隔开!**/

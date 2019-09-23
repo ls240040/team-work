@@ -48,5 +48,22 @@ router.get("/getNum", (req, res) => {
             res.send({ code: 1, msg: "登录成功", data: result });
         }
     });
-})
+});
+
+//根据用户ID获取用户所有信息
+router.get('/getUser', (req, res) => {
+    var params = url.parse(req.url, true).query;
+    let U_ID = params.U_ID;//用户ID
+
+    var sql = "SELECT * FROM diancan_user where U_ID=?";
+    pool.query(sql,[U_ID] ,(err, result) => {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败", data: result });
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+});
+
 module.exports = router;
