@@ -2,6 +2,7 @@
   <div class="vip">
     <titlebar></titlebar>
     <vipcard></vipcard>
+    <vipcardlogined></vipcardlogined>
     <viprights></viprights>
     <vipexchange></vipexchange>
     <div class="know">会员须知<img src="http://127.0.0.1:5050/icon/icon_go.webp" alt=""></div>
@@ -16,6 +17,7 @@
 <script>
 import TitleBar from "../components/VIP/TitleBar";
 import VIPCard from "../components/VIP/VIPCard";
+import VIPCardLogined from "../components/VIP/VIPCardLogined";
 import VIPRights from "../components/VIP/VIPRights";
 import VIPExchange from "../components/VIP/VIPExchange";
 import TabBar from "../components/tab-bar";
@@ -31,6 +33,7 @@ export default {
   components: {
     "titlebar": TitleBar,
     "vipcard": VIPCard,
+    "vipcardlogined": VIPCardLogined,
     "viprights": VIPRights,
     "vipexchange": VIPExchange,
     "tab-bar": TabBar,
