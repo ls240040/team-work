@@ -68,7 +68,8 @@
             <p class="z1">总价</p>
             <p class="z1">￥{{totalPrice}}</p>
           </div>
-          <mt-button type="primary" @click="addOrder">确认下单</mt-button>
+          <mt-button type="primary" :style="`display:${OrderSuccess};background-color:#555;`">下单成功</mt-button>
+          <mt-button type="primary" @click="addOrder" :style="`display:${OrderStatue}`">确认下单</mt-button>
         </div>
       </div>
     </div>
@@ -85,7 +86,9 @@ export default {
       MerName: "", //店铺名称
       count: this.$route.query.count, //一共多少食物
       foodList: [], //已点食物
-      totalPrice: this.$route.query.totalPrice //总价
+      totalPrice: this.$route.query.totalPrice, //总价
+      OrderSuccess:"none",
+      OrderStatue:"",
     };
   },
   methods: {
@@ -166,7 +169,10 @@ export default {
         })
         .then(res => {
           if (res.data.code == 1) {
-            console.log("success")
+            console.log("success");
+            this.OrderSuccess="",
+            this.OrderStatue="none";
+            
           }else{console.log("fail")}
         });
     }
