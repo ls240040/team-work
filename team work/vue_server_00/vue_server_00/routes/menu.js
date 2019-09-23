@@ -124,6 +124,37 @@ router.get('/getUserOrder', (req, res) => {
     })
 });
 
+//根据用户ID获取这个用户所有外卖订单
+router.get('/getOrder', (req, res) => {
+    var params = url.parse(req.url, true).query;
+    let O_ID = params.O_ID;//用户ID
+
+    var sql = "SELECT * FROM diancan_order where O_ID=?";
+    pool.query(sql,[O_ID] ,(err, result) => {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败", data: result });
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+});
+
+//删除订单
+router.get('/deleteOrder', (req, res) => {
+    var params = url.parse(req.url, true).query;
+    let O_ID = params.O_ID;//用户ID
+
+    var sql = "DELETE FROM diancan_order WHERE O_ID = ?";
+    pool.query(sql,[O_ID] ,(err, result) => {
+        if (err) throw err;
+        if (result.rowaffected == 0) {
+            res.send({ code: -1, msg: "删除失败", data: result });
+        } else {
+            res.send({ code: 1, msg: "删除成功", data: result });
+        }
+    });
+});
 
 
 module.exports = router;

@@ -8,22 +8,22 @@
     </mt-header>
     <!-- 点餐订单组件 -->
     <div class="yudingOrder" v-for="(item,index) in orderList" :key="index">
+      
       <div class="div1">
         <h3>
           <span>
-            <span>下沙银泰店</span>
-            <span>5.5km</span>
+            <span>{{nameInOrder[index].M_Name}}</span>
           </span>
           <span>
-            <span class="myspan">到店</span>
-            <span>外卖</span>
-            <span class="myspan">已取消</span>
+            <span>订单编号</span>
+            <span class="myspan">{{item.O_ID}}</span>
+            <span class="myspan">&nbsp;&nbsp;</span>
           </span>
         </h3>
         <div class="div2">
           <ul>
             <li>下单用户</li>
-            <li>1</li>
+            <li>{{nameInOrder[index].U_NickName}}</li>
           </ul>
           <ul>
             <li>下单时间</li>
@@ -36,10 +36,9 @@
             </li>
           </ul>
         </div>
-        <div></div>
         <div class="div4">
-          <span>取消订单</span>
-          <span class="zxdc">查看详情</span>
+          <span @click="deleteOrder(index)">取消订单</span>
+          <span class="zxdc" @click="watchOrder(index)">查看详情</span>
         </div>
       </div>
     </div>
@@ -55,7 +54,7 @@ export default {
   data() {
     return {
       orderList: [], //用于存储这个用户所有的订单内容
-      nameInOrder: []
+      nameInOrder: [],
     };
   },
   components: {
@@ -69,30 +68,50 @@ export default {
       this.axios.get(url, { params: { U_ID: U_ID } }).then(res => {
         if (res.data.code == 1) {
           this.orderList = res.data.data;
+
+          //根据里面的ID获取对应的名称
+          for (let i = 0; i < this.orderList.length; i++) {
+            let userID = this.orderList[i].O_UID; //用户ID
+            let merID = this.orderList[i].O_MID; //店家ID
+            this.nameInOrder.push({ U_Name: "", U_NickName: "", M_Name: "" });
+
+            let url1 = "/user/getUser";
+            let url2 = "/menu/getMerName";
+            this.axios.get(url1, { params: { U_ID: userID } }).then(res => {
+              if (res.data.code == 1) {
+                this.nameInOrder[i].U_Name = res.data.data[0].U_Name;
+                this.nameInOrder[i].U_NickName = res.data.data[0].U_NickName;
+              }
+            });
+            this.axios.get(url2, { params: { M_ID: merID } }).then(res => {
+              if (res.data.code == 1) {
+                this.nameInOrder[i].M_Name = res.data.data[0].M_Name;
+              }
+            });
+          }
         }
       });
+    },
 
-      //根据里面的ID获取对应的名称
-      for (let i = 0; i < this.orderList.length; i++) {
-        let userID = this.orderList[i].O_UID; //用户ID
-        let merID = this.orderList[i].O_MID; //店家ID
-        let userName, merName; //存储两个的名字
-
-        let url1 = "/user/getUser";
-        let url2 = "/user/getMerName";
-        this.axios.get(url1, { params: { U_ID: userID } }).then(res => {
+    //删除订单
+    deleteOrder(index) {
+      var O_ID = this.orderList[index].O_ID;
+      this.$messagebox.confirm("确定要删除订单" + O_ID + "吗?").then(action => {
+        var url = "/menu/deleteOrder";
+        this.axios.get(url, { params: { O_ID: O_ID } }).then(res => {
           if (res.data.code == 1) {
-            userName = res.data.data[0].U_NickName;
+            this.$router.go(0);
           }
         });
-        this.axios.get(url2, { params: { M_ID: merID } }).then(res => {
-          if (res.data.code == 1) {
-            userName = res.data.data[0].M_Name;
-          }
-        });
-        this.nameInOrder.push({ U_Name: userName, M_Name: merName });
-      }
-      console.log(this.nameInOrder);
+      });
+
+    },
+
+    //查看订单详情
+    watchOrder(index) {
+      var O_ID = this.orderList[index].O_ID;
+      var merName=this.nameInOrder[index].M_Name;
+      this.$router.push({ path: '/diancanordercontent' ,query: {O_ID: O_ID,M_Name:merName,totalPrice:this.orderList[index].O_Totle}});
     }
   },
   created() {
