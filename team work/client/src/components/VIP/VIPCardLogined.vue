@@ -15,8 +15,8 @@ export default {
     }
   },
   methods:{
-    goLogin:function(){
-      this.$router.push({ path: '/login'});
+    myNum:function(){
+      alert("码");
     }
   }
 }
