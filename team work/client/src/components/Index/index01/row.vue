@@ -152,7 +152,8 @@ export default {
               this.$router.push("/paihao_detailed");
             } else {
               this.$toast({ message: "请勿重复排号" });
-              this.$router.push("/paihao_detailed");
+              setTimeout(res=>{     this.$router.push("/paihao_detailed")},1000)
+         
             }
           })
           .catch(function(err) {
