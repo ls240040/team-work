@@ -177,9 +177,9 @@ CREATE TABLE diancan_Mer(
 /**餐馆描述表插入数据**/
 INSERT INTO diancan_Mer VALUES
 (null,"铂澜大象城店","杭州市西湖区文一路294号铂澜大象城5楼",15888888888,null,4.5,4.5,4.5,1234,1.681),
-(null,"水晶城店","杭州市西湖区文一路294号铂澜大象城5楼",15888888888,null,4.5,4.5,4.5,1234,3.504),
-(null,"城西银泰店","杭州市西湖区文一路294号铂澜大象城5楼",15888888888,null,4.5,4.5,4.5,1234,3.644),
-(null,"绍兴路店","杭州市西湖区文一路294号铂澜大象城5楼",15888888888,null,4.5,4.5,4.5,1234,3.969);
+(null,"水晶城店","杭州市拱墅区上塘路458号水晶城购物广场6楼",15888888888,null,4.5,4.5,4.5,1234,3.504),
+(null,"城西银泰店","杭州市拱墅区丰潭路380号银泰B座4楼",15888888888,null,4.5,4.5,4.5,1234,3.644),
+(null,"绍兴路店","杭州市下城区绍兴路337号3层(野风现代之星大厦)",15888888888,null,4.5,4.5,4.5,1234,3.969);
 
 /****菜品分类****/
 CREATE TABLE diancan_FoodType(
@@ -350,7 +350,7 @@ INSERT INTO diancan_Food VALUES
 CREATE TABLE diancan_RowNum(
   R_ID INT PRIMARY KEY AUTO_INCREMENT,/*排号号码*/
   U_ID INT,/*用户ID*/
-  R_Time Datetime,/*下单时间*/
+  R_Time Varchar(50),/*下单时间*/
   R_People Int,/*人数*/
   R_Address Varchar(200),/*地址*/
   R_ETime Varchar(8),

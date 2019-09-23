@@ -98,18 +98,37 @@ export default {
     };
   },
   methods: {
+    getNowFormatDate() {
+      var date = new Date();
+      var seperator1 = "-";
+      var seperator2 = ":";
+      var month = date.getMonth() + 1;
+      var strDate = date.getDate();
+      if (month >= 1 && month <= 9) {
+        month = "0" + month;
+      }
+      if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+      }
+      var currentdate =
+        date.getFullYear() +
+        seperator1 +
+        month +
+        seperator1 +
+        strDate +
+        " " +
+        date.getHours() +
+        seperator2 +
+        date.getMinutes() +
+        seperator2 +
+        date.getSeconds();
+      return currentdate;
+    },
     getNum() {
       var uid = sessionStorage.getItem("accessToken");
-      var time = new Date();
-      var year = time.getFullYear();
-      var month = time.getMonth() + 1;
-      var date = time.getDate();
-      var hour = time.getHours();
-      var min = time.getMinutes();
-      var sec = time.getSeconds();
-      time =
-        year + "-" + month + "-" + date + " " + hour + ":" + min + ":" + sec;
-      console.log(this.num, uid, this.address, this.eTime, this.ETime);
+
+    var time =this.getNowFormatDate()
+    console.log(time)
       //未登陆跳转至登陆页面
       if (uid == null) {
         this.$router.push("/login");
@@ -133,6 +152,7 @@ export default {
               this.$router.push("/paihao_detailed");
             } else {
               this.$toast({ message: "请勿重复排号" });
+              this.$router.push("/paihao_detailed");
             }
           })
           .catch(function(err) {
@@ -147,7 +167,7 @@ export default {
       this.popupVisible = true;
       var now = new Date();
       now = now.getHours();
-      console.log(now,this.shopName);
+      console.log(now, this.shopName);
       if (now >= 9 && now < 16) {
         this.ETime = "午市";
         this.eTime = "午市(09:00-16:00)";
