@@ -22,13 +22,14 @@ router.post('/rownum', (req, res) => {
     ETime = req.body.ETime
     eTime = req.body.eTime
     Time = req.body.time
+    shopname = req.body.shopname
     var sql1 = "SELECT R_ID FROM diancan_rownum WHERE U_ID=?"
     pool.query(sql1, uid, (err, result) => {
         console.log(result.length == 0)
         if (err) throw err;
         if (result.length == 0) {
-            var sql = "INSERT INTO  diancan_RowNum  SET U_ID=?,R_Time=?,R_People=?,R_Address=?,R_Etime=?";
-            pool.query(sql, [uid, Time, num, addr, eTime], (err, result) => {
+            var sql = "INSERT INTO  diancan_RowNum  SET U_ID=?,R_Time=?,R_People=?,R_Address=?,R_Etime=?,R_ShopName=?";
+            pool.query(sql, [uid, Time, num, addr, eTime, shopname], (err, result) => {
                 if (err) throw err;
                 if (result.length == 0) {
                     res.send({ code: -1, msg: "排号失败" });

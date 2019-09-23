@@ -14,7 +14,7 @@
       id="1"
       v-for="(item,index) of list"
       :key="index"
-      @click="linkTo(item.M_Address)"
+      @click="linkTo(item.M_Address,item.M_Name)"
     >
       <img class="logo" src="http://127.0.0.1:5050/icon/su_logo.png">
       <div class="info">
@@ -93,7 +93,8 @@ export default {
       address: "",
       popupVisible: false,
       ETime: "",
-      eTime: ""
+      eTime: "",
+      shopName: ""
     };
   },
   methods: {
@@ -115,6 +116,7 @@ export default {
       } else {
         var params = new URLSearchParams();
         params.append("uid", uid);
+        params.append("shopname", this.shopName);
         params.append("addr", this.address);
         params.append("eTime", this.eTime);
         params.append("ETime", this.ETime);
@@ -127,9 +129,10 @@ export default {
               // this.$router.push({
               //   path: "/"
               // });
-              this.$router.push("/");
+
+              this.$router.push("/paihao_detailed");
             } else {
-              this.$toast({ message: "请勿重复排号"});
+              this.$toast({ message: "请勿重复排号" });
             }
           })
           .catch(function(err) {
@@ -137,13 +140,14 @@ export default {
           });
       }
     },
-    linkTo(addr) {
-      console.log(addr);
+    linkTo(addr, shopname) {
+      console.log(addr, shopname);
+      this.shopName = shopname;
       this.address = addr;
       this.popupVisible = true;
       var now = new Date();
       now = now.getHours();
-      console.log(now);
+      console.log(now,this.shopName);
       if (now >= 9 && now < 16) {
         this.ETime = "午市";
         this.eTime = "午市(09:00-16:00)";
@@ -187,13 +191,12 @@ export default {
 <style lang="scss">
 // @import url('../../../assets/scss/reset.scss');
 //修改toast样式
-.mint-toast{
+.mint-toast {
   z-index: 9999;
-  
 }
-.mint-toast.is-placemiddle{
+.mint-toast.is-placemiddle {
   position: fixed;
- top: 35%;
+  top: 35%;
 }
 //修改button样式
 .mint-button--large {
