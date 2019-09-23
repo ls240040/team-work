@@ -45,10 +45,8 @@ export default {
     loadIndex() {
       var url = "index/carousel";
       this.axios.get(url).then(res => {
-        console.log(res.data.data);
         if (res.data.code == 1) {
           this.indexCarousel = res.data.data;
-          console.log(this.indexCarousel);
         }
       });
     }

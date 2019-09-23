@@ -7,9 +7,6 @@
     </div>
     <div class="shopItem">
       <indexshop></indexshop>
-      <indexshop></indexshop>
-      <indexshop></indexshop>
-      <indexshop></indexshop>
     </div>
   </div>
 </template>

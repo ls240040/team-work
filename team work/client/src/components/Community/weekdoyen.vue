@@ -44,13 +44,14 @@ export default {
 </script>
 <style lang="scss" scoped>
     .main{
-        background: #f7f7f7;
+        background: #fff;
         padding: .3rem 0;
         margin-top:.6rem;
     }
     .info{
         display: flex;
         justify-content: space-between;
+        margin-bottom:.3rem;
         .left{
             display: flex;
             justify-content: space-between;
@@ -61,6 +62,7 @@ export default {
                 bottom: 0;
                 align-self:flex-end;
                 margin-right:.2rem;
+                z-index: 0;
                 img{
                     width: 22vw;
                     z-index: 2;
@@ -69,9 +71,9 @@ export default {
                 .im1{
                     position: absolute;
                     z-index: 1;
-                    left: .35rem;
-                    width: 14vw;
-                    height: 14vw;
+                    left: .26rem;
+                    width: 16vw;
+                    height: 16vw;
                     margin-top: .1rem;
                 }
             }
