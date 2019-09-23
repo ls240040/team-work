@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../pool");
+//urlmodule解析params
+const url = require('url');
 
 //http://127.0.0.1:5050/user/login?U_LoginID=15312345678&U_PassWord=123456
 router.post("/login", (req, res) => {
