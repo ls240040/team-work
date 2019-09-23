@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="logo">
-                    <span class="attention" @click="attention(index)" v-show="show" :data-id="index">+关注</span>
+                    <span class="attention" @click="attention(index,$event)">+关注</span>
                     <img src="http://127.0.0.1:5050/icon/elipsis.png">
                 </div>
             </div>
@@ -51,11 +51,13 @@ export default {
         return {
              list:[],
              friends:[],
-             show:true
+             
+
         }
     },
      methods:{
-        attention(index){
+        attention(index,e){
+            e.target.innerHTML="已关注"
             index=parseInt(index)+1;
             console.log(index)
             for(var item of this.list){
@@ -76,7 +78,6 @@ export default {
                     this.axios.get(url,{params:obj}).then(res=>{
                         if(res.data.code==1){
                             this.friends=res.data.data;
-                            console.log(this.friends);
                             this.loadMore()
                         }
                     });
