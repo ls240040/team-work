@@ -19,7 +19,7 @@
       <h5>
         <span>取号时间</span>
         <span>{{message.R_Time}}</span>
-        <span>晚市</span>
+        <span>{{message.R_ETime.slice(0,2)}}</span>
       </h5>
       <h5>
         <span>就餐人数</span>
@@ -32,7 +32,7 @@
         <span>
           <span>{{message.R_ID}}</span>桌
         </span>
-        <span>小桌</span>
+        <span>{{size}}</span>
       </h5>
     </div>
     <div class="beizhu">
@@ -45,7 +45,7 @@
       <img src="http://127.0.0.1:5050/icon/arrow-right.png" alt>
     </div>
     <div class="div4">
-      <span class="myspan">取消排号</span>
+      <span class="myspan" @click="cancel">取消排号</span>
     </div>
   </div>
 </template>
@@ -60,10 +60,14 @@ export default {
         R_ETime: "",
         R_People:"",
         R_ID:""
-      }
+      },
+      size:""
     };
   },
   methods: {
+      cancel(){
+          
+      },
     lodaRowNum() {
       var uid = sessionStorage.getItem("accessToken");
       var obj = {
@@ -74,6 +78,13 @@ export default {
         .then(res => {
           if (res.data.code == 1) {
             this.message = res.data.data[0];
+            if(parseInt(this.message.R_People)<5){
+                this.size="小桌"
+            }else if(parseInt(this.message.R_People)<9){
+                 this.size="中桌"
+            }else{
+                 this.size="大桌"
+            }
           }
         });
     }
