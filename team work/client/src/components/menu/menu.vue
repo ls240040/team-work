@@ -69,8 +69,8 @@
         <!-- 右上食物计数 -->
         <span class="totalprice">￥{{totalPrice}}</span>
       </div>
-      <button v-if="totalPrice>=sendPrice">选好啦</button>
-      <span v-if="totalPrice<sendPrice">￥{{sendPrice}}起送</span>
+      <button v-if="totalPrice>=sendPrice" @click="toOrder">选好啦</button>
+      <span v-if="totalPrice<sendPrice">￥{{sendPrice}}起</span>
     </div>
   </div>
 </template>
@@ -176,7 +176,7 @@ export default {
         smoothDown();
       } else {
         let newTotal = distance - total;
-        step = newTotal / 50;
+        step = newTotal / 10;//上升速度
         smoothUp();
       }
       function smoothDown() {
@@ -227,6 +227,35 @@ export default {
       // } else {
       //   this.steps.active = 0;
       // }
+    },
+    //选好后去订单页面
+    toOrder(){
+      //{ M_ID(店家ID),D_ID(桌子ID),foodData:[{F_ID(F_ID食物编号),F_Price(F_Price价格),num(num点了多少个)},{},{},...] }需要传输的数据
+      var potCount=0;
+      console.log(this.foodData);
+      for(var i=0;i<this.foodData.length;i++){//遍历计数锅的个数
+        if(this.foodData[i].F_FTID==1||this.foodData[i].F_FTID==2||this.foodData[i].F_FTID==3){
+          potCount+=this.foodData[i].num;
+        }
+      }
+      //根据锅的数量判断
+      if(potCount>1){
+        this.$toast({message:"一单只限一个锅。"});
+      }
+      if(potCount<1){
+        this.$toast({message:"请至少点一个锅。"});
+      }
+      if(potCount==1){
+        var foodData=[];
+        for(var i=0;i<this.foodData.length;i++){
+          if(this.foodData[i].num==0){continue;}
+          var example={F_ID:this.foodData[i].F_ID,F_Price:this.foodData[i].F_Price,num:this.foodData[i].num}
+          foodData.push(example);
+        }
+        // this.$router.push({ path: '/vipcarousel' ,query: {M_ID: 1,D_ID:1,foodData}});
+        console.log(foodData);
+      }
+
     }
   },
   created() {
@@ -236,7 +265,9 @@ export default {
     this.$nextTick(function() {
       window.addEventListener("scroll", this.onScroll);
     });
-  }
+  },
+  
+
 };
 </script>
 
