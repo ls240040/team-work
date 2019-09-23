@@ -115,7 +115,20 @@ router.get('/getUserOrder', (req, res) => {
 
 
 //删除订单
+router.get('/deleteOrder', (req, res) => {
+    var params = url.parse(req.url, true).query;
+    let O_ID = params.O_ID;//用户ID
 
+    var sql = "DELETE FROM diancan_order WHERE O_ID = ?";
+    pool.query(sql,[O_ID] ,(err, result) => {
+        if (err) throw err;
+        if (result.rowaffected == 0) {
+            res.send({ code: -1, msg: "删除失败", data: result });
+        } else {
+            res.send({ code: 1, msg: "删除成功", data: result });
+        }
+    });
+});
 
 
 module.exports = router;
