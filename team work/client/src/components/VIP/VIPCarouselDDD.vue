@@ -178,6 +178,7 @@
 <style scoped>
 body {
   margin: 0;
+  background-color: #eeeeee;
 }
 
 .back {
@@ -186,6 +187,7 @@ body {
   top: 0.3rem;
   left: 0.3rem;
   font-size: 0.3rem;
+  background-color: #fff;
 }
 
 .htmleaf-container {
