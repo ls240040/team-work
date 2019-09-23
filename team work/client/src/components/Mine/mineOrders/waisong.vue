@@ -122,9 +122,53 @@ export default {
         // console.log(this.foodList);
       }
     },
-    //点击按钮后添加订单道数据库
-    addOrder(){
-      alert("add!")
+    //点击按钮后添加订单到数据库
+    addOrder() {
+      //O_MID店家ID，O_DID桌子ID，O_UID用户ID，O_Time下单时间，O_Statue订单状态，O_Phone下单电话，O_FID下单的食物，O_Totle实际消费
+      //O_Dis优惠0，O_PayStatue支付状态是/否，O_Note说明
+
+      var M_ID = this.$route.query.M_ID, //拿到店家ID
+        D_ID = this.$route.query.D_ID, //拿到桌子ID
+        U_ID = sessionStorage.getItem("accessToken"), //拿到用户ID
+        Time = null,
+        Statue = 1,
+        Phone = 15312345678,
+        Dis = 0,
+        Totle = this.totalPrice - Dis,
+        PayStatue = 1,
+        Note = "koi";
+
+      var foodData = this.$route.query.foodData;
+      var FID = "";
+      for (var i = 0; i < foodData.length; i++) {
+        FID = FID + foodData[i].F_ID + "*" + foodData[i].num; //1*1,2*3,...,7*6
+        if (i < foodData.length - 1) {
+          FID = FID + ",";
+        } //最后一个不加","
+      }
+      console.log(FID);
+      var url = "/menu/addOrder"; //获取店铺名称
+      this.axios
+        .get(url, {
+          params: {
+            O_MID: M_ID,
+            O_DID: D_ID,
+            O_UID: U_ID,
+            O_Time: Time,
+            O_Statue: Statue,
+            O_Phone: Phone,
+            O_FID: FID,
+            O_Totle: Totle,
+            O_Dis:Dis,
+            O_PayStatue:PayStatue,
+            O_Note:Note,
+          }
+        })
+        .then(res => {
+          if (res.data.code == 1) {
+            console.log("success")
+          }else{console.log("fail")}
+        });
     }
   },
   created() {
@@ -229,7 +273,7 @@ export default {
   bottom: 0rem;
   background-color: #fff;
 }
-.faker{
+.faker {
   height: 1rem;
   width: 100%;
 }
