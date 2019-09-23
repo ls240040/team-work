@@ -55,20 +55,13 @@ export default {
         return {
              list:[],
              friends:[],
-<<<<<<< HEAD
-=======
-             
 
->>>>>>> 7c98d9497d806a417a99cca1ba6ae9e06d4cf850
         }
     },
      methods:{
         attention(index,e){
-<<<<<<< HEAD
             e.target.innerHTML="已关注";
-=======
             e.target.innerHTML="已关注"
->>>>>>> 7c98d9497d806a417a99cca1ba6ae9e06d4cf850
             index=parseInt(index)+1;
             console.log(index);
             for(var item of this.list){
@@ -89,11 +82,8 @@ export default {
                     this.axios.get(url,{params:obj}).then(res=>{
                         if(res.data.code==1){
                             this.friends=res.data.data;
-<<<<<<< HEAD
                              
-=======
                             this.loadMore()
->>>>>>> 7c98d9497d806a417a99cca1ba6ae9e06d4cf850
                         }
                     });
                 }

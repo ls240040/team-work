@@ -27,7 +27,7 @@
         </mt-cell>
         <mt-cell title="去评分" is-link>
         </mt-cell>
-        <h4>退出登录</h4>
+        <h4 @click="logout">退出登录</h4>
            
   </div>  
 </template>
@@ -37,7 +37,10 @@ export default {
     return {};
   },
   methods: {
-    
+    logout(){
+      sessionStorage.removeItem('accessToken')
+      this.$router.push("/")
+    }
   },
  
 };

@@ -44,6 +44,7 @@ router.post('/rownum', (req, res) => {
 
 })
 
+<<<<<<< HEAD
 //http://127.0.0.1:5050/index/rowNum2
 router.get('/rowNum2',(req,res)=>{
     var U_ID = req.query.uid;
@@ -57,6 +58,43 @@ router.get('/rowNum2',(req,res)=>{
         }
     })
 })
+=======
+router.post('/cancelNum', (req, res) => {
+    var rid = req.body.rid
+    var sql = "DELETE FROM diancan_rownum WHERE R_ID=?"
+    pool.query(sql, rid, (err, result) => {
+        if (err) throw err;
+        if (result.rowaffected == 0) {
+            res.send({ code: -1, msg: "删除失败" });
+        } else {
+            res.send({ code: 1, msg: "删除成功" });
+            var sql1 = "ALTER  TABLE  `diancan_rownum` DROP `R_ID"
+            pool.query(sql1, (err, result) => {
+                if (err) throw err;
+                var sql2 = "ALTER  TABLE  `diancan_rownum` ADD 'R_ID' INT PRIMARY KEY NOT NULL AUTO_INCREMENT FIRST";
+                pool.query(sql2, (err, result) => {
+                    if (err) throw err;
+                    if (result.length == 0) {
+                        res.send({ code: -1, msg: "查询失败" });
+                    } else {
+                        res.send({ code: 1, msg: "查询成功", });
+                    }
+                })
+
+            })
+
+
+
+
+
+        }
+
+
+    })
+
+})
+
+>>>>>>> 3af9aab6b0c816830ddf3bbbb4102af8ce6fd675
 
 //http://127.0.0.1:5050/index/reserve?R_Phone=18596855565&R_Name=tom
 router.get('/reserve', (req, res) => {
