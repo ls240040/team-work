@@ -1,11 +1,19 @@
 <template>
   <div class="card">
-    <div @click="goLogin">登录/注册</div>
+    <span class="rednum">00016Ez1</span>
+    <div @click="myNum">我的会员码</div>
+    <span class="coin">{{coin}}</span><span class="tocoin">捞币</span>
+    <span class="mynum">NO.8620190910001675</span>
   </div>
 </template>
 
 <script>
 export default {
+  data(){
+    return{
+      coin:1,
+    }
+  },
   methods:{
     goLogin:function(){
       this.$router.push({ path: '/login'});
@@ -20,6 +28,7 @@ export default {
         background-repeat:no-repeat;
         background-size:100% 100%;
         height: 3.5rem;
+        position: relative;
     }
     .card>div{
       height: 0.8rem;
@@ -33,4 +42,33 @@ export default {
       left: 4.4rem;
       top: 0.8rem;
     }
+    .card>.rednum{
+      font-size: 0.3rem;
+      color: #fff;
+      position: absolute;
+      top: 0.7rem;
+      left: 0.7rem;
+    }
+    .card>.mynum{
+      font-size: 0.3rem;
+      color: #fff;
+      position: absolute;
+      bottom: 1rem;
+      right: 0.7rem;
+    }
+    .card>.coin{
+      font-size: 0.5rem;
+      color: #fff;
+      position: absolute;
+      bottom: 0.9rem;
+      left: 0.7rem;
+    }
+    .card>.tocoin{
+      font-size: 0.3rem;
+      color: #fff;
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+    }
+
 </style>
