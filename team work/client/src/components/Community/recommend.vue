@@ -13,11 +13,8 @@
                     </div>
                 </div>
                 <div class="logo">
-<<<<<<< HEAD
                     <span class="attention" @click="attention(index,$event)" :data-id="index">+关注</span>
-=======
                     <span class="attention" @click="attention(index,$event)">+关注</span>
->>>>>>> 7c98d9497d806a417a99cca1ba6ae9e06d4cf850
                     <img src="http://127.0.0.1:5050/icon/elipsis.png">
                 </div>
             </div>
