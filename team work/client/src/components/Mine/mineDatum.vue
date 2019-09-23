@@ -83,7 +83,7 @@ export default {
       }
       /* 会员等级图标 */
        img{
-         width:1.1rem;
+         width:1.1rem;height:0.4rem;
          vertical-align: middle;
        }   
     }

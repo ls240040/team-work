@@ -6,6 +6,10 @@ import Mine from './views/Mine.vue'
 import Vip from './views/Vip.vue'
 import Login from './views/Login.vue'
 
+
+/* 社区 详情页面 */
+import recommendDetailed from './components/Community/recommendDetailed.vue'
+
 import reserve from './components/Index/index02/reserve.vue'
 import demand from './components/Index/index02/demand.vue'
 import shopList from './components/Index/index02/shopList.vue'
@@ -125,6 +129,16 @@ export default new Router({
                 keepAlive: false //不需要被缓存的组件
             },
         },
+        /* 社区详情页面 */
+        {
+            path: '/recommendDetailed',
+            name: 'recommendDetailed',
+            component: recommendDetailed,
+            meta: {
+                keepAlive: true //需要被缓存的组件
+            },
+        },
+
         {
             path: '/reserve',
             name: 'reserve',
