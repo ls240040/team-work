@@ -40,8 +40,27 @@ export default {
   props: ["R_Time","R_People","R_ID"]
   ,
   methods: {
-      cancleNum(){
-          
+      cancelNum(){
+          var rid=this.R_ID
+        var params = new URLSearchParams();
+        params.append("rid", rid);
+        this.axios
+          .post("/index/cancelNum", params) //传参
+          .then(res => {
+            if (res.data.code == 1) {
+              // this.$router.push({
+              //   path: "/"
+              // });
+            console.log(1111)
+            } else {
+              this.$toast({ message: "请勿重复排号" });
+              setTimeout(res=>{ this.$router.push("/paihao_detailed")},1000)
+         
+            }
+          })
+          .catch(function(err) {
+            console.log(err);
+          });
       }
   },
   created() {

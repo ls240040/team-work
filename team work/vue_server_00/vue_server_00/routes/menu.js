@@ -113,7 +113,6 @@ router.get('/addOrder', (req, res) => {
 router.get('/getUserOrder', (req, res) => {
     var params = url.parse(req.url, true).query;
     let U_ID = params.U_ID; //用户ID
-
     var sql = "SELECT * FROM diancan_order where O_UID=?";
     pool.query(sql, [U_ID], (err, result) => {
         if (err) throw err;

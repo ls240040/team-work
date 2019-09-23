@@ -7,9 +7,9 @@
       </router-link>
     </mt-header>
      <!-- 暂无排号订单 -->
-    <nopaihaoOrder v-if="!rowList"></nopaihaoOrder>
+    <nopaihaoOrder v-if="!rowList.R_ID"></nopaihaoOrder>
     <!-- 排号订单组件 -->
-    <paihaoOrder v-else :R_Time="rowList.R_Time" :R_People="rowList.R_People" :R_ID="rowList.R_ID"></paihaoOrder>
+    <paihaoOrder v-else="" :R_Time="rowList.R_Time" :R_People="rowList.R_People" :R_ID="rowList.R_ID"></paihaoOrder>
    
   </div>
 </template>
