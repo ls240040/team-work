@@ -513,6 +513,9 @@ CREATE TABLE friends(
   R_Comnum INT,
   R_Collect INT
 ); 
+INSERT INTO friends VALUES
+(NULL,'/community/avatar1.png','大H8','吃不胖','/community/warmth_v_3.png','服务超级棒，真的很有耐心','/community/c1.jpg','/community/c2.jpg','/community/blank.jpg','发布于昨天',13,2);
+
 
 /**社区-达人**/
 CREATE TABLE doyen(

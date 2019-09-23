@@ -94,7 +94,7 @@ router.get('/friends',(req,res)=>{
                 }
             })
         }else{
-            res.send({code:1,msg:"已关注"});
+            res.send({code:2,msg:"已关注"});
         }
     })
 })
@@ -104,10 +104,10 @@ router.get('/friends2',(req,res)=>{
     var sql="SELECT R_Avatar,R_Name,R_Title,R_Vip,R_Comment,R_img1,R_img2,R_img3,R_Time,R_Comnum,R_Collect FROM friends";
     pool.query(sql,(err,result)=>{
         if(err) throw err;
-        if(result.length==0){
-            res.send({code:-1,msg:"查询失败"});
-        }else{
+        if(result.length>0){
             res.send({code:1,msg:"查询成功",data:result});
+        }else{
+            res.send({code:-1,msg:"查询失败",data:result});
         }
     })
 })
