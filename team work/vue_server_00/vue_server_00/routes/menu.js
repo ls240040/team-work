@@ -69,5 +69,32 @@ router.get('/getFoodName', (req, res) => {
     })
 });
 
+//添加到订单
+router.get('/addOrder', (req, res) => {
+    var params = url.parse(req.url, true).query;
+    let O_MID = params.O_MID,
+    O_DID=params.O_DID,
+    O_UID=params.O_UID,
+    O_Time=params.O_Time,
+    O_Statue=params.O_Statue,
+    O_Phone=params.O_Phone,
+    O_FID=params.O_FID,
+    O_Totle=params.O_Totle,
+    O_Dis=params.O_Dis,
+    O_PayStatue=params.O_PayStatue,
+    O_Note=params.O_Note;
+    
+    var sql = "INSERT INTO diancan_order VALUES (null,?,?,?,?,?,?,?,?,?,?,?)";
+    pool.query(sql,[O_MID,O_DID,O_UID,O_Time,O_Statue,O_Phone,O_FID,O_Totle,O_Dis,O_PayStatue,O_Note],
+    (err, result) => {
+        if (err) throw err;
+        if (result.rowaffected == 0) {
+            res.send({ code: -1, msg: "插入失败", data: result });
+        } else {
+            res.send({ code: 1, msg: "插入成功", data: result });
+        }
+    })
+});
+
 
 module.exports = router;

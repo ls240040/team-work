@@ -253,6 +253,7 @@ export default {
           foodData.push(example);
         }
         this.$router.push({ path: '/waisong' ,query: {M_ID: 1,D_ID:1,foodData,count:this.count,totalPrice:this.totalPrice}});
+                                               //this.$route.query.M_ID,this.$route.query.D_ID
         console.log(foodData);
       }
 
