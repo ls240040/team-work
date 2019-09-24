@@ -48,7 +48,7 @@ export default {
         console.log(res.data.code)
         if(res.data.code==1){
           this.$messagebox("取消成功").then(res=>{
-            this.$router.push('/shopList')
+            this.$router.go(0);
           });
           this.show=false;
         }

@@ -193,7 +193,9 @@ export default {
                             this.$router.push("/yuding");
                         })
                     }else if(res.data.code==2){
-                        this.$messagebox("不可重复预订")
+                        this.$messagebox("不可重复预订").then(res=>{
+                            this.$router.push("/yuding");
+                        })
                     }
                 }).catch(err=>{
                     console.log(err)
