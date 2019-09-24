@@ -56,7 +56,7 @@ export default {
             this.axios.get(url).then(res=>{
                 if(res.data.code==1){
                     this.list=res.data.data;
-                    this.loadMore()
+                    console.log(this.list);
                 }
             });
         }

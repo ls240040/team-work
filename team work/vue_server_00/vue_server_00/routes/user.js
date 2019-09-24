@@ -32,10 +32,8 @@ router.post("/login", (req, res) => {
         }
     });
 })
-<<<<<<< HEAD
 
 
-=======
 router.get("/getNum", (req, res) => {
     //6.1:接收网页传递数据 用户名和密码
     var u = req.query.uid;
@@ -71,6 +69,5 @@ router.get('/getUser', (req, res) => {
         }
     })
 });
->>>>>>> 7c98d9497d806a417a99cca1ba6ae9e06d4cf850
 
 module.exports = router;

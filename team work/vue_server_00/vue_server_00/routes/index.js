@@ -44,7 +44,6 @@ router.post('/rownum', (req, res) => {
 
 })
 
-<<<<<<< HEAD
 //http://127.0.0.1:5050/index/rowNum2
 router.get('/rowNum2',(req,res)=>{
     var U_ID = req.query.uid;
@@ -58,7 +57,8 @@ router.get('/rowNum2',(req,res)=>{
         }
     })
 })
-=======
+
+
 router.post('/cancelNum', (req, res) => {
     var rid = req.body.rid
     var sql = "DELETE FROM diancan_rownum WHERE R_ID=?"
@@ -94,7 +94,6 @@ router.post('/cancelNum', (req, res) => {
 
 })
 
->>>>>>> 3af9aab6b0c816830ddf3bbbb4102af8ce6fd675
 
 //http://127.0.0.1:5050/index/reserve?R_Phone=18596855565&R_Name=tom
 router.get('/reserve', (req, res) => {
