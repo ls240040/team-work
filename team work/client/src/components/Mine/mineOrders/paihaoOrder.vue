@@ -1,6 +1,6 @@
 <!--paihaoOrder.vue 排号页面组件-->
 <template>
-  <div class="paihaoOrder">
+  <div class="paihaoOrder" @click="linkToo">
     <div class="div1">
       <h3>
         <span>
@@ -37,45 +37,44 @@ export default {
   data() {
     return {};
   },
-  props: ["R_Time","R_People","R_ID"]
-  ,
+  props: ["R_Time", "R_People", "R_ID"],
   methods: {
-      cancelNum(){
-          var rid=this.R_ID
-        var params = new URLSearchParams();
-        params.append("rid", rid);
-        this.axios
-          .post("/index/cancelNum", params) //传参
-          .then(res => {
-            if (res.data.code == 1) {
-              this.$router.push({
-                path: "/"
-              });
-            } else {
-              this.$toast({ message: "请勿重复排号" });
-              setTimeout(res=>{ this.$router.push("/paihao_detailed")},1000)
-         
-            }
-          })
-          .catch(function(err) {
-            console.log(err);
-          });
-      }
-  },
-  created() {
-      console.log(this.R_Time,123456)
-  },
-   watch: {
-    'R_Time':function(data){
-        this.R_Time=data
+    linkToo(){
+      this.$router.push("/paihao_detailed")
     },
-    'R_People':function(data){
-        this.R_People=data
-    },
-    'R_ID':function(data){
-        this.R_ID=data
+    cancelNum() {
+      var rid = this.R_ID;
+      var params = new URLSearchParams();
+      params.append("rid", rid);
+      this.$messagebox
+        .confirm("确定要删除订单吗?")
+        .then(action => {
+          this.axios
+            .post("/index/cancelNum", params) //传参
+            .then(res => {
+              if (res.data.code == 1) {
+                this.$router.go(0);
+              }             
+            })
+            .catch(function(err) {
+              console.log(err);
+            });
+        })
+        .catch(err => {});
     }
   },
+  created() {},
+  watch: {
+    R_Time: function(data) {
+      this.R_Time = data;
+    },
+    R_People: function(data) {
+      this.R_People = data;
+    },
+    R_ID: function(data) {
+      this.R_ID = data;
+    }
+  }
 };
 </script>
 

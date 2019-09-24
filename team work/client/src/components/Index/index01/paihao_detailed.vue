@@ -45,7 +45,7 @@
       <img src="http://127.0.0.1:5050/icon/arrow-right.png" alt>
     </div>
     <div class="div4">
-      <span class="myspan" @click="cancel">取消排号</span>
+      <span class="myspan" @click="cancelNum">取消排号</span>
     </div>
   </div>
 </template>
@@ -65,9 +65,28 @@ export default {
     };
   },
   methods: {
-      cancel(){
-          
-      },
+      cancelNum() {
+      var rid = this.message.R_ID;
+      var params = new URLSearchParams();
+      params.append("rid", rid);
+      this.$messagebox
+        .confirm("确定要删除订单吗?")
+        .then(action => {
+          this.axios
+            .post("/index/cancelNum", params) //传参
+            .then(res => {
+              if (res.data.code == 1) {
+                 this.$router.push({ path: '/'});
+                 this.$router.go(0)
+              } 
+            })
+            .catch(function(err) {
+              console.log(err);
+            });
+        })
+        .catch(err => {});
+    },
+
     lodaRowNum() {
       var uid = sessionStorage.getItem("accessToken");
       var obj = {
