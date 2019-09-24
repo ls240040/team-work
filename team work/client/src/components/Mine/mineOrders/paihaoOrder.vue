@@ -48,10 +48,9 @@ export default {
           .post("/index/cancelNum", params) //传参
           .then(res => {
             if (res.data.code == 1) {
-              // this.$router.push({
-              //   path: "/"
-              // });
-            console.log(1111)
+              this.$router.push({
+                path: "/"
+              });
             } else {
               this.$toast({ message: "请勿重复排号" });
               setTimeout(res=>{ this.$router.push("/paihao_detailed")},1000)
