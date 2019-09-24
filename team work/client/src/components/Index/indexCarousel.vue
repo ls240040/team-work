@@ -46,7 +46,7 @@ export default {
       var url = "index/carousel";
       this.axios.get(url).then(res => {
         if (res.data.code == 1) {
-          this.indexCarousel = res.data.data;
+          this.indexCarousel = res.data.data; 
         }
       });
     }

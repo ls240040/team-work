@@ -46,6 +46,7 @@ import diancanordercontent from './components/Mine/mineOrders/diancanOrderConten
 import waisong from './components/Mine/mineOrders/waisong.vue'
 /* set设置 */
 import set from './components/Mine/Mines/set.vue'
+
 /* 修改密码 */
 import setPassword from './components/Mine/Mines/setPassword.vue'
 Vue.use(Router)
@@ -180,7 +181,7 @@ export default new Router({
             name: 'storeList',
             component: storeList
         },
-         /* 城市列表*/
+        /* 城市列表*/
         {
             path: '/cityStore',
             name: 'cityStore',
