@@ -14,10 +14,10 @@
     <div class="city">
       <span>北京</span>
       <span>上海</span>
+      <span>杭州</span>
       <span>广州</span>
       <span>深圳</span>
       <span>天津</span>
-      <span>杭州</span>
       <span>成都</span>
     </div>
     <h5>ABCDEF</h5>
