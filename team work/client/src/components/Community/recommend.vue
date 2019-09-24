@@ -38,7 +38,7 @@
                 </div>
                 <div class="right">
                     <div><img src="http://127.0.0.1:5050/icon/message.png"><span>{{item.R_Comnum}}</span></div>
-                    <div><img src="http://127.0.0.1:5050/icon/collect.png"><span>{{item.R_Collect}}</span></div>
+                    <div><img :src="active?collect:collect_active" @click="like(index)"><span>{{item.R_Collect}}</span></div>
                 </div>
             </div>
             <hr>
@@ -51,9 +51,21 @@ export default {
         return {
              list:[],
              friends:[],
+             active:true,
+             collect:'http://127.0.0.1:5050/icon/collect.png',
+             collect_active:'http://127.0.0.1:5050/icon/collect-fill.png'
         }
     },
      methods:{
+        like(i){
+            var url='community/recommend';
+            this.axios.get(url).then(res=>{
+                console.log(res.data.data);
+                if(res.data.code==1){
+                    var add=this.list[i].R_Collect+1;
+                }
+            })
+        },
         attention(index,e){
             e.target.innerHTML="已关注"
             index=parseInt(index)+1;
