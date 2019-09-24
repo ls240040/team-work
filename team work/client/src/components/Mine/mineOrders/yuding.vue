@@ -37,6 +37,7 @@ export default {
           console.log(this.list);
           this.show=false;
         }else{
+          this.loadMore();
           this.show=true;
         }
       });

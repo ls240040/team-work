@@ -47,7 +47,9 @@ export default {
       this.axios.get(url,{ params: obj }).then(res=>{
         console.log(res.data.code)
         if(res.data.code==1){
-          this.$toast("取消成功");
+          this.$messagebox("取消成功").then(res=>{
+            this.$router.push('/shopList')
+          });
           this.show=false;
         }
       })

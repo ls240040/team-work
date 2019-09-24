@@ -139,14 +139,16 @@ export default {
 
 
             if(this.num=="请选择"){
-                num="未选择就餐人数";
+                num=null;
+                this.$toast("请选择就餐人数")
             }else{
                 num=this.num+"人";
             }
 
             
             if(this.time=="请选择"){
-                time="未选择就餐时间";
+                time=null;
+                this.$toast("请选择就餐时间")
             }else{
                 time=this.time;
             }
@@ -185,7 +187,8 @@ export default {
             // (NULL,'${time}','${num}',${room},'${hall}','${R_Name}',${R_Phone},'${sex}','${demand}'
             var obj={time,num,room,hall,name,phone,sex,demand,uid,M_Name,M_Distance};
             this.axios.get("/index/reserve", {params:obj}).then(res=>{
-                if(res.data.code==1){
+                if(num!=null && time!=null){
+                    if(res.data.code==1){
                     this.$messagebox("预订成功").then(res=>{
                         this.$router.push("/yuding");
                     })
@@ -193,6 +196,7 @@ export default {
                     this.$messagebox("已预订").then(res=>{
                         this.$router.push("/yuding");
                     })
+                }
                 }
             }).catch(err=>{
                 console.log(err)
