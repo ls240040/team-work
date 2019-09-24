@@ -1,7 +1,7 @@
 <template>
   <div class="paihao_detailed">
     <mt-header class="myheader" title="排号详情">
-      <router-link to="/" slot="left">
+      <router-link to="/paihao" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
@@ -77,14 +77,12 @@ export default {
             .then(res => {
               if (res.data.code == 1) {
                  this.$router.push({ path: '/'});
-                 this.$router.go(0)
               } 
-            })
-            .catch(function(err) {
+            }).catch(err=> {
               console.log(err);
             });
         })
-        .catch(err => {});
+        
     },
 
     lodaRowNum() {

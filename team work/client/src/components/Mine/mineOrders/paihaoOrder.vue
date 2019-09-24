@@ -1,6 +1,6 @@
 <!--paihaoOrder.vue 排号页面组件-->
 <template>
-  <div class="paihaoOrder" @click="linkToo">
+  <div class="paihaoOrder">
     <div class="div1">
       <h3>
         <span>
@@ -27,7 +27,7 @@
       </div>
       <div class="div3">
         <span @click="cancelNum">取消排号</span>
-        <span class="zxdc">在线点餐</span>
+        <span class="zxdc"  @click="linkToo">查看详情</span>
       </div>
     </div>
   </div>
