@@ -25,7 +25,6 @@ router.post('/rownum', (req, res) => {
     shopname = req.body.shopname
     var sql1 = "SELECT R_ID FROM diancan_rownum WHERE U_ID=?"
     pool.query(sql1, uid, (err, result) => {
-        console.log(result.length == 0)
         if (err) throw err;
         if (result.length == 0) {
             var sql = "INSERT INTO  diancan_RowNum  SET U_ID=?,R_Time=?,R_People=?,R_Address=?,R_Etime=?,R_ShopName=?";
@@ -45,10 +44,10 @@ router.post('/rownum', (req, res) => {
 })
 
 //http://127.0.0.1:5050/index/rowNum2
-router.get('/rowNum2',(req,res)=>{
+router.get('/rowNum2', (req, res) => {
     var U_ID = req.query.uid;
     var sql = "SELECT R_ID,R_Time,R_People,R_Address FROM diancan_rownum WHERE U_ID=?"
-    pool.query(sql,[U_ID],(err,result)=>{
+    pool.query(sql, [U_ID], (err, result) => {
         if (err) throw err;
         if (result.length == 0) {
             res.send({ code: -1, msg: "查询失败" });
@@ -59,40 +58,6 @@ router.get('/rowNum2',(req,res)=>{
 })
 
 
-router.post('/cancelNum', (req, res) => {
-    var rid = req.body.rid
-    var sql = "DELETE FROM diancan_rownum WHERE R_ID=?"
-    pool.query(sql, rid, (err, result) => {
-        if (err) throw err;
-        if (result.rowaffected == 0) {
-            res.send({ code: -1, msg: "删除失败" });
-        } else {
-            res.send({ code: 1, msg: "删除成功" });
-            var sql1 = "ALTER  TABLE  `diancan_rownum` DROP `R_ID"
-            pool.query(sql1, (err, result) => {
-                if (err) throw err;
-                var sql2 = "ALTER  TABLE  `diancan_rownum` ADD 'R_ID' INT PRIMARY KEY NOT NULL AUTO_INCREMENT FIRST";
-                pool.query(sql2, (err, result) => {
-                    if (err) throw err;
-                    if (result.length == 0) {
-                        res.send({ code: -1, msg: "查询失败" });
-                    } else {
-                        res.send({ code: 1, msg: "查询成功", });
-                    }
-                })
-
-            })
-
-
-
-
-
-        }
-
-
-    })
-
-})
 
 
 //http://127.0.0.1:5050/index/reserve?R_Phone=18596855565&R_Name=tom
