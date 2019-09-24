@@ -38,15 +38,14 @@ export default {
     },
     methods:{
         linkTo(i){
-            for(var i=0;i<this.list.length;i++){
-                this.$router.push({
+            console.log(i);
+            this.$router.push({
                 name: 'reserve',
                 params: {
                     M_Name: this.list[i].M_Name,
                     M_Distance: this.list[i].M_Distance
                 }
             })
-            }
         },
         linkTo2(){
             this.$router.push("/");
