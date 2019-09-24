@@ -21,15 +21,15 @@
         </div>
         <!-- 引入门店列表组件 -->
         <!-- 生成店面 -->
-        <div class="store">
-          <div class="div1">
+        <div class="store" v-for="(mer,index) in allCity" :key="index">
+          <div class="div1" v-if="mer.mode==selected&&mer.location==city">
             <img src="http://127.0.0.1:5050/icon/login_logo_img.png" alt />
             <div class="div2">
-              <h4>海底捞火锅外送(庆春路店)</h4>
-              <span class="span1">营业中</span>
-              <span>湖滨</span>
+              <h4>海底捞火锅外送({{mer.merName}})</h4>
+              <span class="span1">{{mer.status}}</span>
+              <span>{{mer.moreLocation}}</span>
             </div>
-            <span class="span2">≤4.7km</span>
+            <span class="span2">{{mer.farAway}}</span>
           </div>
         </div>
         
@@ -49,11 +49,11 @@
           <div class="div1">
             <img src="http://127.0.0.1:5050/icon/login_logo_img.png" alt />
             <div class="div2">
-              <h4>海底捞火锅外送(庆春路店)</h4>
+              <h4>海底捞火锅自取(庆春路店)</h4>
               <span class="span1">营业中</span>
               <span>湖滨</span>
             </div>
-            <span class="span2">≤4.7km</span>
+            <span class="span2">4.7km</span>
           </div>
         </div>
 
@@ -66,8 +66,104 @@
 export default {
   data() {
     return {
+     
       selected: "waisong",
-      city: "杭州"
+      city: "杭州",
+      allCity:[
+          //杭州的
+          {
+              mode:"waisong",
+              merName:"铂澜城店",
+              location:"杭州",
+              status:"营业中",
+              moreLocation:"西湖区文一路294号",
+              farAway:"2.7km",
+          },
+          {
+              mode:"waisong",
+              merName:"城西银泰",
+              location:"杭州",
+              status:"营业中",
+              moreLocation:"拱墅区丰潭路380号",
+              farAway:"3.7km",
+          },
+          {
+              mode:"waisong",
+              merName:"绍兴路店",
+              location:"杭州",
+              status:"营业中",
+              moreLocation:"下城区绍兴路337号",
+              farAway:"0.6km",
+          },
+          {
+              mode:"waisong",
+              merName:"水晶城店",
+              location:"杭州",
+              status:"营业中",
+              moreLocation:"拱墅区上塘路458号",
+              farAway:"4.7km",
+          },
+          
+          //上海的
+          {
+              mode:"waisong",
+              merName:"吴中路店",
+              location:"上海",
+              status:"营业中",
+              moreLocation:"闵行区吴中路1100号",
+              farAway:"10.5km",
+          },
+          {
+              mode:"waisong",
+              merName:"南京东路",
+              location:"上海",
+              status:"营业中",
+              moreLocation:"黄浦区南京东路830号",
+              farAway:"12.4km",
+          },
+          {
+              mode:"waisong",
+              merName:"张杨路店",
+              location:"上海",
+              status:"营业中",
+              moreLocation:"浦东新区张杨路620号",
+              farAway:"10.7km",
+          },
+          //北京的
+          {
+              mode:"waisong",
+              merName:"上地华联",
+              location:"北京",
+              status:"营业中",
+              moreLocation:"海淀农大南路1号院",
+              farAway:"1272.2km",
+          },
+          {
+              mode:"waisong",
+              merName:"天通苑店",
+              location:"北京",
+              status:"营业中",
+              moreLocation:"华联天通苑购物中心",
+              farAway:"1274.7km",
+          },
+          {
+              mode:"waisong",
+              merName:"西直门店",
+              location:"北京",
+              status:"营业中",
+              moreLocation:"海淀区北大街32号",
+              farAway:"1279.1km",
+          },
+          {
+              mode:"waisong",
+              merName:"大钟寺店",
+              location:"北京",
+              status:"营业中",
+              moreLocation:"海淀区三环西路18号",
+              farAway:"1268.5km",
+          },
+
+      ],
     };
   },
   methods: {
