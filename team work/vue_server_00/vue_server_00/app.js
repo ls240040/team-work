@@ -54,6 +54,7 @@ const reserve2 = require('./routes/index');
 const rowNum2 = require('./routes/index');
 const cancelOrder = require('./routes/index');
 const user = require('./routes/user');
+const getUser2 = require('./routes/user');
 const vip = require('./routes/vip');
 const menu = require('./routes/menu');
 /*使用路由器来管理路由*/
@@ -71,5 +72,6 @@ app.use("/index", reserve2);
 app.use("/index", rowNum2);
 app.use("/index", cancelOrder);
 app.use("/user", user);
+app.use("/user", getUser2);
 app.use("/vip", vip);
 app.use("/menu", menu);
