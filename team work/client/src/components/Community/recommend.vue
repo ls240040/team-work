@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="logo">
-                    <span class="attention" @click="attention(index)">+关注</span>
+                    <span class="attention" @click="attention(index,$event)">+关注</span>
                     <img src="http://127.0.0.1:5050/icon/elipsis.png">
                 </div>
             </div>
@@ -51,13 +51,11 @@ export default {
         return {
              list:[],
              friends:[],
-             
-
         }
     },
      methods:{
-        attention(index){
-            // e.target.innerHTML="已关注"
+        attention(index,e){
+            e.target.innerHTML="已关注"
             index=parseInt(index)+1;
             console.log(index)
             for(var item of this.list){
