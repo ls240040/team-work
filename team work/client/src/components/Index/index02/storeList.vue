@@ -22,9 +22,9 @@
         <!-- 引入门店列表组件 -->
         <!-- 生成店面 -->
         <div class="store" v-for="(mer,index) in allCity" :key="index">
-          <div class="div1" v-if="mer.mode==selected&&mer.location==city">
+          <div class="div1" v-if="mer.mode==selected&&mer.location==city" @click="toMenu">
             <img src="http://127.0.0.1:5050/icon/login_logo_img.png" alt />
-            <div class="div2">
+            <div class="div2" >
               <h4>海底捞火锅外送({{mer.merName}})</h4>
               <span class="span1">{{mer.status}}</span>
               <span>{{mer.moreLocation}}</span>
@@ -178,7 +178,12 @@ export default {
     //切换城市
     cityStore() {
       this.$router.push({ path: "/cityStore", query: { city: this.city } });
-    }
+    },
+
+    //去点菜
+    toMenu(){
+        this.$router.push("/menu");
+    },
   },
   created() {
     this.loadCity();
