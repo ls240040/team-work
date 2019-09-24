@@ -140,7 +140,7 @@ export default {
 
             if(this.num=="请选择"){
                 num=null;
-                this.$toast("请选择就餐人数")
+                // this.$toast("请选择就餐人数")
             }else{
                 num=this.num+"人";
             }
@@ -148,7 +148,6 @@ export default {
             
             if(this.time=="请选择"){
                 time=null;
-                this.$toast("请选择就餐时间")
             }else{
                 time=this.time;
             }
@@ -184,23 +183,26 @@ export default {
             var M_Name=this.$route.params.M_Name;
             var M_Distance=this.$route.params.M_Distance;
 
+
             // (NULL,'${time}','${num}',${room},'${hall}','${R_Name}',${R_Phone},'${sex}','${demand}'
             var obj={time,num,room,hall,name,phone,sex,demand,uid,M_Name,M_Distance};
-            this.axios.get("/index/reserve", {params:obj}).then(res=>{
-                if(num!=null && time!=null){
+            if(num!==null && time!==null){
+                this.axios.get("/index/reserve", {params:obj}).then(res=>{
                     if(res.data.code==1){
-                    this.$messagebox("预订成功").then(res=>{
-                        this.$router.push("/yuding");
-                    })
-                }else if(res.data.code==2){
-                    this.$messagebox("已预订").then(res=>{
-                        this.$router.push("/yuding");
-                    })
-                }
-                }
-            }).catch(err=>{
-                console.log(err)
-            })
+                        this.$messagebox("预订成功").then(res=>{
+                            this.$router.push("/yuding");
+                        })
+                    }else if(res.data.code==2){
+                        this.$messagebox("不可重复预订")
+                    }
+                }).catch(err=>{
+                    console.log(err)
+                })
+            }else if(time==null){
+                this.$toast("请选择就餐时间")
+            }else if(num==null){
+                this.$toast("请选择就餐人数")
+            }
         },
         clickDay(){
             
