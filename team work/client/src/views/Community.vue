@@ -1,10 +1,10 @@
 <template>
   <div class="community" style="overflow:auto">
-    <div class="head">
+    <!-- <div class="head">
       <img src="http://127.0.0.1:5050/icon/search.png">
       <h2>社区</h2>
       <img src="http://127.0.0.1:5050/icon/camera.png">
-    </div>
+    </div> -->
     <h1>社区</h1>
     <!-- nav -->
     <mt-navbar class="nav" v-model="active">
@@ -72,25 +72,26 @@ export default {
   .mint-navbar .mint-tab-item {
     padding: 0.2rem 0;
   }
-  .head {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 0.4rem;
-    box-sizing: border-box;
-    h2 {
-      line-height: 0.6rem;
-      font-size: 0.4rem;
-    }
-    img {
-      height: 0.6rem;
-    }
-  }
+  // .head {
+  //   display: flex;
+  //   justify-content: space-between;
+  //   width: 100%;
+  //   padding: 0.4rem;
+  //   box-sizing: border-box;
+  //   h2 {
+  //     line-height: 0.6rem;
+  //     font-size: 0.4rem;
+  //   }
+  //   img {
+  //     height: 0.6rem;
+  //   }
+  // }
   h1 {
-    text-align: left;
-    padding: 0.4rem;
+    text-align: center;
     padding-top: 0;
-    font-size: 0.6rem;
+    font-size: 0.5rem;
+    line-height: 3;
+    font-weight: 700
   }
 }
 
