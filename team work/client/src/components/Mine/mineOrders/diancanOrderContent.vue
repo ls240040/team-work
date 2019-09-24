@@ -1,5 +1,9 @@
 <template>
   <div class="Wai" style="background-color:rgb(252, 252, 252);">
+    <div class="back">
+      <a @click="goback">返回</a>
+    </div>
+    <div class="backfaker"></div>
     <div class="y1">
       <mt-navbar v-model="selected">
         <mt-tab-item id="waisong">外送</mt-tab-item>
@@ -39,9 +43,9 @@
             v-for="(food,index) in foodList"
             :key="index"
           >
-            <span class="a1">{{food.F_Name}}</span>
-            <span class="z1">x{{food.num}}</span>
-            <span style="color:#f00;font-size:0.3rem">￥{{food.F_Price*food.num}}</span>
+            <span class="a1" v-if="food">{{food.F_Name}}</span>
+            <span class="z1" v-if="food">x{{food.num}}</span>
+            <span style="color:#f00;font-size:0.3rem"  v-if="food">￥{{food.F_Price*food.num}}</span>
           </div>
         </div>
       </div>
@@ -77,20 +81,20 @@ export default {
   methods: {
     //加载传过来的订单ID
     loadList() {
-      var O_ID = this.$route.query.O_ID;//订单ID
+      let O_ID = this.$route.query.O_ID;//订单ID
 
-      var url = "/menu/getOrder"; //获取店铺名称
+      let url = "/menu/getOrder"; //获取店铺名称
       this.axios.get(url, { params: { O_ID: O_ID } }).then(res => {
         if (res.data.code == 1) {
-          var F_IDnum = res.data.data[0].O_FID.split(",");//第一轮根据“,”拆分，1*1
+          let F_IDnum = res.data.data[0].O_FID.split(",");//第一轮根据“,”拆分，1*1
           console.log(F_IDnum);
           for(let i=0;i<F_IDnum.length;i++){
-            var F_IDnumpart=F_IDnum[i].split("*");//第二轮根据*拆分成1 1
+            let F_IDnumpart=F_IDnum[i].split("*");//第二轮根据*拆分成1 1
 
             let url2 = "/menu/getFoodName";
             this.axios.get(url2, { params: { F_ID: F_IDnumpart[0] } }).then(res => {
               if (res.data.code == 1) {
-                var example=res.data.data;
+                let example=res.data.data;
                 this.foodList[i]=example[0];//把数据放入foodlist
                 this.foodList[i].num=F_IDnumpart[1];//添加num数量
                 this.count+=parseInt(F_IDnumpart[1]);//统计一共有多少个
@@ -99,7 +103,7 @@ export default {
 
           }
         }
-        console.log(this.foodList)
+        console.log(this.foodList);
       });
     },
 
@@ -114,6 +118,11 @@ export default {
           }
         });
       });
+    },
+
+    //返回
+    goback(){
+        this.$router.go(-1);
     },
 
   },
@@ -222,5 +231,19 @@ export default {
 .faker {
   height: 1rem;
   width: 100%;
+}
+.back {
+  text-align: left;
+  position: fixed;
+  top: 0.3rem;
+  left: 0.3rem;
+  font-size: 0.3rem;
+  background-color: #fff;
+}
+.backfaker{
+  width: 100%;
+  height: 0.5rem;
+  font-size: 0.3rem;
+  background-color: #fff;
 }
 </style>

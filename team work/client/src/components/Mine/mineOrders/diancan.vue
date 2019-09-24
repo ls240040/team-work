@@ -43,7 +43,7 @@
       </div>
     </div>
     <!-- 暂无点餐订单 -->
-    <nodiancanOrder></nodiancanOrder>
+    <nodiancanOrder v-if="orderNum==0"></nodiancanOrder>
   </div>
 </template>
 <script>
@@ -55,6 +55,7 @@ export default {
     return {
       orderList: [], //用于存储这个用户所有的订单内容
       nameInOrder: [],
+      orderNum:0,
     };
   },
   components: {
@@ -62,9 +63,9 @@ export default {
   },
   methods: {
     getList() {
-      var U_ID = sessionStorage.getItem("accessToken"); //拿到用户ID
+      let U_ID = sessionStorage.getItem("accessToken"); //拿到用户ID
 
-      var url = "/menu/getUserOrder"; //获取左边所有菜品类名
+      let url = "/menu/getUserOrder"; //获取左边所有菜品类名
       this.axios.get(url, { params: { U_ID: U_ID } }).then(res => {
         if (res.data.code == 1) {
           this.orderList = res.data.data;
@@ -88,9 +89,11 @@ export default {
                 this.nameInOrder[i].M_Name = res.data.data[0].M_Name;
               }
             });
+            this.orderNum=this.orderList.length;
           }
         }
       });
+      
     },
 
     //删除订单
