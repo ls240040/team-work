@@ -8,7 +8,7 @@
     <h1>社区</h1>
     <!-- nav -->
     <mt-navbar class="nav" v-model="active">
-      <mt-tab-item id="attention">关注</mt-tab-item>
+      <mt-tab-item  id="attention">关注</mt-tab-item>
       <mt-tab-item id="recommend">推荐</mt-tab-item>
       <mt-tab-item id="doyen">达人</mt-tab-item>
     </mt-navbar>

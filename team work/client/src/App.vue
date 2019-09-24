@@ -12,6 +12,24 @@
 </template>
 <script>
 export default {
+   provide(){
+    return{
+      reload:this.reload
+    }
+  },
+  data(){
+    return{
+      isRouterAlive:true
+    }
+  },
+  methods:{
+    reload(){
+      this.isRouterAlive = false;
+      this.$nextTick(function(){
+        this.isRouterAlive = true;
+      })
+    }
+  },
   created(){
 			//在页面加载时读取sessionStorage里的状态信息
 			if (sessionStorage.getItem("store") ) {

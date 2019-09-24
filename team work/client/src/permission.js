@@ -4,6 +4,10 @@ import 'nprogress/nprogress.css' // Progress 进度条样式
 
 router.beforeEach((to, from, next) => {
     NProgress.start(); // 开启Progress
+    if (to.path === '/details') {
+        next('/')
+        next('/community')
+    }
     if (sessionStorage.getItem('accessToken')) {
         next()
     } else {
