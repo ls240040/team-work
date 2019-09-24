@@ -3,25 +3,25 @@
   <div class="yudingOrder">
     <div class="div1">
       <h3>
-        <span v-show="show">
-          <span>{{address.M_Name}}</span>
-          <span>{{address.M_Distance}}km</span>
+        <span>
+          <span>{{list.M_Name}}</span>
+          <span>{{list.M_Distance}}km</span>
         </span>
         <span>待叫号</span>
       </h3>
       <div class="div2">
         <ul>
-          <li>小桌</li>
-          <li v-show="show">{{list.R_ID}}</li>
+          <li>名称</li>
+          <li>{{list.R_Name}}</li>
         </ul>
         <ul>
           <li>就餐时间</li>
-          <li v-show="show">{{list.R_Time}}</li>
+          <li>{{list.R_Time}}</li>
         </ul>
         <ul>
           <li>就餐人数</li>
           <li>
-            <span v-show="show">{{list.R_People}}</span>人
+            <span>{{list.R_Num}}</span>
           </li>
         </ul>
       </div>
@@ -36,7 +36,7 @@
 export default {
   data() {
     return {
-      show:true
+      // show:true
     };
   },
   methods: {
@@ -45,9 +45,10 @@ export default {
       var obj = { uid: uid };
       var url='index/cancelOrder';
       this.axios.get(url,{ params: obj }).then(res=>{
+        console.log(res.data.code)
         if(res.data.code==1){
           this.$toast("取消成功");
-          this.show=false;
+          // this.show=false;
         }
       })
     },
@@ -57,7 +58,6 @@ export default {
   },
   props:{
     list:{default:Array},
-    address:{default:Array},
   }
 };
 </script>

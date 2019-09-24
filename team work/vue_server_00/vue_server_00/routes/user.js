@@ -70,18 +70,6 @@ router.get('/getUser', (req, res) => {
     })
 });
 
-//根据用户ID获取用户信息
-router.get('/getUser2', (req, res) => {
-    var U_ID=req.query.uid;
-    var sql = "SELECT U_LoginID,U_Name FROM diancan_User where U_ID=?";
-    pool.query(sql,[U_ID] ,(err, result) => {
-        if (err) throw err;
-        if (result.length == 0) {
-            res.send({ code: -1, msg: "查询失败", data: result });
-        } else {
-            res.send({ code: 1, msg: "查询成功", data: result });
-        }
-    })
-});
+
 
 module.exports = router;

@@ -51,6 +51,7 @@ INSERT INTO diancan_pic VALUES
 /****预定****/
 CREATE TABLE  reserve(
   ID INT PRIMARY KEY AUTO_INCREMENT,
+  U_ID INT,
   R_Time VARCHAR(64),
   R_Num VARCHAR(8),
   R_Room Boolean,
@@ -58,7 +59,9 @@ CREATE TABLE  reserve(
   R_Name VARCHAR(64),
   R_Phone VARCHAR(64),
   R_Sex VARCHAR(8),
-  R_Demand VARCHAR(255)
+  R_Demand VARCHAR(255),
+  M_Name VARCHAR(255),
+  M_Distance VARCHAR(255)
 );
 
 

@@ -8,7 +8,7 @@
                 <span>杭州</span>
             </div>
         </div>
-        <div class="container" v-for="(item,index) of list" :key="index" @click="linkTo">
+        <div class="container" v-for="(item,index) of list" :key="index" @click="linkTo(index)">
             <img class="logo" src="http://127.0.0.1:5050/icon/su_logo.png">
             <div class="info">
                 <div class="infotop">
@@ -37,8 +37,16 @@ export default {
         }
     },
     methods:{
-        linkTo(){
-            this.$router.push("/reserve")
+        linkTo(i){
+            for(var i=0;i<this.list.length;i++){
+                this.$router.push({
+                name: 'reserve',
+                params: {
+                    M_Name: this.list[i].M_Name,
+                    M_Distance: this.list[i].M_Distance
+                }
+            })
+            }
         },
         linkTo2(){
             this.$router.push("/");

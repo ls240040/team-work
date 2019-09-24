@@ -60,7 +60,7 @@ router.get('/rowNum2', (req, res) => {
 //http://127.0.0.1:5050/index/cancelOrder
 router.get('/cancelOrder',(req,res)=>{
     var U_ID = req.query.uid;
-    var sql = "DELETE FROM diancan_rownum WHERE U_ID=?"
+    var sql = "DELETE FROM reserve WHERE U_ID=?";
     pool.query(sql,[U_ID],(err,result)=>{
         if (err) throw err;
         if (result.affectedRows == 0) {
@@ -83,13 +83,16 @@ router.get('/reserve', (req, res) => {
     var R_Phone = req.query.phone;
     var sex = req.query.sex;
     var demand = req.query.demand;
+    var uid=req.query.uid;
+    var M_Name=req.query.M_Name;
+    var M_Distance=req.query.M_Distance;
     console.log(time, num, room, hall, R_Name, R_Phone, sex, demand);
-    var sql = "SELECT R_Time FROM reserve WHERE R_Phone=? AND R_Name=?";
+    var sql = "SELECT R_Time,R_Num,R_Name,M_Name,M_Distance FROM reserve WHERE R_Phone=? AND R_Name=?";
     pool.query(sql, [R_Phone, R_Name], (err, result) => {
         if (err) throw err;
         //6.在回调函数中 判断下一步操作
         if (result.length == 0) {
-            var sql = `INSERT INTO reserve VALUES(NULL,'${time}','${num}',${room},'${hall}','${R_Name}',${R_Phone},'${sex}','${demand}')`;
+            var sql = `INSERT INTO reserve VALUES(NULL,${uid},'${time}','${num}',${room},'${hall}','${R_Name}',${R_Phone},'${sex}','${demand}','${M_Name}','${M_Distance}')`;
             //7.执行sql获取返回结果
             pool.query(sql, (err, result) => {
                 if (err) throw err;
@@ -102,12 +105,27 @@ router.get('/reserve', (req, res) => {
                 }
             })
         }else{
-            res.send({ code: 2, msg: "已预订" })
+            res.send({ code: 2, msg: "已预订" ,data:result})
         }
 
     })
 })
 
+
+//http://127.0.0.1:5050/index/reserve2
+router.get('/reserve2', (req, res) => {
+    var U_ID=req.query.uid;
+    var sql = "SELECT R_Time,R_Num,R_Name,M_Name,M_Distance FROM reserve WHERE U_ID=?";
+    pool.query(sql,[U_ID],(err,result)=>{
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败"});
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+
+})
 
 router.get('/carousel', (req, res) => {
     var sql = "SELECT C_Href FROM diancan_carousel WHERE C_Place='indexTop'";

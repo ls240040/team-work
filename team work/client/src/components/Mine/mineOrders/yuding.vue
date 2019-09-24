@@ -7,7 +7,7 @@
         </router-link>
     </mt-header> 
       <!-- 预定订单组件 -->
-      <yudingOrder :list="list" :address="address"></yudingOrder>
+      <yudingOrder :list="list"></yudingOrder>
       <!-- 暂无预定订单 -->
       <noyudingOrder v-show="show"></noyudingOrder>
   </div>
@@ -22,7 +22,6 @@ export default {
   data() {
     return {
       list:[],
-      address:[],
       show:true
     };
   },
@@ -30,24 +29,17 @@ export default {
     loadMore() {
       var uid = sessionStorage.getItem("accessToken");
       var obj = { uid: uid };
-      var url = "index/rowNum2";
+      var url = "index/reserve2";
       this.axios.get(url, { params: obj }).then(res => {
         if (res.data.code == 1) {
           this.list = res.data.data[0];
-          this.list.R_Time = this.list.R_Time.slice(11, 16);
+          // this.list.R_Time = this.list.R_Time.slice(11, 16);
           console.log(this.list);
           this.show=false;
         }else{
           this.show=true;
         }
       });
-        var url='index/shoplist';
-         this.axios.get(url).then(res=>{
-            if(res.data.code==1){
-                this.address=res.data.data[0];
-                console.log(this.address)
-            }
-        });
     }
   },
   created() {

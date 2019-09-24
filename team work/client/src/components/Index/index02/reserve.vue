@@ -178,17 +178,21 @@ export default {
             
             phone=this.list.U_LoginID;
             name=this.list.U_Name;
-           
+            var uid = sessionStorage.getItem("accessToken");
+            var M_Name=this.$route.params.M_Name;
+            var M_Distance=this.$route.params.M_Distance;
 
             // (NULL,'${time}','${num}',${room},'${hall}','${R_Name}',${R_Phone},'${sex}','${demand}'
-            var obj={time,num,room,hall,name,phone,sex,demand};
+            var obj={time,num,room,hall,name,phone,sex,demand,uid,M_Name,M_Distance};
             this.axios.get("/index/reserve", {params:obj}).then(res=>{
                 if(res.data.code==1){
                     this.$messagebox("预订成功").then(res=>{
                         this.$router.push("/yuding");
                     })
                 }else if(res.data.code==2){
-                    this.$toast("已预订")
+                    this.$messagebox("已预订").then(res=>{
+                        this.$router.push("/yuding");
+                    })
                 }
             }).catch(err=>{
                 console.log(err)
