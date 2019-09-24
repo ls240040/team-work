@@ -1,13 +1,13 @@
 <!--yuding.vue 预定设置页面组件-->
 <template>
   <div class="yuding"> 
-    <mt-header title="预定">
+    <mt-header title="预订">
         <router-link to="/mine" slot="left">
             <mt-button icon="back"></mt-button>
         </router-link>
     </mt-header> 
       <!-- 预定订单组件 -->
-      <yudingOrder :list="list"></yudingOrder>
+      <yudingOrder :list="list" v-show="show2"></yudingOrder>
       <!-- 暂无预定订单 -->
       <noyudingOrder v-show="show"></noyudingOrder>
   </div>
@@ -22,7 +22,8 @@ export default {
   data() {
     return {
       list:[],
-      show:true
+      show:true,
+      show2:true
     };
   },
   methods: {
@@ -36,9 +37,11 @@ export default {
           // this.list.R_Time = this.list.R_Time.slice(11, 16);
           console.log(this.list);
           this.show=false;
+          this.show2=true
         }else{
           this.loadMore();
           this.show=true;
+          this.show2=false
         }
       });
     }

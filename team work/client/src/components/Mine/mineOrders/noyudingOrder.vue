@@ -3,7 +3,7 @@
   <div class="noyudingOrder">
       <div>
         <img src="http://127.0.0.1:5050/icon/no_order.jpg" alt="">  
-        <h4>暂无当前预定信息</h4>  
+        <h4>暂无当前预订信息</h4>  
       </div>   
   </div>
 </template>
