@@ -7,9 +7,9 @@
         </router-link>
     </mt-header> 
       <!-- 预定订单组件 -->
-      <yudingOrder></yudingOrder>
+      <yudingOrder :list="list" :address="address"></yudingOrder>
       <!-- 暂无预定订单 -->
-      <noyudingOrder></noyudingOrder>
+      <noyudingOrder v-show="show"></noyudingOrder>
   </div>
 </template>
 <script>
@@ -20,10 +20,38 @@ import noyudingOrder from "./noyudingOrder";
 
 export default {
   data() {
-    return {};
+    return {
+      list:[],
+      address:[],
+      show:true
+    };
   },
   methods: {
-      
+    loadMore() {
+      var uid = sessionStorage.getItem("accessToken");
+      var obj = { uid: uid };
+      var url = "index/rowNum2";
+      this.axios.get(url, { params: obj }).then(res => {
+        if (res.data.code == 1) {
+          this.list = res.data.data[0];
+          this.list.R_Time = this.list.R_Time.slice(11, 16);
+          console.log(this.list);
+          this.show=false;
+        }else{
+          this.show=true;
+        }
+      });
+        var url='index/shoplist';
+         this.axios.get(url).then(res=>{
+            if(res.data.code==1){
+                this.address=res.data.data[0];
+                console.log(this.address)
+            }
+        });
+    }
+  },
+  created() {
+    this.loadMore();
   },
   components: {
     yudingOrder: yudingOrder,

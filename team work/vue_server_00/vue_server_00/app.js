@@ -51,7 +51,9 @@ const friends2 = require('./routes/community');
 const shoplist = require('./routes/index');
 const reserve = require('./routes/index');
 const rowNum2 = require('./routes/index');
+const cancelOrder = require('./routes/index');
 const user = require('./routes/user');
+const getUser2 = require('./routes/user');
 const vip = require('./routes/vip');
 const menu = require('./routes/menu');
 /*使用路由器来管理路由*/
@@ -66,6 +68,8 @@ app.use("/community", friends2);
 app.use("/index", shoplist);
 app.use("/index", reserve);
 app.use("/index", rowNum2);
+app.use("/index", cancelOrder);
 app.use("/user", user);
+app.use("/user", getUser2);
 app.use("/vip", vip);
 app.use("/menu", menu);

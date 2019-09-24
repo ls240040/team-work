@@ -37,7 +37,7 @@
         <div class="confirm">
             <div class="verify-box">
                 <div class="verify">
-                    <mt-field label="姓名：" placeholder="000vUEz1" v-model="username"></mt-field>
+                    <mt-field label="姓名：" :placeholder="list.U_Name" v-model="username" readonly></mt-field>
                     <mt-radio
                     v-model="value2"
                     :options="['先生', '女士']">
@@ -46,7 +46,7 @@
             </div>
              <div class="verify-box">
                 <div class="verify">
-                    <mt-field label="手机号：" placeholder="18755896255" v-model="phone"></mt-field>
+                    <mt-field label="手机号：" :placeholder="list.U_LoginID" v-model="phone" readonly></mt-field>
                 </div>
             </div>
             <div class="verify-box">
@@ -113,7 +113,8 @@ export default {
             phone:"",
             calshow:false,
             ago:"",
-            future:""
+            future:"",
+            list:[]
         }
     },
     components: {
@@ -131,7 +132,6 @@ export default {
             var time;
             var hall;
             var num;
-            console.log(this.num);
             var room;
             var sex;
             var name=this.username;
@@ -176,36 +176,19 @@ export default {
                 var demand=getmsg;
             }
             
+            phone=this.list.U_LoginID;
+            name=this.list.U_Name;
            
-            //2: 创建正则表达式  3~12位置 字母数字
-            var reg = /^[\u4e00-\u9fa5_a-zA-Z0-9]+$/;
-            var reg2=/^1[3-9]\d{9}$/i;
-            //3: 判断 用户名提示
-            if (!reg.test(name)) {
-                if(name==""){
-                    this.$toast("请填写用户名");
-                }else{
-                    this.$toast("用户名格式不正确");
-                }
-                return;
-            }
-            //4: 判断 手机号提示
-            if (!reg2.test(phone)) {
-                if(phone==""){
-                    this.$toast("请填写手机号");
-                }else{
-                    this.$toast("手机号格式不正确");
-                }
-                return;
-            }
 
             // (NULL,'${time}','${num}',${room},'${hall}','${R_Name}',${R_Phone},'${sex}','${demand}'
             var obj={time,num,room,hall,name,phone,sex,demand};
             this.axios.get("/index/reserve", {params:obj}).then(res=>{
                 if(res.data.code==1){
                     this.$messagebox("预订成功").then(res=>{
-                        this.$router.push("/menu");
+                        this.$router.push("/yuding");
                     })
+                }else if(res.data.code==2){
+                    this.$toast("已预订")
                 }
             }).catch(err=>{
                 console.log(err)
@@ -233,7 +216,6 @@ export default {
                 chosenDay=chosenDay.innerHTML;
                 var date=document.getElementsByClassName("wh_content_li")[0].innerHTML;
                 var year=date.slice(0,4);
-                // console.log(chosenDay)
                 if(date.length==7){
                     var day=date.slice(5,6);
                 }else if(date.length>7){
@@ -247,7 +229,6 @@ export default {
         confirm(){
             var selected=document.getElementsByClassName("picker-selected")[0];
             var greySel=document.getElementsByClassName("greySel")[0];
-            console.log(selected.innerHTML);
             this.num=selected.innerHTML;
             greySel.style.color="#000";
             this.show=false;
@@ -279,10 +260,18 @@ export default {
             end=parseInt(end)+parseInt(addtime);
             end=end/1000;
             end=end.toString();
-            console.log(end)
             this.ago=start
             this.future=end;
-
+            // getUser
+            var uid = sessionStorage.getItem("accessToken");
+            var obj = { uid: uid };
+            var url='user/getUser2';
+            this.axios.get(url,{params:obj}).then(res=>{
+                if(res.data.code==1){
+                    this.list=res.data.data[0];
+                    console.log(this.list)
+                }
+            })
         }
     },
     created(){

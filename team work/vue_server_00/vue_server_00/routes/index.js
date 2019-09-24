@@ -58,6 +58,19 @@ router.get('/rowNum2',(req,res)=>{
     })
 })
 
+//http://127.0.0.1:5050/index/cancelOrder
+router.get('/cancelOrder',(req,res)=>{
+    var U_ID = req.query.uid;
+    var sql = "DELETE FROM diancan_rownum WHERE U_ID=?"
+    pool.query(sql,[U_ID],(err,result)=>{
+        if (err) throw err;
+        if (result.affectedRows == 0) {
+            res.send({ code: -1, msg: "删除失败" });
+        } else {
+            res.send({ code: 1, msg: "删除成功", data: result });
+        }
+    })
+})
 
 router.post('/cancelNum', (req, res) => {
     var rid = req.body.rid
@@ -123,6 +136,8 @@ router.get('/reserve', (req, res) => {
                     res.send({ code: -2, msg: "预订失败" })
                 }
             })
+        }else{
+            res.send({ code: 2, msg: "已预订" })
         }
 
     })

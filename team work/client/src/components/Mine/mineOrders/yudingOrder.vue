@@ -3,7 +3,7 @@
   <div class="yudingOrder">
     <div class="div1">
       <h3>
-        <span>
+        <span v-show="show">
           <span>{{address.M_Name}}</span>
           <span>{{address.M_Distance}}km</span>
         </span>
@@ -12,22 +12,22 @@
       <div class="div2">
         <ul>
           <li>小桌</li>
-          <li>{{list.R_ID}}</li>
+          <li v-show="show">{{list.R_ID}}</li>
         </ul>
         <ul>
           <li>就餐时间</li>
-          <li>{{list.R_Time}}</li>
+          <li v-show="show">{{list.R_Time}}</li>
         </ul>
         <ul>
           <li>就餐人数</li>
           <li>
-            <span>{{list.R_People}}</span>人
+            <span v-show="show">{{list.R_People}}</span>人
           </li>
         </ul>
       </div>
       <div class="div3">
-        <span>取消预定</span>
-        <span class="zxdc">在线点餐</span>
+        <span @click="cancel">取消预定</span>
+        <span class="zxdc" @click="order">在线点餐</span>
       </div>
     </div>
   </div>
@@ -36,33 +36,28 @@
 export default {
   data() {
     return {
-      list: [],
-      address:[]
+      show:true
     };
   },
   methods: {
-    loadMore() {
+    cancel(){
       var uid = sessionStorage.getItem("accessToken");
       var obj = { uid: uid };
-      var url = "index/rowNum2";
-      this.axios.get(url, { params: obj }).then(res => {
-        if (res.data.code == 1) {
-          this.list = res.data.data[0];
-          this.list.R_Time = this.list.R_Time.slice(11, 16);
-          console.log(this.list);
+      var url='index/cancelOrder';
+      this.axios.get(url,{ params: obj }).then(res=>{
+        if(res.data.code==1){
+          this.$toast("取消成功");
+          this.show=false;
         }
-      });
-        var url='index/shoplist';
-         this.axios.get(url).then(res=>{
-            if(res.data.code==1){
-                this.address=res.data.data[0];
-                console.log(this.address)
-            }
-        });
+      })
+    },
+    order(){
+      this.$router.push('/menu')
     }
   },
-  created() {
-    this.loadMore();
+  props:{
+    list:{default:Array},
+    address:{default:Array},
   }
 };
 </script>
