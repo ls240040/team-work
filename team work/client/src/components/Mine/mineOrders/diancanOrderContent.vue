@@ -11,6 +11,7 @@
           <div style class="bor" v-for="(item,i) of temp" :key="i">
             <img style="margin:0.15rem" :src="`http://127.0.0.1:5050/icon/image${i}.png`" alt />
             <span class="c1" style="text-align:left">{{item}}</span>
+
           </div>
         </mt-tab-container-item>
         <mt-tab-container-item id="myself">
@@ -65,7 +66,7 @@ export default {
   data() {
     return {
       selected: "waisong",
-      temp: ["选择收获时间", "送达时间", "支付方式"],
+      temp: ["选择地址", "送达时间", "支付方式"],
       tem: ["自取地址", "联系方式", "到店时间", "支付方式"],
       MerName: this.$route.query.M_Name, //店铺名称
       count: 0, //一共多少食物
@@ -100,13 +101,19 @@ export default {
         }
         console.log(this.foodList)
       });
-
-      
     },
 
     //删除订单
-    deleteOrder(){
-
+    deleteOrder(index) {
+      var O_ID = this.$route.query.O_ID;
+      this.$messagebox.confirm("确定要删除订单" + O_ID + "吗?").then(action => {
+        var url = "/menu/deleteOrder";
+        this.axios.get(url, { params: { O_ID: O_ID } }).then(res => {
+          if (res.data.code == 1) {
+            this.$router.go(-1);
+          }
+        });
+      });
     },
 
   },
