@@ -11,7 +11,6 @@
           <div style class="bor" v-for="(item,i) of temp" :key="i">
             <img style="margin:0.15rem" :src="`http://127.0.0.1:5050/icon/image${i}.png`" alt />
             <span class="c1" style="text-align:left">{{item}}</span>
-            
           </div>
         </mt-tab-container-item>
         <mt-tab-container-item id="myself">
@@ -82,7 +81,7 @@ export default {
   data() {
     return {
       selected: "waisong",
-      temp: ["选择地址", "送达时间", "支付方式"],
+      temp: ["选择地址： 铂澜大象城店", "送达时间： 21:00", "支付方式： 支付宝"],
       tem: ["自取地址", "联系方式", "到店时间", "支付方式"],
       MerName: "", //店铺名称
       count: this.$route.query.count, //一共多少食物
