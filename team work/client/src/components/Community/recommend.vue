@@ -1,5 +1,5 @@
 <template>
-    <div id="rebox">
+    <div>
         <div class="crecommend" v-for="(item,index) of list" :key="index">
             <div class="info">
                 <div class="left">
@@ -60,10 +60,6 @@ export default {
      mounted() {
         window.addEventListener('scroll',this.handleScroll);
     },
-    created(){
-        let scrolled = document.querySelector('#rebox').scrollTop;
-        scrolled=this.$route.params.scrollTop;
-    },
      methods:{
         like(i){
             var url='community/recommend';
@@ -77,7 +73,7 @@ export default {
         handleScroll(e){
             var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
             this.scrollTop=scrollTop;
-            console.log(this.scrollTop)
+            // console.log(this.scrollTop)
         },
         attention(index,e){
             e.target.innerHTML="已关注"
