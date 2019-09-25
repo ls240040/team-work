@@ -51,10 +51,9 @@
 </template>
 <script>
 export default {
- 
   data() {
     return {
-      list: [],
+      list: []
     };
   },
   methods: {
@@ -65,15 +64,13 @@ export default {
           this.list = res.data.data;
           console.log(this.list);
           // this.loadMore();
-         
         }
       });
     }
   },
   created() {
     this.loadMore();
-  },
-
+  }
 };
 </script>
 <style lang="scss" scoped>

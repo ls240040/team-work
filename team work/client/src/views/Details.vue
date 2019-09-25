@@ -1,11 +1,15 @@
 <!--index.vue -->
 <template>
-  <div></div>
+  <div><span>aaa</span></div>
 </template>
 <script>
 export default {
   data() {
     return {};
+  },
+  beforeCreate() {
+     this.$router.push({path:'/community'})
+     
   },
 };
 </script>
