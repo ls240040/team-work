@@ -5,12 +5,12 @@ import 'nprogress/nprogress.css' // Progress 进度条样式
 router.beforeEach((to, from, next) => {
     NProgress.start(); // 开启Progress
     if (sessionStorage.getItem('accessToken')) {
-        next()
+        next()  //直接进入对应的路由
     } else {
         if (to.path === '/menu' || to.path === "/paihao" || to.path === "/yuding") {
-            next('/login')
+            next('/login')  //当前路由被终止，进入 login 路由导航
         } else {
-            next()
+            next() //直接进入对应的路由
         }
         NProgress.done()
     }
