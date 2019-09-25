@@ -4,11 +4,11 @@
       <img src="http://127.0.0.1:5050/icon/search.png">
       <h2>社区</h2>
       <img src="http://127.0.0.1:5050/icon/camera.png">
-    </div> -->
+    </div>-->
     <h1>社区</h1>
     <!-- nav -->
     <mt-navbar class="nav" v-model="active">
-      <mt-tab-item  id="attention">关注</mt-tab-item>
+      <mt-tab-item id="attention">关注</mt-tab-item>
       <mt-tab-item id="recommend">推荐</mt-tab-item>
       <mt-tab-item id="doyen">达人</mt-tab-item>
     </mt-navbar>
@@ -46,11 +46,14 @@ export default {
     communitydoyen: communityDoyen,
     "tab-bar": TabBar
   },
+  mounted: {
+
+  },
   methods: {},
   mounted() {
     window.scroll(0, 0); //让跳转后页面在顶部
-    this.$refs.child.communityurl="community_iconred.png";//改变图标颜色
-    this.$refs.child.communitycolor="red";//改变图标颜色
+    this.$refs.child.communityurl = "community_iconred.png"; //改变图标颜色
+    this.$refs.child.communitycolor = "red"; //改变图标颜色
   }
 };
 </script>
@@ -63,8 +66,8 @@ export default {
     color: #ff2626 !important;
     margin-bottom: 0;
   }
-  .mint-navbar{
-    padding:0 .3rem;
+  .mint-navbar {
+    padding: 0 0.3rem;
   }
   .mint-tab-item-label {
     font-size: 0.3rem;
@@ -91,7 +94,7 @@ export default {
     padding-top: 0;
     font-size: 0.5rem;
     line-height: 3;
-    font-weight: 700
+    font-weight: 700;
   }
 }
 

@@ -5,7 +5,7 @@ import Community from './views/Community.vue'
 import Mine from './views/Mine.vue'
 import Vip from './views/Vip.vue'
 import Login from './views/Login.vue'
-
+import Details from './views/Details.vue'
 
 /* 社区 详情页面 */
 import recommendDetailed from './components/Community/recommendDetailed.vue'
@@ -59,6 +59,14 @@ export default new Router({
             meta: {
                 isLogin: true, // 添加该字段，表示进入这个路由是需要登录的
                 keepAlive: true
+            }
+        },
+        {
+            path: '/details',
+            name: 'details',
+            component: Details,
+            meta: {
+                keepAlive: false
             }
         },
         {

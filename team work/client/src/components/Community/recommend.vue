@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="rebox">
         <div class="crecommend" v-for="(item,index) of list" :key="index">
             <div class="info">
                 <div class="left">
@@ -53,8 +53,16 @@ export default {
              friends:[],
              active:true,
              collect:'http://127.0.0.1:5050/icon/collect.png',
-             collect_active:'http://127.0.0.1:5050/icon/collect-fill.png'
+             collect_active:'http://127.0.0.1:5050/icon/collect-fill.png',
+             scrollTop:""
         }
+    },
+     mounted() {
+        window.addEventListener('scroll',this.handleScroll);
+    },
+    created(){
+        let scrolled = document.querySelector('#rebox').scrollTop;
+        scrolled=this.$route.params.scrollTop;
     },
      methods:{
         like(i){
@@ -66,10 +74,22 @@ export default {
                 }
             })
         },
+        handleScroll(e){
+            var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
+            this.scrollTop=scrollTop;
+            console.log(this.scrollTop)
+        },
         attention(index,e){
             e.target.innerHTML="已关注"
             index=parseInt(index)+1;
-            console.log(index)
+            console.log(index);
+            this.$router.push({
+                name: "details",
+                params:{
+                    scrollTop:this.scrollTop
+                }
+            });
+            console.log(this.$route.params.scrollTop);
             for(var item of this.list){
                 if(item.ID==index){
                     var avatar = item.R_Avatar;
