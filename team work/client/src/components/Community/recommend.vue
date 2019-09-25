@@ -47,7 +47,6 @@
 </template>
 <script>
 export default {
-    inject:['reload'],
     data () {
         return {
              list:[],
@@ -71,7 +70,6 @@ export default {
             e.target.innerHTML="已关注"
             index=parseInt(index)+1;
             console.log(index)
-            this.$router.push("/details")
             for(var item of this.list){
                 if(item.ID==index){
                     var avatar = item.R_Avatar;
@@ -112,10 +110,7 @@ export default {
     },
     created () {
         this.loadMore();
-    },
-    updated() {
-        this.reload()
-    },
+    }
 }
 </script>
 <style lang="scss" scoped>
