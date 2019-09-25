@@ -96,7 +96,7 @@ export default new Router({
             name: 'community',
             component: Community,
             meta: {
-                keepAlive: true //不需要被缓存的组件
+                keepAlive: false //需要被缓存的组件
             },
         },
         {

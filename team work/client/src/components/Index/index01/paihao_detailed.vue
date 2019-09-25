@@ -6,7 +6,7 @@
       </router-link>
     </mt-header>
     <div class="div1" style="display:none">
-      <img src="http://127.0.0.1:5050/icon/err.png" alt>
+      <img src="http://127.0.0.1:5050/icon/err.png" alt />
       <span>本时段排号餐位已满，可选其他时段或排号</span>
     </div>
 
@@ -14,7 +14,7 @@
     <div class="div2">
       <h5>
         <span>{{message.R_ShopName}}</span>
-        <img src="http://127.0.0.1:5050/icon/arrow-right.png" alt>
+        <img src="http://127.0.0.1:5050/icon/arrow-right.png" alt />
       </h5>
       <h5>
         <span>取号时间</span>
@@ -40,12 +40,12 @@
       <h6>*最终解释权归海底捞国际控股有限公司所有</h6>
     </div>
     <div class="div3">
-      <img src="http://127.0.0.1:5050/icon/row_num_posi.png" alt>
+      <img src="http://127.0.0.1:5050/icon/row_num_posi.png" alt />
       <span>{{message.R_Address}}</span>
-      <img src="http://127.0.0.1:5050/icon/arrow-right.png" alt>
+      <img src="http://127.0.0.1:5050/icon/arrow-right.png" alt />
     </div>
-    <div class="div4"  ref="qnmlgxgp" @click="daxiguapi">
-      <span class="myspan" @click="cancelNum" >取消排号</span>
+    <div class="div4" ref="qnmlgxgp" @click="daxiguapi">
+      <span class="myspan" @click="cancelNum">取消排号</span>
     </div>
   </div>
 </template>
@@ -58,22 +58,24 @@ export default {
         R_Time: "",
         R_Address: "",
         R_ETime: "",
-        R_People:"",
-        R_ID:""
+        R_People: "",
+        R_ID: ""
       },
-      size:""
+      size: ""
     };
   },
   methods: {
-    daxiguapi(){
-     
-    },
-      cancelNum() {
+    daxiguapi() {},
+    cancelNum() {
       var rid = this.message.R_ID;
       var params = new URLSearchParams();
       params.append("rid", rid);
-      this.$toast({ message: "取消订单成功" })
-      setTimeout(res=>this.$router.push("/"),500)
+      this.axios
+        .post("/index/cancelNum", params) //传参
+        .then(res => {
+           this.$toast({ message: "取消订单成功" });
+        });
+      setTimeout(res => this.$router.push("/"), 500);
     },
 
     lodaRowNum() {
@@ -86,12 +88,12 @@ export default {
         .then(res => {
           if (res.data.code == 1) {
             this.message = res.data.data[0];
-            if(parseInt(this.message.R_People)<5){
-                this.size="小桌"
-            }else if(parseInt(this.message.R_People)<9){
-                 this.size="中桌"
-            }else{
-                 this.size="大桌"
+            if (parseInt(this.message.R_People) < 5) {
+              this.size = "小桌";
+            } else if (parseInt(this.message.R_People) < 9) {
+              this.size = "中桌";
+            } else {
+              this.size = "大桌";
             }
           }
         });
