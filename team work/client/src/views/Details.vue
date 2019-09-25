@@ -16,6 +16,12 @@ export default {
   created () {
     // this.scroll=this.$route.params.scrollTop;
     console.log(this.$route.params.scrollTop);
+    this.$router.push({
+        name: "community",
+        params:{
+            scroll2:this.$route.params.scrollTop
+        }
+    });
   }
 };
 </script>

@@ -59,6 +59,10 @@ export default {
     },
      mounted() {
         window.addEventListener('scroll',this.handleScroll);
+        console.log(this.$route.params.scroll2);
+    },
+    created(){
+        
     },
      methods:{
         like(i){
@@ -73,7 +77,6 @@ export default {
         handleScroll(e){
             var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
             this.scrollTop=scrollTop;
-            // console.log(this.scrollTop)
         },
         attention(index,e){
             e.target.innerHTML="已关注"
@@ -85,7 +88,7 @@ export default {
                     scrollTop:this.scrollTop
                 }
             });
-            console.log(this.$route.params.scrollTop);
+            this.scrollTop=this.$route.params.scroll2;
             for(var item of this.list){
                 if(item.ID==index){
                     var avatar = item.R_Avatar;
