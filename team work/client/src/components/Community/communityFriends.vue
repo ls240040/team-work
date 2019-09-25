@@ -63,7 +63,7 @@ export default {
         if (res.data.code == 1) {
           this.list = res.data.data;
           console.log(this.list);
-          // this.loadMore();
+          // this.loadMore();      
         }
       });
     }
