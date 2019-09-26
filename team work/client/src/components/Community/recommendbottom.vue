@@ -19,7 +19,8 @@ export default {
     return {
       list: [],
       list1: [],
-      bbber: false
+      bbber: false,
+      idd: ""
     };
   },
   methods: {
@@ -30,9 +31,13 @@ export default {
       this.$messagebox
         .prompt("我想说。。。", "")
         .then(({ value, action }) => {
-
-
-
+          this.idd = this.$route.params.id;
+          var uid = sessionStorage.getItem("accessToken");
+          var params = new URLSearchParams();
+          params.append("idd", this.idd);
+          params.append("val", value);
+          params.append("uid", uid);
+          params.append("U_Name", this.list.U_Name);
           this.axios
             .post("/user/addComment", params) //传参
             .then(res => {

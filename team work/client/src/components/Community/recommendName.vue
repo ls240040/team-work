@@ -2,34 +2,20 @@
 <template>
   <div class="recommendName">
     <!-- 评论框 -->
-    <div>
+    <div v-for="(item,index) in list1" :key="index">
       <div class="comment">
         <div class="divs">
           <img class="head" src="http://127.0.0.1:5050/icon/timg.jpg" alt />
           <div class="text">
-            <p class="p1">{{list1[0].U_Name}}</p>
+            <p class="p1">{{item.U_Name}}</p>
           </div>
         </div>
         <div>
-          <img
-            @click="coNice"
-            v-if="!bbber"
-            class="heart"
-            src="http://127.0.0.1:5050/icon/collect.png"
-            alt
-          />
-          <img
-            @click="coNice"
-            v-else
-            class="heart"
-            src="http://127.0.0.1:5050/icon/collect-fill.png"
-            alt
-          />
-          <span ref="dz">{{list2.length}}</span>
         </div>
       </div>
-      <p class="ptext">{{list1[0].CO_Content}}</p>
+      <p class="ptext">{{item.CO_Content}}</p>
     </div>
+    <div style="height:1rem"></div>
   </div>
 </template>
 <script>
@@ -42,38 +28,37 @@ export default {
           CO_Content: ""
         }
       ],
-      list2: [],
+      list2: [[]],
       idd: "",
-      bbber: false
+      bbber: []
     };
   },
   methods: {
-    coNice() {
-      this.bbber = !this.bbber;
+    coNice(coid, index) {
+
+      this.bbber[index] = !this.bbber[index];
       this.idd = this.$route.params.id;
       var uid = sessionStorage.getItem("accessToken");
-      if (this.bbber) {
-        var isClick = this.list2.join(",") + "," + uid;
-        var num = parseInt(this.$refs.dz.innerHTML);
-        this.$refs.dz.innerHTML = num + 1;
+      console.log(this.list2);
+      if (this.bbber[index]) {
+        var isClick = this.list2[index].join(",") + "," + uid;
       } else {
-      var num = parseInt(this.$refs.dz.innerHTML);
-        this.$refs.dz.innerHTML = num - 1;
-        for (var j = 0; j <= this.list2.length; j++) {
-          if (this.list2[j] == this.idd) {
-            var isClick = this.list2.slice(0, j) + this.list2.slice(j + 1);
+        console.log(index);
+        for (var j = 0; j < this.list2[j].length; j++) {
+          if (this.list2[index][j] == this.idd) {
+            var isClick =
+              this.list2[index].slice(0, j) + this.list2[index].slice(j + 1);
           }
         }
       }
       var params = new URLSearchParams();
       params.append("id", this.idd);
+      params.append("coid", coid);
       params.append("isClick", isClick);
       this.axios
         .post("/user/cNice", params) //传参
-        .then(res => {
-            
-          
-        }).catch(res=>{})
+        .then(res => {})
+        .catch(res => {});
     },
     loadMsg() {
       this.idd = this.$route.params.id;
@@ -84,16 +69,8 @@ export default {
         .then(res => {
           if (res.data.code == 1) {
             this.list1 = res.data.data;
-            console.log(this.list1);
-            var beClick1 = this.list1[0].beClick;
-            this.list2 = beClick1.split(",");
-            console.log(this.list2);
-            for (var i = 0; i <= this.list2.length; i++) {
-              if (this.idd == this.list2[i]) {
-                this.bbber = true;
-                break;
-              }
-            }
+           
+            
           }
         })
         .catch(function(err) {

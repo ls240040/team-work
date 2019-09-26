@@ -47,7 +47,7 @@ router.post('/comment', (req, res) => {
 })
 router.post('/content', (req, res) => {
     var id = req.body.id
-    var sql = "SELECT U_ID,CO_Content,U_Img,U_Name,beClick FROM diancan_comment WHERE ID=?";
+    var sql = "SELECT U_ID,CO_Content,U_Img,U_Name,beClick,CO_ID FROM diancan_comment WHERE ID=?";
     pool.query(sql, [id], (err, result) => {
         if (err) throw err;
         if (result.length == 0) {
@@ -60,8 +60,9 @@ router.post('/content', (req, res) => {
 router.post('/cNice', (req, res) => {
     var id = req.body.id
     var isClick = req.body.isClick
-    var sql = "UPDATE diancan_comment SET beClick=? WHERE ID=?";
-    pool.query(sql, [isClick, id], (err, result) => {
+    var CO_ID = req.body.coid
+    var sql = "UPDATE diancan_comment SET beClick=?,ID=? WHERE CO_ID=?";
+    pool.query(sql, [isClick, id, CO_ID], (err, result) => {
         if (err) throw err;
         if (result.affectedRows == 0) {
             res.send({ code: -1, msg: "修改失败" });
@@ -70,7 +71,30 @@ router.post('/cNice', (req, res) => {
         }
     })
 })
+router.post('/addComment', (req, res) => {
+    // params.append("id", this.idd);
+    // params.append("val", value);
+    // params.append("uid", uid);
+    // params.append("U_Img", this.list.U_Img);
+    // params.append("uname", this.list.U_Name);
 
+    var idd = req.body.idd
+    console.log(idd)
+    var comment = req.body.val
+    var U_ID = req.body.uid
+    var U_Img = req.body.U_Img
+    var U_name = req.body.U_name
+    var beClick = U_ID.toString()
+    var sql = "INSERT INTO diancan_comment VALUES (null,?,?,?,?,?,?)";
+    pool.query(sql, [U_ID, comment, U_Img, U_name, idd, beClick], (err, result) => {
+        if (err) throw err;
+        if (result.affectedRows == 0) {
+            res.send({ code: -1, msg: "修改失败" });
+        } else {
+            res.send({ code: 1, msg: "修改成功", data: result });
+        }
+    })
+})
 
 router.get("/getNum", (req, res) => {
     //6.1:接收网页传递数据 用户名和密码
