@@ -170,9 +170,8 @@ export default {
         .then(res => {
           if (res.data.code == 1) {
             console.log("success");
-            this.OrderSuccess="",
-            this.OrderStatue="none";
             this.$router.push({ path: '/diancan' });
+            this.$router.go(0);
           }else{console.log("fail")}
         });
     },
