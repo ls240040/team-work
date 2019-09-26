@@ -359,90 +359,19 @@ CREATE TABLE diancan_RowNum(
   R_ETime Varchar(8),
   R_ShopName Varchar(24)
 );
-
-
-
-/****桌子信息****/
-CREATE TABLE diancan_Desk(
-  D_ID INT PRIMARY KEY AUTO_INCREMENT,
-  D_MID int,                    /**餐馆ID**/
-  D_Name Varchar(20),           /**桌子名字**/
-  D_Volum Int,                  /**桌子容纳数**/
-  D_Statue Boolean              /**桌子状态  (可用/不可用)**/
+/**评论表**/
+CREATE TABLE diancan_Comment(
+  CO_ID INT PRIMARY KEY AUTO_INCREMENT, /*评论列表自增id*/
+  U_ID INT,                             /*用户id*/
+  CO_Content Varchar(128),              /*用户评论的内容*/
+  U_Img Varchar(128),                   /*评论用户头像*/
+  U_Name Varchar(128),                  /*评论用户名称*/
+  ID Int,                              /*该消息的ID*/
+  beClick Varchar(128)                  /*当前评论被哪些用户点赞*/
 );
-
-/**桌子信息表表插入数据**/
-INSERT INTO diancan_Desk VALUES
-(null,1,"sm1",4,0),
-(null,1,"sm2",4,0),
-(null,1,"sm3",4,0),
-(null,1,"sm4",4,0),
-(null,1,"sm5",4,0),
-(null,1,"sm6",4,0),
-(null,1,"sm7",4,0),
-(null,1,"sm8",4,0),
-(null,1,"sm9",4,0),
-(null,1,"sm10",4,0),
-(null,1,"md1",6,0),
-(null,1,"md2",6,0),
-(null,1,"md3",6,0),
-(null,1,"md4",6,0),
-(null,1,"md5",6,0),
-(null,1,"md6",6,0),
-(null,1,"md7",6,0),
-(null,1,"md8",6,0),
-(null,1,"md9",6,0),
-(null,1,"md10",6,0),
-(null,1,"md11",6,0),
-(null,1,"md12",6,0),
-(null,1,"md13",6,0),
-(null,1,"md14",6,0),
-(null,1,"md15",6,0),
-(null,1,"md16",6,0),
-(null,1,"lg1",12,0),
-(null,1,"lg2",12,0),
-(null,1,"lg3",12,0),
-(null,1,"lg4",12,0),
-(null,1,"lg5",12,0),
-(null,1,"lg6",12,0),
-(null,1,"lg7",12,0),
-(null,1,"lg8",12,0),
-(null,2,"sm1",4,0),
-(null,2,"sm2",4,0),
-(null,2,"sm3",4,0),
-(null,2,"sm4",4,0),
-(null,2,"sm5",4,0),
-(null,2,"sm6",4,0),
-(null,2,"sm7",4,0),
-(null,2,"sm8",4,0),
-(null,2,"sm9",4,0),
-(null,2,"sm10",4,0),
-(null,2,"md1",6,0),
-(null,2,"md2",6,0),
-(null,2,"md3",6,0),
-(null,2,"md4",6,0),
-(null,2,"md5",6,0),
-(null,2,"md6",6,0),
-(null,2,"md7",6,0),
-(null,2,"md8",6,0),
-(null,2,"md9",6,0),
-(null,2,"md10",6,0),
-(null,2,"md11",6,0),
-(null,2,"md12",6,0),
-(null,2,"md13",6,0),
-(null,2,"md14",6,0),
-(null,2,"md15",6,0),
-(null,2,"md16",6,0),
-(null,2,"lg1",12,0),
-(null,2,"lg2",12,0),
-(null,2,"lg3",12,0),
-(null,2,"lg4",12,0),
-(null,2,"lg5",12,0),
-(null,2,"lg6",12,0),
-(null,2,"lg7",12,0),
-(null,2,"lg8",12,0);
-
-
+/*评论表数据*/
+INSERT INTO diancan_Comment VALUES
+(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",1,"2,3,4,5");
 /**订单信息**/
 CREATE TABLE diancan_Order(
   O_ID INT PRIMARY KEY AUTO_INCREMENT,

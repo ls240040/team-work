@@ -33,6 +33,21 @@ router.post("/login", (req, res) => {
     });
 })
 
+router.post('/comment', (req, res) => {
+    var id = req.body.id
+    var sql = "SELECT R_Comment,R_img1,R_img2,R_img3,R_Name";
+    pool.query(sql, (err, result) => {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败" });
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+})
+
+
+
 
 router.get("/getNum", (req, res) => {
     //6.1:接收网页传递数据 用户名和密码
@@ -57,10 +72,10 @@ router.get("/getNum", (req, res) => {
 //根据用户ID获取用户所有信息
 router.get('/getUser', (req, res) => {
     var params = url.parse(req.url, true).query;
-    let U_ID = params.U_ID;//用户ID
+    let U_ID = params.U_ID; //用户ID
 
     var sql = "SELECT * FROM diancan_user where U_ID=?";
-    pool.query(sql,[U_ID] ,(err, result) => {
+    pool.query(sql, [U_ID], (err, result) => {
         if (err) throw err;
         if (result.length == 0) {
             res.send({ code: -1, msg: "查询失败", data: result });
@@ -72,9 +87,9 @@ router.get('/getUser', (req, res) => {
 
 //根据用户ID获取用户信息
 router.get('/getUser2', (req, res) => {
-    var U_ID=req.query.uid;
+    var U_ID = req.query.uid;
     var sql = "SELECT U_LoginID,U_Name FROM diancan_User where U_ID=?";
-    pool.query(sql,[U_ID] ,(err, result) => {
+    pool.query(sql, [U_ID], (err, result) => {
         if (err) throw err;
         if (result.length == 0) {
             res.send({ code: -1, msg: "查询失败", data: result });
@@ -83,5 +98,52 @@ router.get('/getUser2', (req, res) => {
         }
     })
 });
+
+//检查账号
+router.get('/checkLoginID', (req, res) => {
+    var U_LoginID=req.query.U_LoginID;
+    var sql = "SELECT U_LoginID,U_Name FROM diancan_User where U_LoginID=?";
+    pool.query(sql,[U_LoginID] ,(err, result) => {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败", data: result });
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+});
+//拿到用户ID by LoginID
+router.get('/getUserID', (req, res) => {
+    var U_LoginID=req.query.U_LoginID;
+    var sql = "SELECT U_ID FROM diancan_User where U_LoginID=?";
+    pool.query(sql,[U_LoginID] ,(err, result) => {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败", data: result });
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+});
+
+//用户注册
+router.get('/userRegister', (req, res) => {
+    let params = url.parse(req.url, true).query;
+    let U_LoginID=params.U_LoginID,
+    U_Name=params.U_Name,
+    U_PassWord=params.U_PassWord;
+
+    var sql = "INSERT INTO diancan_user (U_ID,U_LoginID,U_Name,U_PassWord) VALUES (null,?,?,?)";
+    pool.query(sql, [U_LoginID,U_Name,U_PassWord],
+        (err, result) => {
+            if (err) throw err;
+            if (result.affectedRows == 0) {
+                res.send({ code: -1, msg: "注册失败", data: result });
+            } else {
+                res.send({ code: 1, msg: "注册成功", data: result });
+            }
+        })
+});
+
 
 module.exports = router;

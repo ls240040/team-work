@@ -97,10 +97,10 @@ router.get('/addOrder', (req, res) => {
         O_Note = params.O_Note;
 
     var sql = "INSERT INTO diancan_order VALUES (null,?,?,?,?,?,?,?,?,?,?,?)";
-    pool.query(sql, [O_MID, O_DID, O_UID, O_Time, O_Statue, O_Phone, O_FID, O_Totle, O_Dis, O_PayStatue, O_Note],
+    pool.query(sql, [O_MID, O_UID, O_DID, O_Time, O_Statue, O_Phone, O_FID, O_Totle, O_Dis, O_PayStatue, O_Note],
         (err, result) => {
             if (err) throw err;
-            if (result.rowaffected == 0) {
+            if (result.affectedRows == 0) {
                 res.send({ code: -1, msg: "插入失败", data: result });
             } else {
                 res.send({ code: 1, msg: "插入成功", data: result });
@@ -148,7 +148,7 @@ router.get('/deleteOrder', (req, res) => {
     var sql = "DELETE FROM diancan_order WHERE O_ID = ?";
     pool.query(sql,[O_ID] ,(err, result) => {
         if (err) throw err;
-        if (result.rowaffected == 0) {
+        if (result.affectedRows == 0) {
             res.send({ code: -1, msg: "删除失败", data: result });
         } else {
             res.send({ code: 1, msg: "删除成功", data: result });

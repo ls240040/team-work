@@ -81,7 +81,7 @@ export default {
             this.axios.get(url1, { params: { U_ID: userID } }).then(res => {
               if (res.data.code == 1) {
                 this.nameInOrder[i].U_Name = res.data.data[0].U_Name;
-                this.nameInOrder[i].U_NickName = res.data.data[0].U_NickName;
+                this.nameInOrder[i].U_NickName = res.data.data[0].U_Name;
               }
             });
             this.axios.get(url2, { params: { M_ID: merID } }).then(res => {
@@ -93,7 +93,6 @@ export default {
           }
         }
       });
-      
     },
 
     //删除订单

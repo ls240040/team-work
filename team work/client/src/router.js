@@ -49,6 +49,8 @@ import set from './components/Mine/Mines/set.vue'
 
 /* 修改密码 */
 import setPassword from './components/Mine/Mines/setPassword.vue'
+// 注册
+import register from './components/Login/register.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -325,6 +327,14 @@ export default new Router({
             path: '/diancanordercontent',
             name: 'diancanordercontent',
             component: diancanordercontent,
+            meta: {
+                keepAlive: false //不需要被缓存的组件
+            }
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: register,
             meta: {
                 keepAlive: false //不需要被缓存的组件
             }
