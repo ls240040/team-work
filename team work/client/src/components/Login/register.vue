@@ -35,7 +35,12 @@
       </div>
       <div class="TF">
         <span>确认密码：</span>
-        <input type="text" placeholder="请再次输入密码" v-model="U_PassWordAgain" @blur="checkPassWordAgain" />
+        <input
+          type="text"
+          placeholder="请再次输入密码"
+          v-model="U_PassWordAgain"
+          @blur="checkPassWordAgain"
+        />
         <img src="http://127.0.0.1:5050/icon/true.png" v-if="U_PassWordAgaincheck==1" />
         <img src="http://127.0.0.1:5050/icon/false.png" v-if="U_PassWordAgaincheck==0" />
       </div>
@@ -61,11 +66,11 @@ export default {
       U_LoginID: "",
       U_LoginIDcheck: -1,
       U_Name: "",
-      U_Namecheck:-1,
+      U_Namecheck: -1,
       U_PassWord: "",
-      U_PassWordcheck:-1,
+      U_PassWordcheck: -1,
       U_PassWordAgain: "",
-      U_PassWordAgaincheck: -1,
+      U_PassWordAgaincheck: -1
     };
   },
   methods: {
@@ -99,42 +104,67 @@ export default {
       });
     },
     //chenkName,不为空就行
-    checkName(){
-      if(this.U_Name==""){this.U_Namecheck=0;}
-      else{this.U_Namecheck=1;}
+    checkName() {
+      if (this.U_Name == "") {
+        this.U_Namecheck = 0;
+      } else {
+        this.U_Namecheck = 1;
+      }
     },
     //chenkPassWord,不为空就行
-    checkPassWord(){
-      if(this.U_PassWord==""){this.U_PassWordcheck=0;}
-      else{this.U_PassWordcheck=1;}
+    checkPassWord() {
+      if (this.U_PassWord == "") {
+        this.U_PassWordcheck = 0;
+      } else {
+        this.U_PassWordcheck = 1;
+      }
     },
     //chenkPassWordAgain,两个要一样
-    checkPassWordAgain(){
-      if(this.U_PassWord==this.U_PassWordAgain){this.U_PassWordAgaincheck=1;}
-      else{this.U_PassWordAgaincheck=0;}
+    checkPassWordAgain() {
+      if (this.U_PassWord == this.U_PassWordAgain) {
+        this.U_PassWordAgaincheck = 1;
+      } else {
+        this.U_PassWordAgaincheck = 0;
+      }
     },
 
     //四个都是1之后,注册用户
-    userRegister(){
-      if(this.U_LoginIDcheck==1&&this.U_Namecheck==1&&this.U_PassWordcheck==1&&this.U_PassWordAgaincheck==1){
-        let U_LoginID=this.U_LoginID,
-        U_Name=this.U_Name,
-        U_PassWord=this.U_PassWord;
+    userRegister() {
+      if (
+        this.U_LoginIDcheck == 1 &&
+        this.U_Namecheck == 1 &&
+        this.U_PassWordcheck == 1 &&
+        this.U_PassWordAgaincheck == 1
+      ) {
+        let U_LoginID = this.U_LoginID,
+          U_Name = this.U_Name,
+          U_PassWord = this.U_PassWord;
 
         var url = "/user/userRegister";
-        this.axios.get(url, { params: { U_LoginID:U_LoginID,U_Name:U_Name,U_PassWord:U_PassWord } }).then(res => {
-          if (res.data.code == 1) {
-            console.log(res.data.data)
-          }
-        });
-
-
-
-
-      }else{alert("输入信息有误，请修改。");}
-    },
-
-
+        this.axios
+          .get(url, {
+            params: {
+              U_LoginID: U_LoginID,
+              U_Name: U_Name,
+              U_PassWord: U_PassWord
+            }
+          })
+          .then(res => {
+            if (res.data.code == 1) {
+              var url = "/user/getUserID";
+              this.axios.get(url, { params: { U_LoginID: U_LoginID } }).then(res => {
+                  if (res.data.code == 1) {
+                    console.log(res.data.data[0].U_ID);
+                    sessionStorage.setItem("accessToken", res.data.data[0].U_ID);
+                    this.$router.push({path: "/"});
+                  }
+              });
+            }
+          });
+      } else {
+        alert("输入信息有误，请修改。");
+      }
+    }
   }
 };
 </script>

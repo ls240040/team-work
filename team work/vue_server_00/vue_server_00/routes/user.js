@@ -97,6 +97,19 @@ router.get('/checkLoginID', (req, res) => {
         }
     })
 });
+//拿到用户ID by LoginID
+router.get('/getUserID', (req, res) => {
+    var U_LoginID=req.query.U_LoginID;
+    var sql = "SELECT U_ID FROM diancan_User where U_LoginID=?";
+    pool.query(sql,[U_LoginID] ,(err, result) => {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败", data: result });
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+});
 
 //用户注册
 router.get('/userRegister', (req, res) => {
