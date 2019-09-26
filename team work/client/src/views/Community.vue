@@ -1,10 +1,5 @@
 <template>
   <div class="community" style="overflow:auto">
-    <!-- <div class="head">
-      <img src="http://127.0.0.1:5050/icon/search.png">
-      <h2>社区</h2>
-      <img src="http://127.0.0.1:5050/icon/camera.png">
-    </div>-->
     <h1>社区</h1>
     <!-- nav -->
     <mt-navbar class="nav" v-model="active">
@@ -15,10 +10,10 @@
     <!--切换面板列表-->
     <mt-tab-container class="container" v-model="active">
       <mt-tab-container-item id="attention">
-        <communityfriends></communityfriends>
+          <communityfriends></communityfriends>
       </mt-tab-container-item>
       <mt-tab-container-item id="recommend">
-        <communityrecommend></communityrecommend>
+          <communityrecommend></communityrecommend>
       </mt-tab-container-item>
       <mt-tab-container-item id="doyen">
         <communitydoyen></communitydoyen>
@@ -37,24 +32,21 @@ import TabBar from "../components/tab-bar";
 export default {
   data() {
     return {
-      active: "recommend"
+      active: "recommend",
     };
   },
   components: {
     communityfriends: communityFriends,
     communityrecommend: communityRecommend,
     communitydoyen: communityDoyen,
-    "tab-bar": TabBar
+    "tab-bar": TabBar,
   },
-  mounted: {
-
-  },
-  methods: {},
-  mounted() {
+   mounted: function() {
     window.scroll(0, 0); //让跳转后页面在顶部
     this.$refs.child.communityurl = "community_iconred.png"; //改变图标颜色
     this.$refs.child.communitycolor = "red"; //改变图标颜色
-  }
+  },
+
 };
 </script>
 <style lang="scss">
