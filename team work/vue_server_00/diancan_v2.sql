@@ -359,90 +359,19 @@ CREATE TABLE diancan_RowNum(
   R_ETime Varchar(8),
   R_ShopName Varchar(24)
 );
-
-
-
-/****桌子信息****/
-CREATE TABLE diancan_Desk(
-  D_ID INT PRIMARY KEY AUTO_INCREMENT,
-  D_MID int,                    /**餐馆ID**/
-  D_Name Varchar(20),           /**桌子名字**/
-  D_Volum Int,                  /**桌子容纳数**/
-  D_Statue Boolean              /**桌子状态  (可用/不可用)**/
+/**评论表**/
+CREATE TABLE diancan_Comment(
+  CO_ID INT PRIMARY KEY AUTO_INCREMENT, /*评论列表自增id*/
+  U_ID INT,                             /*用户id*/
+  CO_Content Varchar(128),              /*用户评论的内容*/
+  U_Img Varchar(128),                   /*评论用户头像*/
+  U_Name Varchar(128),                  /*评论用户名称*/
+  ID Int,                              /*该消息的ID*/
+  beClick Varchar(128)                  /*当前评论被哪些用户点赞*/
 );
-
-/**桌子信息表表插入数据**/
-INSERT INTO diancan_Desk VALUES
-(null,1,"sm1",4,0),
-(null,1,"sm2",4,0),
-(null,1,"sm3",4,0),
-(null,1,"sm4",4,0),
-(null,1,"sm5",4,0),
-(null,1,"sm6",4,0),
-(null,1,"sm7",4,0),
-(null,1,"sm8",4,0),
-(null,1,"sm9",4,0),
-(null,1,"sm10",4,0),
-(null,1,"md1",6,0),
-(null,1,"md2",6,0),
-(null,1,"md3",6,0),
-(null,1,"md4",6,0),
-(null,1,"md5",6,0),
-(null,1,"md6",6,0),
-(null,1,"md7",6,0),
-(null,1,"md8",6,0),
-(null,1,"md9",6,0),
-(null,1,"md10",6,0),
-(null,1,"md11",6,0),
-(null,1,"md12",6,0),
-(null,1,"md13",6,0),
-(null,1,"md14",6,0),
-(null,1,"md15",6,0),
-(null,1,"md16",6,0),
-(null,1,"lg1",12,0),
-(null,1,"lg2",12,0),
-(null,1,"lg3",12,0),
-(null,1,"lg4",12,0),
-(null,1,"lg5",12,0),
-(null,1,"lg6",12,0),
-(null,1,"lg7",12,0),
-(null,1,"lg8",12,0),
-(null,2,"sm1",4,0),
-(null,2,"sm2",4,0),
-(null,2,"sm3",4,0),
-(null,2,"sm4",4,0),
-(null,2,"sm5",4,0),
-(null,2,"sm6",4,0),
-(null,2,"sm7",4,0),
-(null,2,"sm8",4,0),
-(null,2,"sm9",4,0),
-(null,2,"sm10",4,0),
-(null,2,"md1",6,0),
-(null,2,"md2",6,0),
-(null,2,"md3",6,0),
-(null,2,"md4",6,0),
-(null,2,"md5",6,0),
-(null,2,"md6",6,0),
-(null,2,"md7",6,0),
-(null,2,"md8",6,0),
-(null,2,"md9",6,0),
-(null,2,"md10",6,0),
-(null,2,"md11",6,0),
-(null,2,"md12",6,0),
-(null,2,"md13",6,0),
-(null,2,"md14",6,0),
-(null,2,"md15",6,0),
-(null,2,"md16",6,0),
-(null,2,"lg1",12,0),
-(null,2,"lg2",12,0),
-(null,2,"lg3",12,0),
-(null,2,"lg4",12,0),
-(null,2,"lg5",12,0),
-(null,2,"lg6",12,0),
-(null,2,"lg7",12,0),
-(null,2,"lg8",12,0);
-
-
+/*评论表数据*/
+INSERT INTO diancan_Comment VALUES
+(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",1,"2,3,4,5");
 /**订单信息**/
 CREATE TABLE diancan_Order(
   O_ID INT PRIMARY KEY AUTO_INCREMENT,
@@ -465,6 +394,7 @@ CREATE TABLE diancan_Order(
 /**社区-推荐**/
 CREATE TABLE recommend(
   ID INT PRIMARY KEY AUTO_INCREMENT,
+  R_Attention VARCHAR(66),
   R_Avatar VARCHAR(255),
   R_Name VARCHAR(66),
   R_Title VARCHAR(66),
@@ -479,16 +409,16 @@ CREATE TABLE recommend(
   R_Collect INT
 ); 
 INSERT INTO recommend VALUES
-(NULL,'/community/avatar1.png','大H8','吃不胖','/community/warmth_v_3.png','服务超级棒，真的很有耐心','/community/c1.jpg','/community/c2.jpg','/community/blank.jpg','发布于昨天','最新活动',13,2),
-(NULL,'/community/avatar2.png','阿圆6','求关注','/community/warmth_v_1.png','海底捞那么多年依然那么红火','/community/c3.jpg','/community/blank.jpg','/community/blank.jpg','发布于昨天','最新活动',24,6),
-(NULL,'/community/avatar3.png','诶及傻猫','旅游','/community/warmth_v_2.png','和仙女们一起解锁海底捞生日歌','/community/c4.jpg','/community/blank.jpg','/community/blank.jpg','发布于昨天','最新活动',5,1),
-(NULL,'/community/avatar4.png','小洛',null,'/community/warmth_v_1.png','聚会不二选','/community/c5.jpg','/community/c6.jpg','/community/c7.jpg','发布于昨天','海捞天地',60,12),
-(NULL,'/community/avatar5.png','捞粉儿','加油','/community/warmth_v_1.png','海底捞的老顾客了','/community/c8.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期一','客户讨论',18,2),
-(NULL,'/community/avatar6.png','Minnice',null,'/community/warmth_v_3.png','正准备去，走起','/community/c9.jpg','/community/c10.jpg','/community/c11.jpg','发布于星期三','海捞天地',13,2),
-(NULL,'/community/avatar7.png','Nako','长得帅','/community/warmth_v_2.png','今天被免单了，开森','/community/c12.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期三','海捞天地',19,3),
-(NULL,'/community/avatar8.png','奶昔v','感恩','/community/warmth_v_1.png','食材很新鲜','/community/c13.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期三','海捞天地',17,2),
-(NULL,'/community/avatar9.png','cyq晴','乖而又个性','/community/warmth_v_4.png','最喜欢的火锅店','/community/c14.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期三','海捞天地',42,5),
-(NULL,'/community/avatar10.png','左二','仙女本仙','/community/warmth_v_1.png','聚会圣地','/community/c15.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期三','海捞天地',36,7);
+(NULL,'+关注','/community/avatar1.png','大H8','吃不胖','/community/warmth_v_3.png','服务超级棒，真的很有耐心','/community/c1.jpg','/community/c2.jpg','/community/blank.jpg','发布于昨天','最新活动',13,2),
+(NULL,'+关注','/community/avatar2.png','阿圆6','求关注','/community/warmth_v_1.png','海底捞那么多年依然那么红火','/community/c3.jpg','/community/blank.jpg','/community/blank.jpg','发布于昨天','最新活动',24,6),
+(NULL,'+关注','/community/avatar3.png','诶及傻猫','旅游','/community/warmth_v_2.png','和仙女们一起解锁海底捞生日歌','/community/c4.jpg','/community/blank.jpg','/community/blank.jpg','发布于昨天','最新活动',5,1),
+(NULL,'+关注','/community/avatar4.png','小洛',null,'/community/warmth_v_1.png','聚会不二选','/community/c5.jpg','/community/c6.jpg','/community/c7.jpg','发布于昨天','海捞天地',60,12),
+(NULL,'+关注','/community/avatar5.png','捞粉儿','加油','/community/warmth_v_1.png','海底捞的老顾客了','/community/c8.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期一','客户讨论',18,2),
+(NULL,'+关注','/community/avatar6.png','Minnice',null,'/community/warmth_v_3.png','正准备去，走起','/community/c9.jpg','/community/c10.jpg','/community/c11.jpg','发布于星期三','海捞天地',13,2),
+(NULL,'+关注','/community/avatar7.png','Nako','长得帅','/community/warmth_v_2.png','今天被免单了，开森','/community/c12.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期三','海捞天地',19,3),
+(NULL,'+关注','/community/avatar8.png','奶昔v','感恩','/community/warmth_v_1.png','食材很新鲜','/community/c13.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期三','海捞天地',17,2),
+(NULL,'+关注','/community/avatar9.png','cyq晴','乖而又个性','/community/warmth_v_4.png','最喜欢的火锅店','/community/c14.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期三','海捞天地',42,5),
+(NULL,'+关注','/community/avatar10.png','左二','仙女本仙','/community/warmth_v_1.png','聚会圣地','/community/c15.jpg','/community/blank.jpg','/community/blank.jpg','发布于星期三','海捞天地',36,7);
 
 /**社区-关注**/
 CREATE TABLE friends(
@@ -505,8 +435,8 @@ CREATE TABLE friends(
   R_Comnum INT,
   R_Collect INT
 ); 
-INSERT INTO friends VALUES
-(NULL,'/community/avatar1.png','大H8','吃不胖','/community/warmth_v_3.png','服务超级棒，真的很有耐心','/community/c1.jpg','/community/c2.jpg','/community/blank.jpg','发布于昨天',13,2);
+-- INSERT INTO friends VALUES
+-- (NULL,'/community/avatar1.png','大H8','吃不胖','/community/warmth_v_3.png','服务超级棒，真的很有耐心','/community/c1.jpg','/community/c2.jpg','/community/blank.jpg','发布于昨天',13,2);
 
 
 /**社区-达人**/

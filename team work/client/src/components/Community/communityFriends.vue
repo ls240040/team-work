@@ -50,10 +50,14 @@
   </div>
 </template>
 <script>
+// 引入公共的bus，来做为中间传达的工具
+import Bus from '../../../src/Bus.js'
 export default {
+  inject:['reload'],
   data() {
     return {
-      list: []
+      list: [],
+      value:""
     };
   },
   methods: {
@@ -63,14 +67,23 @@ export default {
         if (res.data.code == 1) {
           this.list = res.data.data;
           console.log(this.list);
-          // this.loadMore();      
         }
       });
     }
   },
   created() {
     this.loadMore();
-  }
+  },
+  mounted: function() {
+    // 用$on事件来接收参数
+    Bus.$on("val", data => {
+      console.log(data);
+      this.value = data;
+      if(this.value=="更新成功"){
+        this.loadMore();
+      }
+    });
+  },
 };
 </script>
 <style lang="scss" scoped>

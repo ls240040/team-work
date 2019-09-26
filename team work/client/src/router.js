@@ -6,6 +6,7 @@ import Mine from './views/Mine.vue'
 import Vip from './views/Vip.vue'
 import Login from './views/Login.vue'
 import Details from './views/Details.vue'
+import A from './views/A.vue'
 
 /* 社区 详情页面 */
 import recommendDetailed from './components/Community/recommendDetailed.vue'
@@ -44,6 +45,7 @@ import yuding from './components/Mine/mineOrders/yuding.vue'
 import diancan from './components/Mine/mineOrders/diancan.vue'
 import diancanordercontent from './components/Mine/mineOrders/diancanOrderContent.vue'
 import waisong from './components/Mine/mineOrders/waisong.vue'
+
 /* set设置 */
 import set from './components/Mine/Mines/set.vue'
 
@@ -54,7 +56,8 @@ import register from './components/Login/register.vue'
 Vue.use(Router)
 
 export default new Router({
-    routes: [{
+    routes: [
+        {
             path: '/menu',
             name: 'menu',
             component: Menu,
@@ -334,6 +337,14 @@ export default new Router({
             path: '/register',
             name: 'register',
             component: register,
+            meta: {
+                keepAlive: false //不需要被缓存的组件
+            }
+        },
+        {
+            path: '/A',
+            name: 'A',
+            component: A,
             meta: {
                 keepAlive: false //不需要被缓存的组件
             }
