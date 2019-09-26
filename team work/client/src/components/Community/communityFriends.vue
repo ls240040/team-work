@@ -51,6 +51,7 @@
 </template>
 <script>
 export default {
+  inject:['reload'],
   data() {
     return {
       list: []
@@ -64,6 +65,8 @@ export default {
           this.list = res.data.data;
           console.log(this.list);
           // this.loadMore();
+          this.reload()
+          this.$messagebox
         }
       });
     }

@@ -52,7 +52,8 @@ import setPassword from './components/Mine/Mines/setPassword.vue'
 Vue.use(Router)
 
 export default new Router({
-    routes: [{
+    routes: [
+        {
             path: '/menu',
             name: 'menu',
             component: Menu,
@@ -104,7 +105,7 @@ export default new Router({
             name: 'community',
             component: Community,
             meta: {
-                keepAlive: false //需要被缓存的组件
+                keepAlive: true //需要被缓存的组件
             },
         },
         {

@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="logo">
-                    <span class="attention" @click="attention(index,$event)">+关注</span>
+                    <span class="attention" @click="attention(index,$event)">{{$store.getters.getAttention}}</span>
                     <img src="http://127.0.0.1:5050/icon/elipsis.png">
                 </div>
             </div>
@@ -37,7 +37,7 @@
                     <p>来自<i>{{item.R_Come}}</i></p>
                 </div>
                 <div class="right">
-                    <div><img src="http://127.0.0.1:5050/icon/message.png"><span>{{item.R_Comnum}}</span></div>
+                    <div><img src="http://127.0.0.1:5050/icon/message.png" @click="info(index)"><span>{{item.R_Comnum}}</span></div>
                     <div><img :src="active?collect:collect_active" @click="like(index)"><span>{{item.R_Collect}}</span></div>
                 </div>
             </div>
@@ -54,16 +54,13 @@ export default {
              active:true,
              collect:'http://127.0.0.1:5050/icon/collect.png',
              collect_active:'http://127.0.0.1:5050/icon/collect-fill.png',
-             scrollTop:""
+            //  scrollTop:""
         }
     },
-     mounted() {
-        window.addEventListener('scroll',this.handleScroll);
-        console.log(this.$route.params.scroll2);
-    },
-    created(){
-        
-    },
+    //  mounted() {
+    //     window.addEventListener('scroll',this.handleScroll);
+    //     console.log(this.$route.params.scroll2);
+    // },
      methods:{
         like(i){
             var url='community/recommend';
@@ -74,23 +71,41 @@ export default {
                 }
             })
         },
-        handleScroll(e){
-            var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
-            this.scrollTop=scrollTop;
+        info(i){
+            var url='community/recommend';
+            this.axios.get(url).then(res=>{
+                console.log(res.data.data);
+                if(res.data.code==1){
+                    var id=res.data.data[i].ID;
+                    var avatar=res.data.data[i].R_Avatar;
+                    this.$router.push({
+                        name: 'recommendDetailed',
+                        params: {
+                            id:id,
+                            avatar:avatar
+                        }
+                    })
+                }
+            })
         },
+        // handleScroll(e){
+        //     var scrollTop=document.documentElement.scrollTop || document.body.scrollTop;
+        //     this.scrollTop=scrollTop;
+        // },
         attention(index,e){
-            e.target.innerHTML="已关注"
+            // e.target.innerHTML="已关注";
             index=parseInt(index)+1;
             console.log(index);
-            this.$router.push({
-                name: "details",
-                params:{
-                    scrollTop:this.scrollTop
-                }
-            });
-            this.scrollTop=this.$route.params.scroll2;
+            // this.$router.push({
+            //     name: "details",
+            //     params:{
+            //         scrollTop:this.scrollTop
+            //     }
+            // });
+            // this.scrollTop=this.$route.params.scroll2;
             for(var item of this.list){
                 if(item.ID==index){
+                    this.$store.commit("updateAttention","已关注");
                     var avatar = item.R_Avatar;
                     var name = item.R_Name;
                     var title = item.R_Title;
