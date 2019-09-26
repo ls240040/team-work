@@ -84,4 +84,38 @@ router.get('/getUser2', (req, res) => {
     })
 });
 
+//检查账号
+router.get('/checkLoginID', (req, res) => {
+    var U_LoginID=req.query.U_LoginID;
+    var sql = "SELECT U_LoginID,U_Name FROM diancan_User where U_LoginID=?";
+    pool.query(sql,[U_LoginID] ,(err, result) => {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败", data: result });
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+});
+
+//用户注册
+router.get('/userRegister', (req, res) => {
+    let params = url.parse(req.url, true).query;
+    let U_LoginID=params.U_LoginID,
+    U_Name=params.U_Name,
+    U_PassWord=params.U_PassWord;
+
+    var sql = "INSERT INTO diancan_user (U_ID,U_LoginID,U_Name,U_PassWord) VALUES (null,?,?,?)";
+    pool.query(sql, [U_LoginID,U_Name,U_PassWord],
+        (err, result) => {
+            if (err) throw err;
+            if (result.affectedRows == 0) {
+                res.send({ code: -1, msg: "注册失败", data: result });
+            } else {
+                res.send({ code: 1, msg: "注册成功", data: result });
+            }
+        })
+});
+
+
 module.exports = router;
