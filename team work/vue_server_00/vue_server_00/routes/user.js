@@ -33,7 +33,7 @@ router.post("/login", (req, res) => {
     });
 })
 
-router.get('/comment', (req, res) => {
+router.post('/comment', (req, res) => {
     var id = req.body.id
     var sql = "SELECT R_Comment,R_img1,R_img2,R_img3,R_Name";
     pool.query(sql, (err, result) => {
