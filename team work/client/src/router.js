@@ -54,8 +54,7 @@ import register from './components/Login/register.vue'
 Vue.use(Router)
 
 export default new Router({
-    routes: [
-        {
+    routes: [{
             path: '/menu',
             name: 'menu',
             component: Menu,
@@ -148,7 +147,7 @@ export default new Router({
             name: 'recommendDetailed',
             component: recommendDetailed,
             meta: {
-                keepAlive: true //需要被缓存的组件
+                keepAlive: false //需要被缓存的组件
             },
         },
 

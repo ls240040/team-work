@@ -1,35 +1,24 @@
 <template>
   <div class="recdet">
     <mt-header title="详情">
-      <router-link to="/" slot="left">
+      <router-link to="/community" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
       <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
     <div class="name">
-      <img src="http://127.0.0.1:5050/icon/touxiang.png" alt />
+      <img :src="`http://127.0.0.1:5050/${avatar}`" alt />
       <div>
-        <p>嘻嘻哈哈</p>
-        <img class="medal" src="http://127.0.0.1:5050/icon/warmth_v_4.png" alt />
-        <img class="medal" src="http://127.0.0.1:5050/icon/su_vipgold.png" alt />
-        <img class="medal" src="http://127.0.0.1:5050/icon/su_vipred.png" alt />
-        <img class="medal" src="http://127.0.0.1:5050/icon/su_vipsilver.png" alt />
-        <p class="sign">求点赞关注，求一起嘻嘻哈哈哈哈啊哈哈哈啊哈哈</p>
+        <p>{{list[0].R_Name}}</p>
       </div>
       <span>+关注</span>
     </div>
     <div class="text">
-      <span class="redspan">
-        #
-        <span>火锅中必点的素菜</span>#
-      </span>
-      <span>标题，再给大家讲一段长不胖的素菜</span>
-      <p>1.嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈2.嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈3.嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈哈嘻嘻哈</p>
-      <img src="http://127.0.0.1:5050/icon/timg.jpg" alt />
-      <p>
-        发布于
-        <span>2019-6-3</span>
-      </p>
+      <span>{{list[0].R_Title}}</span>
+      <p>{{list[0].R_Comment}}</p>
+      <img :src="`http://127.0.0.1:5050/${list[0].R_img1}`" alt />
+      <img :src="`http://127.0.0.1:5050/${list[0].R_img2}`" alt />
+      <img :src="`http://127.0.0.1:5050/${list[0].R_img3}`" alt />
     </div>
     <!-- 引入评论人员组件 -->
     <recommendName></recommendName>
@@ -43,18 +32,29 @@ import recommendbottom from "./recommendbottom";
 export default {
   data() {
     return {
-      list: []
+      list: [
+        {
+          R_Title: "",
+          R_img1: "community/blank.jpg",
+          R_img3: "community/blank.jpg",
+          R_img2: "community/blank.jpg"
+        }
+      ],
+      iddd: "",
+      avatar: ""
     };
   },
   methods: {
     loadmsg() {
+      this.iddd = this.$route.params.id;
+      this.avatar = this.$route.params.avatar;
       var params = new URLSearchParams();
-      params.append("id", 1);
+      params.append("id", this.iddd);
       this.axios
         .post("/user/comment", params) //传参
         .then(res => {
           if (res.data.code == 1) {
-              this.list=res.data.data
+            this.list = res.data.data;
           }
         })
         .catch(function(err) {
@@ -65,6 +65,9 @@ export default {
   components: {
     recommendName: recommendName,
     recommendbottom: recommendbottom
+  },
+  created() {
+    this.loadmsg();
   }
 };
 </script>
@@ -86,6 +89,7 @@ export default {
     img {
       width: 0.7rem;
       height: 0.7rem;
+      border-radius: 50%;
     }
     div {
       width: 60%;
@@ -136,6 +140,7 @@ export default {
       width: 1.5rem;
       height: 1.6rem;
       margin-top: 0.1rem;
+      margin-right: 0.1rem
     }
   }
 }

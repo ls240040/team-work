@@ -35,8 +35,8 @@ router.post("/login", (req, res) => {
 
 router.post('/comment', (req, res) => {
     var id = req.body.id
-    var sql = "SELECT R_Comment,R_img1,R_img2,R_img3,R_Name";
-    pool.query(sql, (err, result) => {
+    var sql = "SELECT R_Comment,R_img1,R_img2,R_img3,R_Name,R_Title FROM recommend WHERE ID=?";
+    pool.query(sql, [id], (err, result) => {
         if (err) throw err;
         if (result.length == 0) {
             res.send({ code: -1, msg: "查询失败" });
@@ -45,8 +45,31 @@ router.post('/comment', (req, res) => {
         }
     })
 })
-
-
+router.post('/content', (req, res) => {
+    var id = req.body.id
+    var sql = "SELECT U_ID,CO_Content,U_Img,U_Name,beClick FROM diancan_comment WHERE ID=?";
+    pool.query(sql, [id], (err, result) => {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败" });
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+})
+router.post('/cNice', (req, res) => {
+    var id = req.body.id
+    var isClick = req.body.isClick
+    var sql = "UPDATE diancan_comment SET beClick=? WHERE ID=?";
+    pool.query(sql, [isClick, id], (err, result) => {
+        if (err) throw err;
+        if (result.affectedRows == 0) {
+            res.send({ code: -1, msg: "修改失败" });
+        } else {
+            res.send({ code: 1, msg: "修改成功", data: result });
+        }
+    })
+})
 
 
 router.get("/getNum", (req, res) => {
@@ -101,9 +124,9 @@ router.get('/getUser2', (req, res) => {
 
 //检查账号
 router.get('/checkLoginID', (req, res) => {
-    var U_LoginID=req.query.U_LoginID;
+    var U_LoginID = req.query.U_LoginID;
     var sql = "SELECT U_LoginID,U_Name FROM diancan_User where U_LoginID=?";
-    pool.query(sql,[U_LoginID] ,(err, result) => {
+    pool.query(sql, [U_LoginID], (err, result) => {
         if (err) throw err;
         if (result.length == 0) {
             res.send({ code: -1, msg: "查询失败", data: result });
@@ -114,9 +137,9 @@ router.get('/checkLoginID', (req, res) => {
 });
 //拿到用户ID by LoginID
 router.get('/getUserID', (req, res) => {
-    var U_LoginID=req.query.U_LoginID;
+    var U_LoginID = req.query.U_LoginID;
     var sql = "SELECT U_ID FROM diancan_User where U_LoginID=?";
-    pool.query(sql,[U_LoginID] ,(err, result) => {
+    pool.query(sql, [U_LoginID], (err, result) => {
         if (err) throw err;
         if (result.length == 0) {
             res.send({ code: -1, msg: "查询失败", data: result });
@@ -129,12 +152,12 @@ router.get('/getUserID', (req, res) => {
 //用户注册
 router.get('/userRegister', (req, res) => {
     let params = url.parse(req.url, true).query;
-    let U_LoginID=params.U_LoginID,
-    U_Name=params.U_Name,
-    U_PassWord=params.U_PassWord;
+    let U_LoginID = params.U_LoginID,
+        U_Name = params.U_Name,
+        U_PassWord = params.U_PassWord;
 
     var sql = "INSERT INTO diancan_user (U_ID,U_LoginID,U_Name,U_PassWord) VALUES (null,?,?,?)";
-    pool.query(sql, [U_LoginID,U_Name,U_PassWord],
+    pool.query(sql, [U_LoginID, U_Name, U_PassWord],
         (err, result) => {
             if (err) throw err;
             if (result.affectedRows == 0) {
