@@ -4,7 +4,7 @@
       <div class="top">
         <!-- 返回主界面 -->
         <h1>
-          <img src="http://127.0.0.1:5050/icon/arrow-left.png" alt="">
+          <img src="http://127.0.0.1:5050/icon/arrow-left.png" alt="" @click="goLogin">
         </h1>
         <div class="title">
           <img class="logo" src="http://127.0.0.1:5050/icon/login_logo_img.png" alt>        
@@ -15,21 +15,24 @@
         </div>
       </div>
       <div class="bottom">
-        <div>
-          <span>用户名称：</span>
-          <input type="text" placeholder="请输入用户名">
-        </div>
-        <div>
+        
+        <div class="TF">
           <span>手机号码：</span>
-          <input type="text" placeholder="请输入用户名">
+          <input type="text" placeholder="请输入手机号" v-model="U_LoginID" @blur="checkID">
+          <img src="http://127.0.0.1:5050/icon/true.png" v-if="U_LoginIDcheck==1">
+          <img src="http://127.0.0.1:5050/icon/false.png" v-if="U_LoginIDcheck==0">
         </div>
-        <div>
+        <div class="TF">
+          <span>真实姓名：</span>
+          <input type="text" placeholder="请输入姓名" v-model="U_Name">
+        </div>
+        <div class="TF">
           <span>输入密码：</span>
-          <input type="text" placeholder="请输入密码">
+          <input type="text" placeholder="请输入密码" v-model="U_PassWord">
         </div>
-        <div>
+        <div class="TF">
           <span>确认密码：</span>
-          <input type="text" placeholder="请再次输入密码">
+          <input type="text" placeholder="请再次输入密码" v-model="U_PassWordAgain">
         </div>
       
         <mt-button class="loginBtn" type="danger">注册</mt-button>
@@ -50,17 +53,31 @@
 export default {
   data() {
     return {
-    
+      U_LoginID:"",
+      U_LoginIDcheck:-1,
+      U_Name:"",
+      U_PassWord:"",
+      U_PassWordAgain:"",
+      U_PassWordAgaincheck:"",
+
     };
   },
   methods: {
-   
+    //返回登录页面
+   goLogin(){
+     this.$router.push('/Login');
+   },
+
+   //失去焦点时候检查ID是否被注册
+   checkID(){
+     alert(this.U_LoginID);
+   }
   
   }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .register{
       .top{
         h1{
@@ -96,8 +113,15 @@ export default {
         div{
           width:70%;
           margin:0 auto;
+          position: relative;
+
+          
         }
-        
+        .TF>img{
+            position: absolute;
+            right: -0.5rem;
+            top: 0.2rem;
+          }
         input{
           width:50%;
           margin:0.23rem 0rem;
