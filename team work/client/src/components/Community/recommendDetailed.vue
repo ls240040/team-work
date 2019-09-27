@@ -1,7 +1,7 @@
 <template>
   <div class="recdet">
     <mt-header title="详情">
-      <router-link to="/" slot="left">
+      <router-link to="/Community" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
       <mt-button icon="more" slot="right"></mt-button>

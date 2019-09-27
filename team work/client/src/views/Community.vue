@@ -24,6 +24,7 @@
     <tab-bar ref="child"></tab-bar>
   </div>
 </template>
+
 <script>
 import communityFriends from "../components/Community/communityFriends";
 import communityRecommend from "../components/Community/communityRecommend";
