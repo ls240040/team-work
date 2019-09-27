@@ -431,7 +431,6 @@ export default {
 
           var t = e.target;
           if (t.tagName.toUpperCase() != "IMG") return;
-
           if (t.classList.contains("next")) {
             currImage++;
           } else {

@@ -2,7 +2,7 @@
 <template>
   <div>
     <mt-header fixed title="预订点餐">
-      <router-link to="/storeList" slot="left">
+      <router-link to="" slot="left" @click.native="goback()">
         <mt-button icon="back">关闭</mt-button>
       </router-link>
     </mt-header>
@@ -14,7 +14,11 @@ export default {
   data() {
     return {};
   },
-  methods: {}
+  methods: {
+    goback(){
+      this.$router.go(-1)
+    }
+  }
 };
 </script>
 
