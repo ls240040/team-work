@@ -1,5 +1,9 @@
 <template>
   <div class="Wai" style="background-color:rgb(252, 252, 252);">
+    <div class="back">
+      <a @click="goback">返回</a>
+    </div>
+    <div class="backfaker"></div>
     <div class="y1">
       <mt-navbar v-model="selected">
         <mt-tab-item id="waisong">外送</mt-tab-item>
@@ -81,14 +85,18 @@ export default {
   data() {
     return {
       selected: "waisong",
-      temp: ["选择地址： 铂澜大象城店", "送达时间： 21:00", "支付方式： 支付宝"],
+      temp: [
+        "选择地址： 铂澜大象城店",
+        "送达时间： 一小时内",
+        "支付方式： 支付宝"
+      ],
       tem: ["自取地址", "联系方式", "到店时间", "支付方式"],
       MerName: "", //店铺名称
       count: this.$route.query.count, //一共多少食物
       foodList: [], //已点食物
       totalPrice: this.$route.query.totalPrice, //总价
-      OrderSuccess:"none",
-      OrderStatue:"",
+      OrderSuccess: "none",
+      OrderStatue: ""
     };
   },
   methods: {
@@ -162,17 +170,19 @@ export default {
             O_Phone: Phone,
             O_FID: FID,
             O_Totle: Totle,
-            O_Dis:Dis,
-            O_PayStatue:PayStatue,
-            O_Note:Note,
+            O_Dis: Dis,
+            O_PayStatue: PayStatue,
+            O_Note: Note
           }
         })
         .then(res => {
           if (res.data.code == 1) {
             console.log("success");
-            this.$router.push({ path: '/diancan' });
+            this.$router.push({ path: "/diancan" });
             this.$router.go(0);
-          }else{console.log("fail")}
+          } else {
+            console.log("fail");
+          }
         });
     },
     //获取现在的时间
@@ -202,6 +212,10 @@ export default {
         date.getSeconds();
       return currentdate;
     },
+    //返回
+    goback() {
+      this.$router.go(-1);
+    }
   },
   created() {
     this.loadList();
@@ -308,5 +322,19 @@ export default {
 .faker {
   height: 1rem;
   width: 100%;
+}
+.back {
+  text-align: left;
+  position: fixed;
+  top: 0.3rem;
+  left: 0.3rem;
+  font-size: 0.3rem;
+  background-color: #fff;
+}
+.backfaker {
+  width: 100%;
+  height: 0.5rem;
+  font-size: 0.3rem;
+  background-color: #fff;
 }
 </style>

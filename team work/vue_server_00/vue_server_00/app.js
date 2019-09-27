@@ -43,6 +43,7 @@ app.use(express.static('public'));
 //index
 const carousel = require('./routes/community');
 const recommend = require('./routes/community');
+const recommend2 = require('./routes/community');
 const dweek = require('./routes/community');
 const dmonth = require('./routes/community');
 const dyear = require('./routes/community');
@@ -61,6 +62,7 @@ const menu = require('./routes/menu');
 // app.use("/index",index);
 app.use("/community", carousel);
 app.use("/community", recommend);
+app.use("/community", recommend2);
 app.use("/community", dweek);
 app.use("/community", dmonth);
 app.use("/community", dyear);

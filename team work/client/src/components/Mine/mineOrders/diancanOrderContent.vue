@@ -70,7 +70,7 @@ export default {
   data() {
     return {
       selected: "waisong",
-      temp: ["选择地址： 铂澜大象城店", "送达时间： 21:00", "支付方式： 支付宝"],
+      temp: ["选择地址： 铂澜大象城店", "送达时间： 一小时内", "支付方式： 支付宝"],
       tem: ["自取地址", "联系方式", "到店时间", "支付方式"],
       MerName: this.$route.query.M_Name, //店铺名称
       count: 0, //一共多少食物
