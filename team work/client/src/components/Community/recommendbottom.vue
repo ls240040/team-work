@@ -11,14 +11,27 @@
   </div>
 </template>
 <script>
+// 引入公共的bus，来做为中间传达的工具
+import Bus from '../../../src/Bus.js'
 export default {
   data() {
     return {
       list: [],
       list1: [],
       bbber: false,
-      idd: ""
+      idd: "",
+      value:""
     };
+  },
+  mounted: function() {
+    // 用$on事件来接收参数
+    Bus.$on("val", data => {
+      console.log(data);
+      this.value = data;
+      if(this.value=="查询成功"){
+        this.loadMsg();
+      }
+    });
   },
   methods: {
     cNice1() {
@@ -39,6 +52,7 @@ export default {
             .post("/user/addComment", params) //传参
             .then(res => {
               if (res.data.code == 1) {
+
               }
             });
         })

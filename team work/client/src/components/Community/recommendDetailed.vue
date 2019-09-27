@@ -43,7 +43,8 @@ export default {
         }
       ],
       iddd: "",
-      avatar: ""
+      avatar: "",
+      value:''
     };
   },
   mounted: function() {
