@@ -64,7 +64,6 @@ export default {
       active: true,
       collect: "http://127.0.0.1:5050/icon/collect.png",
       collect_active: "http://127.0.0.1:5050/icon/collect-fill.png",
-      name: 0
     };
   },
   methods: {
@@ -81,6 +80,7 @@ export default {
       this.axios.get(url).then(res => {
         console.log(res.data.data);
         if (res.data.code == 1) {
+          Bus.$emit('val',res.data.msg);
           var id = res.data.data[i].ID;
           var avatar = res.data.data[i].R_Avatar;
           this.$router.push({
