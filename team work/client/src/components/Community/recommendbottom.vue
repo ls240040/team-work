@@ -4,9 +4,6 @@
       <div v-if="bbber" @click="cNice1">
         <img src="http://127.0.0.1:5050/icon/collect-fill.png" alt />点赞
       </div>
-      <div v-else @click="cNice1">
-        <img src="http://127.0.0.1:5050/icon/collect.png" alt />点赞
-      </div>
       <div @click="pinglun">
         <img src="http://127.0.0.1:5050/icon/comment.png" alt />评论
       </div>

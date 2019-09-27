@@ -57,6 +57,19 @@ router.post('/content', (req, res) => {
         }
     })
 })
+router.post('/name', (req, res) => {
+    var U_ID = req.body.U_ID
+    var sql = "SELECT U_Name FROM diancan_user WHERE U_ID=?";
+    pool.query(sql, [U_ID], (err, result) => {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败" });
+        } else {
+            res.send({ code: 1, msg: "查询成功", data: result });
+        }
+    })
+})
+
 router.post('/cNice', (req, res) => {
     var id = req.body.id
     var isClick = req.body.isClick
@@ -72,28 +85,31 @@ router.post('/cNice', (req, res) => {
     })
 })
 router.post('/addComment', (req, res) => {
-    // params.append("id", this.idd);
-    // params.append("val", value);
-    // params.append("uid", uid);
-    // params.append("U_Img", this.list.U_Img);
-    // params.append("uname", this.list.U_Name);
-
     var idd = req.body.idd
-    console.log(idd)
     var comment = req.body.val
     var U_ID = req.body.uid
     var U_Img = req.body.U_Img
-    var U_name = req.body.U_name
     var beClick = U_ID.toString()
-    var sql = "INSERT INTO diancan_comment VALUES (null,?,?,?,?,?,?)";
-    pool.query(sql, [U_ID, comment, U_Img, U_name, idd, beClick], (err, result) => {
+    var sql1 = "SELECT U_Name FROM diancan_user WHERE U_ID=?";
+    pool.query(sql1, [U_ID], (err, result) => {
         if (err) throw err;
-        if (result.affectedRows == 0) {
-            res.send({ code: -1, msg: "修改失败" });
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "查询失败" });
         } else {
-            res.send({ code: 1, msg: "修改成功", data: result });
+            var U_Name = result[0].U_Name
+            console.log(U_Name)
+            var sql = "INSERT INTO diancan_comment VALUES (null,?,?,?,?,?,?)";
+            pool.query(sql, [U_ID, comment, U_Img, U_Name, idd, beClick], (err, result) => {
+                if (err) throw err;
+                if (result.affectedRows == 0) {
+                    res.send({ code: -1, msg: "修改失败" });
+                } else {
+                    res.send({ code: 1, msg: "修改成功", data: result });
+                }
+            })
         }
     })
+
 })
 
 router.get("/getNum", (req, res) => {

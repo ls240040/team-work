@@ -10,8 +10,7 @@
             <p class="p1">{{item.U_Name}}</p>
           </div>
         </div>
-        <div>
-        </div>
+        <div></div>
       </div>
       <p class="ptext">{{item.CO_Content}}</p>
     </div>
@@ -34,33 +33,21 @@ export default {
     };
   },
   methods: {
-    coNice(coid, index) {
-
-      this.bbber[index] = !this.bbber[index];
-      this.idd = this.$route.params.id;
-      var uid = sessionStorage.getItem("accessToken");
-      console.log(this.list2);
-      if (this.bbber[index]) {
-        var isClick = this.list2[index].join(",") + "," + uid;
-      } else {
-        console.log(index);
-        for (var j = 0; j < this.list2[j].length; j++) {
-          if (this.list2[index][j] == this.idd) {
-            var isClick =
-              this.list2[index].slice(0, j) + this.list2[index].slice(j + 1);
-          }
-        }
-      }
-      var params = new URLSearchParams();
-      params.append("id", this.idd);
-      params.append("coid", coid);
-      params.append("isClick", isClick);
-      this.axios
-        .post("/user/cNice", params) //传参
-        .then(res => {})
-        .catch(res => {});
-    },
+    // coNice(coid, index) {
+    //   this.bbber[index] = !this.bbber[index];
+    //   this.idd = this.$route.params.id;
+    //   var uid = sessionStorage.getItem("accessToken");
+    //   var params = new URLSearchParams();
+    //   params.append("id", this.idd);
+    //   params.append("coid", coid);
+    //   params.append("isClick", isClick);
+    //   this.axios
+    //     .post("/user/cNice", params) //传参
+    //     .then(res => {})
+    //     .catch(res => {});
+    // },
     loadMsg() {
+      var uid = sessionStorage.getItem("accessToken");
       this.idd = this.$route.params.id;
       var params = new URLSearchParams();
       params.append("id", this.idd);
@@ -69,15 +56,15 @@ export default {
         .then(res => {
           if (res.data.code == 1) {
             this.list1 = res.data.data;
-           
-            
+            console.log(this.list1,234)
           }
         })
         .catch(function(err) {
           console.log(err);
         });
-    }
+    },
   },
+
   created() {
     this.loadMsg();
   }

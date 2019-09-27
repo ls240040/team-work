@@ -1,8 +1,9 @@
 <template>
   <div class="vip">
     <titlebar></titlebar>
-    <vipcard v-if="islog"></vipcard>
-    <vipcardlogined v-else></vipcardlogined>
+      <vipcardlogined  v-if="islog"></vipcardlogined>
+    <vipcard v-else></vipcard>
+  
     <viprights></viprights>
     <vipexchange></vipexchange>
     <div class="know">
@@ -47,7 +48,7 @@ export default {
     this.$refs.child.vipurl = "vip_iconred.png"; //改变图标颜色
     this.$refs.child.vipcolor = "red"; //改变图标颜色
     if (sessionStorage.getItem("accessToken")) {
-      this.islogin = true;
+      this.islog = true;
     } else {
       this.islog = false;
     }
