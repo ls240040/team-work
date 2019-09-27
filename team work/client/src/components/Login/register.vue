@@ -29,14 +29,14 @@
       </div>
       <div class="TF">
         <span>输入密码：</span>
-        <input type="text" placeholder="请输入密码" v-model="U_PassWord" @blur="checkPassWord" />
+        <input type="password" placeholder="请输入密码" v-model="U_PassWord" @blur="checkPassWord" />
         <img src="http://127.0.0.1:5050/icon/true.png" v-if="U_PassWordcheck==1" />
         <img src="http://127.0.0.1:5050/icon/false.png" v-if="U_PassWordcheck==0" />
       </div>
       <div class="TF">
         <span>确认密码：</span>
         <input
-          type="text"
+          type="password"
           placeholder="请再次输入密码"
           v-model="U_PassWordAgain"
           @blur="checkPassWordAgain"
@@ -117,6 +117,12 @@ export default {
         this.U_PassWordcheck = 0;
       } else {
         this.U_PassWordcheck = 1;
+      }
+
+      if (this.U_PassWord == this.U_PassWordAgain) {
+        this.U_PassWordAgaincheck = 1;
+      } else {
+        this.U_PassWordAgaincheck = 0;
       }
     },
     //chenkPassWordAgain,两个要一样
