@@ -371,14 +371,14 @@ CREATE TABLE diancan_Comment(
 );
 /*评论表数据*/
 INSERT INTO diancan_Comment VALUES
-(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",1,"2,3,4,5"),
-(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",2,"2,3,4,5"),
-(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",3,"2,3,4,5"),
-(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",4,"2,3,4,5"),
+(null,1,"冯老板怎么这么帅",'/community/avatar1.png',"西瓜",1,"2,3,4,5"),
+(null,1,"金鹏小哥哥好帅啊",'/community/avatar1.png',"西瓜",2,"2,3,4,5"),
+(null,1,"西瓜可以打包带走吗",'/community/avatar1.png',"西瓜",3,"2,3,4,5"),
+(null,1,"最爱童城",'/community/avatar1.png',"西瓜",4,"2,3,4,5"),
 (null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",5,"2,3,4,5"),
-(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",6,"2,3,4,5"),
-(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",7,"2,3,4,5"),
-(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",8,"2,3,4,5"),
+(null,1,"吴高峰怎么这么帅",'/community/avatar1.png',"西瓜",6,"2,3,4,5"),
+(null,1,"哦依稀",'/community/avatar1.png',"西瓜",7,"2,3,4,5"),
+(null,1,"冯老板怎么这么帅",'/community/avatar1.png',"西瓜",8,"2,3,4,5"),
 (null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",9,"2,3,4,5"),
 (null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",10,"2,3,4,5");
 
