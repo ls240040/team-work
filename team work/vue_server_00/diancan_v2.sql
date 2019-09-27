@@ -371,7 +371,18 @@ CREATE TABLE diancan_Comment(
 );
 /*评论表数据*/
 INSERT INTO diancan_Comment VALUES
-(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",1,"2,3,4,5");
+(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",1,"2,3,4,5"),
+(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",2,"2,3,4,5"),
+(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",3,"2,3,4,5"),
+(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",4,"2,3,4,5"),
+(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",5,"2,3,4,5"),
+(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",6,"2,3,4,5"),
+(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",7,"2,3,4,5"),
+(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",8,"2,3,4,5"),
+(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",9,"2,3,4,5"),
+(null,1,"我喜欢吃喜欢",'/community/avatar1.png',"西瓜",10,"2,3,4,5");
+
+
 /**订单信息**/
 CREATE TABLE diancan_Order(
   O_ID INT PRIMARY KEY AUTO_INCREMENT,
