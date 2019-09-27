@@ -84,6 +84,23 @@ router.post('/cNice', (req, res) => {
         }
     })
 })
+
+router.post('/qname', (req, res) => {
+    var uid = req.body.uid
+    var sql = "SELECT U_Name FROM diancan_user WHERE U_ID=?";
+    pool.query(sql, [uid], (err, result) => {
+        if (err) throw err;
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "修改失败" });
+        } else {
+            res.send({ code: 1, msg: "修改成功", data: result });
+        }
+    })
+})
+
+
+
+
 router.post('/addComment', (req, res) => {
     var idd = req.body.idd
     var comment = req.body.val
