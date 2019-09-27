@@ -8,7 +8,7 @@
       </div>
       <div>
         <span>密码:</span>
-        <input v-model="upwd" type="text" placeholder="请输入密码">
+        <input v-model="upwd" type="password" placeholder="请输入密码">
       </div>
     </div>
     <div>
