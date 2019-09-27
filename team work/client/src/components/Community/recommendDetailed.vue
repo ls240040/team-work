@@ -26,8 +26,6 @@
   </div>
 </template>
 <script>
-// 引入公共的bus，来做为中间传达的工具
-import Bus from '../../../src/Bus.js'
 //负责引入recommendName.vue 子组件
 import recommendName from "./recommendName";
 import recommendbottom from "./recommendbottom";
@@ -44,18 +42,7 @@ export default {
       ],
       iddd: "",
       avatar: "",
-      value:''
     };
-  },
-  mounted: function() {
-    // 用$on事件来接收参数
-    Bus.$on("val", data => {
-      console.log(data);
-      this.value = data;
-      if(this.value=="查询成功"){
-        this.loadmsg();
-      }
-    });
   },
   methods: {
     loadmsg() {
