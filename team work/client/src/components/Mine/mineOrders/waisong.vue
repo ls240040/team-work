@@ -3,13 +3,13 @@
     <div class="back">
       <a @click="goback">返回</a>
     </div>
-    <div class="backfaker"></div>
+    <!-- <div class="backfaker"></div>
     <div class="y1">
       <mt-navbar v-model="selected">
         <mt-tab-item id="waisong">外送</mt-tab-item>
         <mt-tab-item id="myself">自提</mt-tab-item>
       </mt-navbar>
-      <!-- tab-container -->
+      // tab-container 
       <mt-tab-container v-model="selected">
         <mt-tab-container-item id="waisong">
           <div style class="bor" v-for="(item,i) of temp" :key="i">
@@ -23,11 +23,11 @@
           </div>
         </mt-tab-container-item>
       </mt-tab-container>
-    </div>
+    </div> -->
 
     <div class="y1">
       <div style="border-bottom:0.01rem solid #e2e2e2">
-        <span class="c1">———— 海底捞火锅外送({{MerName}}) ————</span>
+        <span class="c1">———— 海底捞火锅({{MerName}}) ————</span>
         <div class="d1">
           <span class="z1">已选商品</span>
           <span class="z1">共{{count}}份</span>
