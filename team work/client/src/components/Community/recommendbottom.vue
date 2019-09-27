@@ -11,13 +11,16 @@
   </div>
 </template>
 <script>
+// // 引入公共的bus，来做为中间传达的工具
+import Bus from '../../../src/Bus.js'
 export default {
   data() {
     return {
       list: [],
       list1: [],
       bbber: false,
-      idd: ""
+      idd: "",
+      value:""
     };
   },
   methods: {
@@ -38,7 +41,8 @@ export default {
           this.axios
             .post("/user/addComment", params) //传参
             .then(res => {
-              if (res.data.code == 1) {
+              if (res.data.code == 1) { 
+                Bus.$emit('aa',res.data.msg);
               }
             });
         })

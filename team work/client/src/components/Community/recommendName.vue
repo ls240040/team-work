@@ -18,6 +18,8 @@
   </div>
 </template>
 <script>
+// // 引入公共的bus，来做为中间传达的工具
+import Bus from '../../../src/Bus.js'
 export default {
   data() {
     return {
@@ -31,6 +33,16 @@ export default {
       idd: "",
       bbber: []
     };
+  },
+   mounted: function() {
+    // 用$on事件来接收参数
+    Bus.$on("aa", data => {
+      console.log(data);
+      this.value = data;
+      if(this.value=="修改成功"){
+        this.loadMsg();
+      }
+    });
   },
   methods: {
     // coNice(coid, index) {
