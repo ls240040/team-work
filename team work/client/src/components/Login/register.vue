@@ -119,7 +119,7 @@ export default {
         this.U_PassWordcheck = 1;
       }
 
-      if (this.U_PassWord == this.U_PassWordAgain) {
+      if (this.U_PassWord == this.U_PassWordAgain&&this.U_PassWordAgain!="") {
         this.U_PassWordAgaincheck = 1;
       } else {
         this.U_PassWordAgaincheck = 0;
@@ -127,7 +127,7 @@ export default {
     },
     //chenkPassWordAgain,两个要一样
     checkPassWordAgain() {
-      if (this.U_PassWord == this.U_PassWordAgain) {
+      if (this.U_PassWord == this.U_PassWordAgain&&this.U_PassWordAgain!="") {
         this.U_PassWordAgaincheck = 1;
       } else {
         this.U_PassWordAgaincheck = 0;
