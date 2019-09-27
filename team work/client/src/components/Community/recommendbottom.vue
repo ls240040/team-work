@@ -1,7 +1,7 @@
 <template>
   <div class="reBottom">
     <div class="box1">
-      <div>
+      <div v-if="bbber" @click="cNice1">
         <img src="http://127.0.0.1:5050/icon/collect-fill.png" alt />点赞
       </div>
       <div @click="pinglun">
@@ -14,29 +14,68 @@
 export default {
   data() {
     return {
-      list: []
+      list: [],
+      list1: [],
+      bbber: false,
+      idd: ""
     };
   },
   methods: {
-      pinglun(){
-        this.$messagebox.prompt("我想说。。。","").then(
-
-            
-        ).catch()
-        
-  
-
-      },
+    cNice1() {
+      this.bbber = !this.bbber;
+    },
+    pinglun() {
+      this.$messagebox
+        .prompt("我想说。。。", "")
+        .then(({ value, action }) => {
+          this.idd = this.$route.params.id;
+          var uid = sessionStorage.getItem("accessToken");
+          var params = new URLSearchParams();
+          params.append("idd", this.idd);
+          params.append("val", value);
+          params.append("uid", uid);
+          params.append("U_Name", this.list.U_Name);
+          this.axios
+            .post("/user/addComment", params) //传参
+            .then(res => {
+              if (res.data.code == 1) {
+              }
+            });
+        })
+        .catch();
+    },
+    loadMsg() {
+      this.idd = this.$route.params.id;
+      var params = new URLSearchParams();
+      params.append("id", this.idd);
+      this.axios
+        .post("/user/content", params) //传参
+        .then(res => {
+          if (res.data.code == 1) {
+            this.list1 = res.data.data;
+            var beClick1 = this.list1[0].beClick;
+            this.list2 = beClick1.split(",");
+            for (var i = 0; i <= this.list2.length; i++) {
+              if (this.idd == this.list2[i]) {
+                this.bbber = true;
+                break;
+              }
+            }
+          }
+        })
+        .catch(function(err) {
+          console.log(err);
+        });
+    }
   }
 };
 </script>
 <style lang="scss">
 @import url("../../assets/scss/reset.scss");
-    div.mint-msgbox{
-        width: 80%!important;
-    }
+div.mint-msgbox {
+  width: 80% !important;
+}
 .reBottom {
-
   width: 100%;
   position: fixed;
   bottom: 0;

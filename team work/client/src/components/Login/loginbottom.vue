@@ -14,7 +14,7 @@
     <div>
       <mt-button class="loginBtn" type="danger" @click="login">登录</mt-button>
       <p class="forget">
-        <span>忘记密码</span>
+        <span @click="regsiter">立即注册</span>&nbsp;&nbsp;&nbsp;<span>忘记密码</span>
       </p>
     </div>
     <div class="loginWay">
@@ -38,6 +38,9 @@ export default {
     };
   },
   methods: {
+    regsiter(){
+      this.$router.push("/register")
+    },
     login() {
       //功能一：完成用户登录操作
       //1：获取用户名和密码

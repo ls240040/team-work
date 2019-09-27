@@ -2,6 +2,7 @@
 <template>
   <div>
     <div class="content">
+      <span @click="fanhui" style="position:fixed;top:0.5rem;left:0.5rem;font-size:.5rem;color:#888888;">&lt;</span>
       <div class="top">
         <img class="logo" src="http://127.0.0.1:5050/icon/login_logo_img.png" alt>
         <div class="words">
@@ -22,7 +23,11 @@ export default {
      
     };
   },
-  methods: {}
+  methods: {
+    fanhui(){
+      this.$router.go(-1)
+    }
+  }
 };
 </script>
 
