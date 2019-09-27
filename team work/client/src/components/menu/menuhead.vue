@@ -2,7 +2,7 @@
 <template>
   <div>
     <mt-header fixed title="预订点餐">
-      <router-link to="" slot="left" @click.native="goback()">
+      <router-link to="." slot="left" @click.native="goback()">
         <mt-button icon="back">关闭</mt-button>
       </router-link>
     </mt-header>
